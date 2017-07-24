@@ -3,13 +3,13 @@
 //  PolyNetSampleObjectiveC
 //
 //  Created by System73.
-//  Copyright © 2017 System73. All rights reserved.
+//  Copyright © 2017 System73.
 //
 
 #import "ViewController.h"
 #import <AVKit/AVKit.h>
 #import <AVFoundation/AVFoundation.h>
-#import <PolyNetClient/PolyNetClient.h>
+#import <PolyNetSDK/PolyNetSDK.h>
 
 @interface ViewController () <S73PolyNetDelegate, S73PolyNetDataSource>
 
@@ -35,8 +35,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
     
+    self.navigationItem.title = @"PolyNet SDK sample app";
+    [self loadFromPersistance];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -46,28 +47,91 @@
         [self.polyNet close];
         self.polyNet = nil;
     }
-    [self.playButton setTitle:@"Play video" forState:UIControlStateNormal];
+    [self.playButton setTitle:@"Play!" forState:UIControlStateNormal];
     self.playButton.enabled = true;
+}
+
+#pragma mark User defaults
+
+#define MANIFEST_URL_KEY @"MANIFEST_URL_KEY"
+#define CHANNEL_ID_KEY @"CHANNEL_ID_KEY"
+#define BACKEND_URL_KEY @"BACKEND_URL_KEY"
+#define STUN_SERVER_URL_KEY @"STUN_SERVER_URL_KEY"
+
+- (void)loadFromPersistance {
+    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+    NSString * manifestUrl = [defaults objectForKey:MANIFEST_URL_KEY];
+    if (manifestUrl) {
+        self.manifestUrlTextField.text = manifestUrl;
+    }
+    NSNumber * channelId = [defaults objectForKey:CHANNEL_ID_KEY];
+    if (channelId) {
+        self.channelIdTextField.text = [NSString stringWithFormat:@"%ld", (long)[channelId integerValue]];
+    }
+    NSString * backendUrl = [defaults objectForKey:BACKEND_URL_KEY];
+    if (backendUrl) {
+        self.backendUrlTextField.text = backendUrl;
+    }
+    NSString * stunServerUrl = [defaults objectForKey:STUN_SERVER_URL_KEY];
+    if (stunServerUrl) {
+        self.stunServerUrlTextField.text = stunServerUrl;
+    }
+}
+
+- (void)saveToPersistance {
+    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+    NSString * manifestUrl = self.manifestUrlTextField.text;
+    if (manifestUrl != nil && [manifestUrl length] > 0) {
+        [defaults setObject:manifestUrl forKey:MANIFEST_URL_KEY];
+    }
+    NSNumberFormatter * formater = [[NSNumberFormatter alloc] init];
+    formater.numberStyle = NSNumberFormatterNoStyle;
+    NSNumber * channelId = [formater numberFromString:self.channelIdTextField.text];
+    if (channelId != nil) {
+        [defaults setObject:channelId forKey:CHANNEL_ID_KEY];
+    }
+    NSString * backendUrl = self.backendUrlTextField.text;
+    if (backendUrl != nil && [backendUrl length] > 0) {
+        [defaults setObject:backendUrl forKey:BACKEND_URL_KEY];
+    }
+    NSString * stunServerUrl = self.stunServerUrlTextField.text;
+    if (stunServerUrl != nil && [stunServerUrl length] > 0) {
+        [defaults setObject:stunServerUrl forKey:STUN_SERVER_URL_KEY];
+    }
 }
 
 #pragma mark IBActions
 
 - (IBAction)playButtonDidTouchUpInside {
     
-    // Check parameters
-    NSString * manifestUrl = self.manifestUrlTextField.text;
-    NSUInteger channelId = [self.channelIdTextField.text integerValue];
-    NSString * backendUrl = self.backendUrlTextField.text;
-    NSString * stunServerUrl = self.stunServerUrlTextField.text;
-    if (manifestUrl == nil
-        || self.channelIdTextField.text == nil
-        || backendUrl == nil
-        || stunServerUrl == nil) {
-        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Invalid parameters" message:@"Any or some parameters are invalid" preferredStyle:UIAlertControllerStyleAlert];
-        [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
-        [self presentViewController:alert animated:true completion:nil];
-        return;
+    // Parameters
+    NSString * manifestUrl;
+    if (self.manifestUrlTextField.text == nil || [self.manifestUrlTextField.text length] == 0) {
+        manifestUrl = self.manifestUrlTextField.placeholder;
+    } else {
+        manifestUrl = self.manifestUrlTextField.text;
     }
+    NSUInteger channelId;
+    if (self.channelIdTextField.text == nil || [self.channelIdTextField.text length] == 0) {
+        channelId = [self.channelIdTextField.placeholder integerValue];
+    } else {
+        channelId = [self.channelIdTextField.text integerValue];
+    }
+    NSString * backendUrl;
+    if (self.backendUrlTextField.text == nil || [self.backendUrlTextField.text length] == 0) {
+        backendUrl = self.backendUrlTextField.placeholder;
+    } else {
+        backendUrl = self.backendUrlTextField.text;
+    }
+    NSString * stunServerUrl;
+    if (self.stunServerUrlTextField.text == nil || [self.stunServerUrlTextField.text length] == 0) {
+        stunServerUrl = self.stunServerUrlTextField.placeholder;
+    } else {
+        stunServerUrl = self.stunServerUrlTextField.text;
+    }
+    
+    // Save to persistance
+    [self loadFromPersistance];
     
     // UI
     self.playButton.enabled = false;
@@ -78,6 +142,10 @@
     self.polyNet.delegate = self;
     self.polyNet.dataSource = self;
     [self.polyNet connect];
+}
+
+- (IBAction)goToWeb {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://system73.com"] options:@{} completionHandler:nil];
 }
 
 #pragma mark S73PolyNetDelegate

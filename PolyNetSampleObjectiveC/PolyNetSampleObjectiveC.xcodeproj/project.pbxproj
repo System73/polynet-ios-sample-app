@@ -7,24 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B705215D1F260C0200E88BE5 /* PolyNetSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70521591F260BE400E88BE5 /* PolyNetSDK.framework */; };
+		B705215E1F260C0200E88BE5 /* PolyNetSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B70521591F260BE400E88BE5 /* PolyNetSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B7104FF91F18AB070008CFD9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B7104FF81F18AB070008CFD9 /* main.m */; };
 		B7104FFC1F18AB070008CFD9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B7104FFB1F18AB070008CFD9 /* AppDelegate.m */; };
 		B7104FFF1F18AB070008CFD9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7104FFE1F18AB070008CFD9 /* ViewController.m */; };
 		B71050021F18AB070008CFD9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B71050001F18AB070008CFD9 /* Main.storyboard */; };
 		B71050041F18AB070008CFD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B71050031F18AB070008CFD9 /* Assets.xcassets */; };
 		B71050071F18AB070008CFD9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B71050051F18AB070008CFD9 /* LaunchScreen.storyboard */; };
-		B71050151F18C1D20008CFD9 /* PolyNetClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B71050141F18C1D20008CFD9 /* PolyNetClient.framework */; };
-		B71050161F18C1D20008CFD9 /* PolyNetClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B71050141F18C1D20008CFD9 /* PolyNetClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		B71050171F18C1D20008CFD9 /* Embed Frameworks */ = {
+		B705215F1F260C0200E88BE5 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				B71050161F18C1D20008CFD9 /* PolyNetClient.framework in Embed Frameworks */,
+				B705215E1F260C0200E88BE5 /* PolyNetSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -32,6 +32,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B70521591F260BE400E88BE5 /* PolyNetSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PolyNetSDK.framework; sourceTree = "<group>"; };
 		B7104FF41F18AB070008CFD9 /* PolyNetSampleObjectiveC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PolyNetSampleObjectiveC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7104FF81F18AB070008CFD9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B7104FFA1F18AB070008CFD9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -42,7 +43,6 @@
 		B71050031F18AB070008CFD9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B71050061F18AB070008CFD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B71050081F18AB070008CFD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B71050141F18C1D20008CFD9 /* PolyNetClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PolyNetClient.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,18 +50,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B71050151F18C1D20008CFD9 /* PolyNetClient.framework in Frameworks */,
+				B705215D1F260C0200E88BE5 /* PolyNetSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B70521581F260BD200E88BE5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B70521591F260BE400E88BE5 /* PolyNetSDK.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B7104FEB1F18AB070008CFD9 = {
 			isa = PBXGroup;
 			children = (
-				B71050141F18C1D20008CFD9 /* PolyNetClient.framework */,
 				B7104FF61F18AB070008CFD9 /* PolyNetSampleObjectiveC */,
+				B70521581F260BD200E88BE5 /* Frameworks */,
 				B7104FF51F18AB070008CFD9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -109,7 +117,7 @@
 				B7104FF11F18AB070008CFD9 /* Frameworks */,
 				B7104FF21F18AB070008CFD9 /* Resources */,
 				B71050131F18C1680008CFD9 /* Strip 86 architectures */,
-				B71050171F18C1D20008CFD9 /* Embed Frameworks */,
+				B705215F1F260C0200E88BE5 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

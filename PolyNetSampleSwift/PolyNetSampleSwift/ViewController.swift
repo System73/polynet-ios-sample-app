@@ -3,13 +3,13 @@
 //  PolyNetSampleSwift
 //
 //  Created by System73.
-//  Copyright © 2017 System73. All rights reserved.
+//  Copyright © 2017 System73.
 //
 
 import UIKit
 import AVKit
 import AVFoundation
-import PolyNetClient
+import PolyNetSDK
 
 class ViewController: UITableViewController {
     
@@ -23,8 +23,9 @@ class ViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
+        self.navigationItem.title = "PolyNet SDK sample app"
+        loadFromPersistance()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -34,8 +35,47 @@ class ViewController: UITableViewController {
             polyNet?.close()
             polyNet = nil
         }
-        playButton.setTitle("Play video", for: .normal)
+        playButton.setTitle("Play!", for: .normal)
         playButton.isEnabled = true
+    }
+    
+    // MARK: User defaults
+    
+    fileprivate let MANIFEST_URL_KEY = "MANIFEST_URL_KEY"
+    fileprivate let CHANNEL_ID_KEY = "CHANNEL_ID_KEY"
+    fileprivate let BACKEND_URL_KEY = "BACKEND_URL_KEY"
+    fileprivate let STUN_SERVER_URL_KEY = "STUN_SERVER_URL_KEY"
+    
+    fileprivate func loadFromPersistance() {
+        let defaults = UserDefaults.standard
+        if let manifestUrl = defaults.string(forKey: MANIFEST_URL_KEY) {
+            self.manifestUrlTextField.text = manifestUrl
+        }
+        if defaults.integer(forKey: CHANNEL_ID_KEY) != 0 {
+            self.channelIdTextField.text = "\(defaults.integer(forKey: CHANNEL_ID_KEY))"
+        }
+        if let backendUrl = defaults.string(forKey: BACKEND_URL_KEY) {
+            self.backendUrlTextField.text = backendUrl
+        }
+        if let stunServerUrl = defaults.string(forKey: STUN_SERVER_URL_KEY) {
+            self.stunServerUrlTextField.text = stunServerUrl
+        }
+    }
+    
+    fileprivate func saveToPersistance() {
+        let defaults = UserDefaults.standard
+        if let manifestUrl = self.manifestUrlTextField.text, manifestUrl.characters.count > 0 {
+            defaults.set(manifestUrl, forKey: MANIFEST_URL_KEY)
+        }
+        if let channelIdString = self.channelIdTextField.text, let channelId = UInt(channelIdString) {
+            defaults.set(channelId, forKey: CHANNEL_ID_KEY)
+        }
+        if let backendUrl = self.backendUrlTextField.text, backendUrl.characters.count > 0 {
+            defaults.set(backendUrl, forKey: BACKEND_URL_KEY)
+        }
+        if let stunServerUrl = self.stunServerUrlTextField.text, stunServerUrl.characters.count > 0 {
+            defaults.set(stunServerUrl, forKey: STUN_SERVER_URL_KEY)
+        }
     }
     
     // MARK: IBActions and IBOutlets
@@ -48,17 +88,38 @@ class ViewController: UITableViewController {
     
     @IBAction func playButtonDidTouchUpInside() {
         
-        // Check parameters
-        guard let manifestUrl = manifestUrlTextField.text,
-            let channelIdString = channelIdTextField.text,
-            let channelId = UInt(channelIdString),
-            let backendUrl = backendUrlTextField.text,
-            let stunServerUrl = stunServerUrlTextField.text else {
-                let alert = UIAlertController(title: "Invalid parameters", message: "Any or some parameters are invalid", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                present(alert, animated: true, completion: nil)
-                return
+        // Parameters
+        let manifestUrl: String
+        if manifestUrlTextField.text == nil || manifestUrlTextField.text?.characters.count == 0 {
+            manifestUrl = manifestUrlTextField.placeholder!
+        } else {
+            manifestUrl = manifestUrlTextField.text!
         }
+        
+        //let channelId = channelIdTextField.text != nil ? UInt(channelIdTextField.text!) : UInt(channelIdTextField.placeholder!)
+        let channelId: UInt
+        if let channelIdString = channelIdTextField.text, channelIdString.characters.count > 0, let channelIdInt = UInt(channelIdString) {
+            channelId = channelIdInt
+        } else {
+            channelId = UInt(channelIdTextField.placeholder!)!
+        }
+        
+        let backendUrl: String
+        if backendUrlTextField.text == nil || backendUrlTextField.text?.characters.count == 0 {
+            backendUrl = backendUrlTextField.placeholder!
+        } else {
+            backendUrl = backendUrlTextField.text!
+        }
+        
+        let stunServerUrl: String
+        if stunServerUrlTextField.text == nil || stunServerUrlTextField.text?.characters.count == 0 {
+            stunServerUrl = stunServerUrlTextField.placeholder!
+        } else {
+            stunServerUrl = stunServerUrlTextField.text!
+        }
+        
+        // Save to persistance
+        saveToPersistance()
         
         // UI
         playButton.isEnabled = false
@@ -69,6 +130,10 @@ class ViewController: UITableViewController {
         polyNet?.delegate = self
         polyNet?.dataSource = self
         polyNet?.connect()
+    }
+    
+    @IBAction func goToWeb() {
+        UIApplication.shared.open(URL(string:"https://www.system73.com")!, options: [:], completionHandler:nil)
     }
 }
 

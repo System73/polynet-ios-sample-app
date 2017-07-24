@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B70521631F260C5E00E88BE5 /* PolyNetSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70521611F260C5800E88BE5 /* PolyNetSDK.framework */; };
+		B70521641F260C5E00E88BE5 /* PolyNetSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B70521611F260C5800E88BE5 /* PolyNetSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B7104FDA1F18A9B00008CFD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7104FD91F18A9B00008CFD9 /* AppDelegate.swift */; };
 		B7104FDC1F18A9B00008CFD9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7104FDB1F18A9B00008CFD9 /* ViewController.swift */; };
 		B7104FDF1F18A9B00008CFD9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7104FDD1F18A9B00008CFD9 /* Main.storyboard */; };
 		B7104FE11F18A9B00008CFD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7104FE01F18A9B00008CFD9 /* Assets.xcassets */; };
 		B7104FE41F18A9B00008CFD9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7104FE21F18A9B00008CFD9 /* LaunchScreen.storyboard */; };
-		B71050101F18B4240008CFD9 /* PolyNetClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B710500F1F18B4240008CFD9 /* PolyNetClient.framework */; };
-		B71050111F18B4240008CFD9 /* PolyNetClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B710500F1F18B4240008CFD9 /* PolyNetClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,7 +23,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				B71050111F18B4240008CFD9 /* PolyNetClient.framework in Embed Frameworks */,
+				B70521641F260C5E00E88BE5 /* PolyNetSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -31,6 +31,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B70521611F260C5800E88BE5 /* PolyNetSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PolyNetSDK.framework; sourceTree = "<group>"; };
 		B7104FD61F18A9B00008CFD9 /* PolyNetSampleSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PolyNetSampleSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7104FD91F18A9B00008CFD9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B7104FDB1F18A9B00008CFD9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -38,7 +39,6 @@
 		B7104FE01F18A9B00008CFD9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B7104FE31F18A9B00008CFD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B7104FE51F18A9B00008CFD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B710500F1F18B4240008CFD9 /* PolyNetClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PolyNetClient.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,18 +46,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B71050101F18B4240008CFD9 /* PolyNetClient.framework in Frameworks */,
+				B70521631F260C5E00E88BE5 /* PolyNetSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B70521601F260C4200E88BE5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B70521611F260C5800E88BE5 /* PolyNetSDK.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B7104FCD1F18A9B00008CFD9 = {
 			isa = PBXGroup;
 			children = (
-				B710500F1F18B4240008CFD9 /* PolyNetClient.framework */,
 				B7104FD81F18A9B00008CFD9 /* PolyNetSampleSwift */,
+				B70521601F260C4200E88BE5 /* Frameworks */,
 				B7104FD71F18A9B00008CFD9 /* Products */,
 			);
 			sourceTree = "<group>";
