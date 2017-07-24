@@ -3,7 +3,7 @@
 //  PolyNetSampleObjectiveC
 //
 //  Created by System73.
-//  Copyright © 2017 System73. All rights reserved.
+//  Copyright © 2017 System73.
 //
 
 #import "ViewController.h"
@@ -104,19 +104,30 @@
 
 - (IBAction)playButtonDidTouchUpInside {
     
-    // Check parameters
-    NSString * manifestUrl = self.manifestUrlTextField.text;
-    NSUInteger channelId = [self.channelIdTextField.text integerValue];
-    NSString * backendUrl = self.backendUrlTextField.text;
-    NSString * stunServerUrl = self.stunServerUrlTextField.text;
-    if (manifestUrl == nil || [manifestUrl length] == 0
-        || self.channelIdTextField.text == nil || [self.channelIdTextField.text length] == 0
-        || backendUrl == nil || [backendUrl length] == 0
-        || stunServerUrl == nil || [stunServerUrl length] == 0) {
-        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Invalid parameters" message:@"Any or some parameters are invalid" preferredStyle:UIAlertControllerStyleAlert];
-        [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
-        [self presentViewController:alert animated:true completion:nil];
-        return;
+    // Parameters
+    NSString * manifestUrl;
+    if (self.manifestUrlTextField.text == nil || [self.manifestUrlTextField.text length] == 0) {
+        manifestUrl = self.manifestUrlTextField.placeholder;
+    } else {
+        manifestUrl = self.manifestUrlTextField.text;
+    }
+    NSUInteger channelId;
+    if (self.channelIdTextField.text == nil || [self.channelIdTextField.text length] == 0) {
+        channelId = [self.channelIdTextField.placeholder integerValue];
+    } else {
+        channelId = [self.channelIdTextField.text integerValue];
+    }
+    NSString * backendUrl;
+    if (self.backendUrlTextField.text == nil || [self.backendUrlTextField.text length] == 0) {
+        backendUrl = self.backendUrlTextField.placeholder;
+    } else {
+        backendUrl = self.backendUrlTextField.text;
+    }
+    NSString * stunServerUrl;
+    if (self.stunServerUrlTextField.text == nil || [self.stunServerUrlTextField.text length] == 0) {
+        stunServerUrl = self.stunServerUrlTextField.placeholder;
+    } else {
+        stunServerUrl = self.stunServerUrlTextField.text;
     }
     
     // Save to persistance

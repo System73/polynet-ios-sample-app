@@ -3,7 +3,7 @@
 //  PolyNetSampleSwift
 //
 //  Created by System73.
-//  Copyright © 2017 System73. All rights reserved.
+//  Copyright © 2017 System73.
 //
 
 import UIKit
@@ -88,16 +88,34 @@ class ViewController: UITableViewController {
     
     @IBAction func playButtonDidTouchUpInside() {
         
-        // Check parameters
-        guard let manifestUrl = manifestUrlTextField.text, manifestUrl.characters.count > 0,
-            let channelIdString = channelIdTextField.text,
-            let channelId = UInt(channelIdString),
-            let backendUrl = backendUrlTextField.text, backendUrl.characters.count > 0,
-            let stunServerUrl = stunServerUrlTextField.text, stunServerUrl.characters.count > 0 else {
-                let alert = UIAlertController(title: "Invalid parameters", message: "Any or some parameters are invalid", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                present(alert, animated: true, completion: nil)
-                return
+        // Parameters
+        let manifestUrl: String
+        if manifestUrlTextField.text == nil || manifestUrlTextField.text?.characters.count == 0 {
+            manifestUrl = manifestUrlTextField.placeholder!
+        } else {
+            manifestUrl = manifestUrlTextField.text!
+        }
+        
+        //let channelId = channelIdTextField.text != nil ? UInt(channelIdTextField.text!) : UInt(channelIdTextField.placeholder!)
+        let channelId: UInt
+        if let channelIdString = channelIdTextField.text, channelIdString.characters.count > 0, let channelIdInt = UInt(channelIdString) {
+            channelId = channelIdInt
+        } else {
+            channelId = UInt(channelIdTextField.placeholder!)!
+        }
+        
+        let backendUrl: String
+        if backendUrlTextField.text == nil || backendUrlTextField.text?.characters.count == 0 {
+            backendUrl = backendUrlTextField.placeholder!
+        } else {
+            backendUrl = backendUrlTextField.text!
+        }
+        
+        let stunServerUrl: String
+        if stunServerUrlTextField.text == nil || stunServerUrlTextField.text?.characters.count == 0 {
+            stunServerUrl = stunServerUrlTextField.placeholder!
+        } else {
+            stunServerUrl = stunServerUrlTextField.text!
         }
         
         // Save to persistance
