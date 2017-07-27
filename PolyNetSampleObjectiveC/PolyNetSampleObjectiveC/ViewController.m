@@ -150,6 +150,7 @@
     
     // Create the PolyNet
     self.polyNet = [[S73PolyNet alloc] initWithManifestUrl:manifestUrl channelId:channelId backendUrl:backendUrl stunServerUrl:stunServerUrl];
+    [self.polyNet setDebugMode:YES];
     self.polyNet.delegate = self;
     self.polyNet.dataSource = self;
     [self.polyNet connect];
