@@ -26,7 +26,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *backendUrlTextField;
 @property (weak, nonatomic) IBOutlet UITextField *stunServerUrlTextField;
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
-
+@property (weak, nonatomic) IBOutlet UILabel *versionLabel;
 @end
 
 @implementation ViewController
@@ -49,6 +49,8 @@
     }
     [self.playButton setTitle:@"Play!" forState:UIControlStateNormal];
     self.playButton.enabled = true;
+    
+    [self updateVersionLabel];
 }
 
 #pragma mark User defaults
@@ -57,6 +59,8 @@
 #define CHANNEL_ID_KEY @"CHANNEL_ID_KEY"
 #define BACKEND_URL_KEY @"BACKEND_URL_KEY"
 #define STUN_SERVER_URL_KEY @"STUN_SERVER_URL_KEY"
+#define FIRST_SECTION_HEADER_HEIGHT 40.0
+#define SECTION_HEADER_HEIGHT 12.0
 
 - (void)loadFromPersistance {
     NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
@@ -98,6 +102,13 @@
     if (stunServerUrl != nil && [stunServerUrl length] > 0) {
         [defaults setObject:stunServerUrl forKey:STUN_SERVER_URL_KEY];
     }
+}
+
+- (void)updateVersionLabel {
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"Info" ofType:@"plist"];
+    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:path];
+    
+    self.versionLabel.text = [NSString stringWithFormat:@"%@.%@", [dict objectForKey:@"CFBundleShortVersionString"], [dict objectForKey:@"CFBundleVersion"]];
 }
 
 #pragma mark IBActions
@@ -217,5 +228,18 @@
     }
     return event.playbackStartDate;
 }
+
+- (CGFloat) tableView:(UITableView *)tableView estimatedHeightForHeaderInSection:(NSInteger)section {
+    return [self tableView:tableView heightForHeaderInSection:section];
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return FIRST_SECTION_HEADER_HEIGHT;
+    }
+    
+    return SECTION_HEADER_HEIGHT;
+}
+
 
 @end

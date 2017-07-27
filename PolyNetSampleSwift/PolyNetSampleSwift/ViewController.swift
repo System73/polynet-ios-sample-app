@@ -36,7 +36,9 @@ class ViewController: UITableViewController {
             polyNet = nil
         }
         playButton.setTitle("Play!", for: .normal)
-        playButton.isEnabled = true
+        playButton.isEnabled = true        
+        
+        self.updateVersionLabel()
     }
     
     // MARK: User defaults
@@ -45,6 +47,9 @@ class ViewController: UITableViewController {
     fileprivate let CHANNEL_ID_KEY = "CHANNEL_ID_KEY"
     fileprivate let BACKEND_URL_KEY = "BACKEND_URL_KEY"
     fileprivate let STUN_SERVER_URL_KEY = "STUN_SERVER_URL_KEY"
+    fileprivate let FIRST_SECTION_HEADER_HEIGHT = CGFloat(40.0)
+    fileprivate let SECTION_HEADER_HEIGHT = CGFloat(12.0)
+    
     
     fileprivate func loadFromPersistance() {
         let defaults = UserDefaults.standard
@@ -78,6 +83,19 @@ class ViewController: UITableViewController {
         }
     }
     
+    fileprivate func updateVersionLabel() {
+        guard let path = Bundle.main.path(forResource: "Info", ofType: "plist") else {
+            return
+        }
+        
+        guard let dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] else {
+            return
+        }
+        
+        versionLabel.text = String(format: "%@.%@", dict["CFBundleShortVersionString"] as! String, dict["CFBundleVersion"] as! String)
+        
+    }
+    
     // MARK: IBActions and IBOutlets
     
     @IBOutlet weak var manifestUrlTextField: UITextField!
@@ -85,6 +103,7 @@ class ViewController: UITableViewController {
     @IBOutlet weak var backendUrlTextField: UITextField!
     @IBOutlet weak var stunServerUrlTextField: UITextField!
     @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var versionLabel: UILabel!
     
     @IBAction func playButtonDidTouchUpInside() {
         
@@ -209,5 +228,19 @@ extension ViewController: S73PolyNetDataSource {
         return event.playbackStartDate
     }
     
+    override func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+        return self.tableView(tableView, heightForHeaderInSection: section)
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if (section == 0) {
+            return FIRST_SECTION_HEADER_HEIGHT
+        }
+        
+        return SECTION_HEADER_HEIGHT
+    }
+    
+
+
 }
 
