@@ -127,6 +127,7 @@ class ViewController: UITableViewController {
         
         // Create the PolyNet
         polyNet = S73PolyNet(manifestUrl: manifestUrl, channelId: channelId, backendUrl: backendUrl, stunServerUrl: stunServerUrl)
+        polyNet?.setDebugMode(true)
         polyNet?.delegate = self
         polyNet?.dataSource = self
         polyNet?.connect()
