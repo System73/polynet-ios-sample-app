@@ -203,7 +203,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "APP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\ncd $APP_PATH/Frameworks\nrm -rf *framework";
+			shellScript = "APP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\nrm -rf $APP_PATH/Frameworks/*framework";
 		};
 /* End PBXShellScriptBuildPhase section */
 
