@@ -1,10 +1,3 @@
-//
-//  ViewController.m
-//  PolyNetSampleObjectiveC
-//
-//  Created by System73.
-//  Copyright © 2017 System73.
-//
 
 #import "ViewController.h"
 #import <AVKit/AVKit.h>

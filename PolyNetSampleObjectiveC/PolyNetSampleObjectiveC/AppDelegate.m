@@ -1,10 +1,3 @@
-//
-//  AppDelegate.m
-//  PolyNetSampleObjectiveC
-//
-//  Created by System73.
-//  Copyright © 2017 System73.
-//
 
 #import "AppDelegate.h"
 
