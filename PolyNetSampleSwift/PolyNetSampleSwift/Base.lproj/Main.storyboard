@@ -180,7 +180,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P1U-ZU-PYz">
                                                     <rect key="frame" x="8" y="7" width="359" height="30"/>
-                                                    <state key="normal" title="Play!"/>
+                                                    <state key="normal" title="PLAY!"/>
                                                     <connections>
                                                         <action selector="playButtonDidTouchUpInside" destination="JiC-SD-o5K" eventType="touchUpInside" id="Yeh-lV-amB"/>
                                                     </connections>
