@@ -85,8 +85,10 @@ class ViewController: UITableViewController {
             return
         }
         
-        versionLabel.text = String(format: "%@.%@", dict["CFBundleShortVersionString"] as! String, dict["CFBundleVersion"] as! String)
-        
+        versionLabel.text = String(format: "Sample App v. %@.%@\nPolyNet SDK v. %@",
+                                   dict["CFBundleShortVersionString"] as! String,
+                                   dict["CFBundleVersion"] as! String,
+                                   S73PolyNet.version())
     }
     
     // MARK: IBActions and IBOutlets
