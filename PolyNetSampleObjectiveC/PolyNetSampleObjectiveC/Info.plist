@@ -28,6 +28,8 @@
 	<array>
 		<string>armv7</string>
 	</array>
+    <key>NSCameraUsageDescription</key>
+        <string>Camera is not used directly in this app.</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
