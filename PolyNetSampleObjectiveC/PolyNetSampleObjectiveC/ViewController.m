@@ -101,7 +101,10 @@
     NSString *path = [[NSBundle mainBundle] pathForResource:@"Info" ofType:@"plist"];
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:path];
     
-    self.versionLabel.text = [NSString stringWithFormat:@"%@.%@", [dict objectForKey:@"CFBundleShortVersionString"], [dict objectForKey:@"CFBundleVersion"]];
+    self.versionLabel.text = [NSString stringWithFormat:@"Sample App v%@.%@\nPolyNet SDK v.%@",
+                              [dict objectForKey:@"CFBundleShortVersionString"],
+                              [dict objectForKey:@"CFBundleVersion"],
+                              [S73PolyNet version]];
 }
 
 #pragma mark IBActions

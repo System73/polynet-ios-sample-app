@@ -51,7 +51,7 @@
                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="version" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ybs-H6-MoP" userLabel="Version">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="version" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ybs-H6-MoP" userLabel="Version">
                                     <rect key="frame" x="167" y="31" width="41" height="14.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -180,7 +180,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a0t-Nb-9gO">
                                                     <rect key="frame" x="8" y="7" width="359" height="30"/>
-                                                    <state key="normal" title="Play!"/>
+                                                    <state key="normal" title="PLAY!"/>
                                                     <connections>
                                                         <action selector="playButtonDidTouchUpInside" destination="bg7-we-ONf" eventType="touchUpInside" id="QPw-Kr-Jv1"/>
                                                     </connections>

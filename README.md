@@ -1,5 +1,4 @@
-# System73 PolyNet iOS Framework sample app
+# Readme
 
-This is the integration sample application for the PolyNet iOS Framework.
-For detailed instructions, please visit
-[system73.com](https://www.system73.com/).
+- There are two sample projects, one in **Swift** (PolyNetSampleSwift) and one in **Objective-C** (PolyNetSampleObjectiveC). 
+- In order to build and run the sample projects you have to add a copy of the PolyNetClient.framework to both of the main projects directories (PolyNetSampleSwift/PolyNetClient.framework and PolyNetSampleObjectiveC/PolyNetClient.framework), so the projects can link and build with the framework.
