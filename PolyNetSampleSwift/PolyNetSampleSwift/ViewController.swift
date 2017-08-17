@@ -11,6 +11,7 @@ class ViewController: UITableViewController {
     var polyNet: S73PolyNet?
     var playerViewController: AVPlayerViewController?
     var player: AVPlayer?
+    var bufferEmptyCountermeasureTimer : Timer? = nil
     
     // MARK: Lifecycle
 
@@ -32,6 +33,9 @@ class ViewController: UITableViewController {
         playButton.isEnabled = true        
         
         self.updateVersionLabel()
+        if (player != nil) {
+            removeObserversForPlayerItem(playerItem: (player?.currentItem)!);
+        }
     }
     
     // MARK: User defaults
@@ -163,8 +167,9 @@ extension ViewController: S73PolyNetDelegate {
         player = AVPlayer(url: URL(string: polyNetManifestUrl)!)
         playerViewController = AVPlayerViewController()
         playerViewController?.player = player
+        self.addObserversForPlayerItem(playerItem: (self.player?.currentItem)!)
         present(playerViewController!, animated: true) { 
-            self.player?.play()
+
         }
     }
     
@@ -235,8 +240,79 @@ extension ViewController: S73PolyNetDataSource {
         
         return SECTION_HEADER_HEIGHT
     }
+}
+
+// Extension to handle connection lost and playback recovery
+extension ViewController {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if (#keyPath(AVPlayerItem.status) == keyPath) {
+            let playerItem = object as! AVPlayerItem
+            switch playerItem.status {
+                case .readyToPlay:
+                    self.handlePlayerItemReadyToPlay()
+                    break
+                case .unknown: fallthrough
+                case .failed:
+                    break
+            }
+
+        }
+        
+        if (keyPath == #keyPath(AVPlayerItem.isPlaybackBufferEmpty)) {
+            handlePlaybackBuferEmpty(playerItem: object as! AVPlayerItem)
+        }
+    }
     
-
-
+    func addObserversForPlayerItem(playerItem: AVPlayerItem) {
+        playerItem.addObserver(self, forKeyPath: #keyPath(AVPlayerItem.status), options: [.initial , .new], context: nil)
+        playerItem.addObserver(self, forKeyPath: #keyPath(AVPlayerItem.isPlaybackBufferEmpty), options: [.initial , .new], context: nil)
+    }
+    
+    func removeObserversForPlayerItem(playerItem: AVPlayerItem) {
+        playerItem.removeObserver(self, forKeyPath: #keyPath(AVPlayerItem.status))
+        playerItem.removeObserver(self, forKeyPath: #keyPath(AVPlayerItem.isPlaybackBufferEmpty))
+    }
+    
+    func handlePlayerItemReadyToPlay() {
+        player?.play()
+        deactivateBufferEmptyCountermeasure()
+    }
+    
+    func handlePlaybackBuferEmpty(playerItem: AVPlayerItem) {
+        if (playerItem.status == .readyToPlay) {
+            activateBufferEmptyCountermeasure()
+        }
+    }
+    
+    func activateBufferEmptyCountermeasure() {
+        guard bufferEmptyCountermeasureTimer == nil else {
+            return
+        }
+        
+        bufferEmptyCountermeasureTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (timer) in
+            let currentItem: AVPlayerItem = (self.player?.currentItem)!
+            self.removeObserversForPlayerItem(playerItem: currentItem)
+            
+            let asset = currentItem.asset
+            
+            guard let urlAsset = asset as? AVURLAsset else {
+                return
+            }
+            
+            let item: AVPlayerItem = AVPlayerItem.init(url: urlAsset.url)
+            self.addObserversForPlayerItem(playerItem: item)
+            self.player?.replaceCurrentItem(with: item)
+        }
+    }
+    
+    func deactivateBufferEmptyCountermeasure() {
+        guard bufferEmptyCountermeasureTimer != nil else {
+            return
+        }
+        
+        bufferEmptyCountermeasureTimer?.invalidate()
+        bufferEmptyCountermeasureTimer = nil
+    }
+    
 }
 
