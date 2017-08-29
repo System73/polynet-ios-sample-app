@@ -11,6 +11,7 @@
 @property (nonatomic, nullable, strong) S73PolyNet * polyNet;
 @property (nonatomic, nullable, strong) AVPlayerViewController * playerViewController;
 @property (nonatomic, nullable, strong) AVPlayer * player;
+@property (nonatomic, nullable, strong) NSTimer *bufferEmptyCountermeasureTimer;
 
 #pragma mark IBOutlets
 
@@ -138,7 +139,7 @@
     }
     
     // Save to persistance
-    [self loadFromPersistance];
+    [self saveToPersistance];
     
     // UI
     self.playButton.enabled = false;
@@ -165,8 +166,9 @@
     self.player = [[AVPlayer alloc] initWithURL:[NSURL URLWithString:polyNetManifestUrl]];
     self.playerViewController = [[AVPlayerViewController alloc] init];
     self.playerViewController.player = self.player;
+    [self addObserversForPlayerItem:self.player.currentItem];
     [self presentViewController:self.playerViewController animated:true completion:^{
-        [self.player play];
+
     }];
 }
 
@@ -238,5 +240,79 @@
     return SECTION_HEADER_HEIGHT;
 }
 
+#pragma mark - Handle connection lost and playback recovery
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context {
+    
+    if ([keyPath isEqualToString:@"status"]) {
+        AVPlayerItem *playerItem = (AVPlayerItem*)object;
+        switch (playerItem.status) {
+            case AVPlayerItemStatusReadyToPlay:
+                [self handlePlayerItemReadyToPlay];
+                break;
+            case AVPlayerItemStatusUnknown:
+            case AVPlayerItemStatusFailed:
+                break;
+        }
+        return;
+    }
+    
+    if ([keyPath isEqualToString:@"playbackBufferEmpty"]) {
+        [self handlePlaybackBuferEmpty:(AVPlayerItem*)object];
+    }
+}
+
+- (void)addObserversForPlayerItem:(AVPlayerItem *)playerItem {
+    [playerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
+    [playerItem addObserver:self forKeyPath:@"playbackBufferEmpty" options:NSKeyValueObservingOptionNew context:nil];
+}
+
+- (void)removeObserversForPlayerItem:(AVPlayerItem *)playerItem {
+    [playerItem removeObserver:self forKeyPath:@"status"];
+    [playerItem removeObserver:self forKeyPath:@"playbackBufferEmpty"];
+}
+
+- (void)handlePlayerItemReadyToPlay {
+    [_player play];
+    [self deactivateBufferEmptyCountermeasure];
+}
+
+- (void)handlePlaybackBuferEmpty:(AVPlayerItem *)playerItem {
+    if (playerItem.status == AVPlayerItemStatusReadyToPlay) {
+        [self activateBufferEmptyCountermeasure];
+    }
+}
+
+- (void)activateBufferEmptyCountermeasure {
+    if (_bufferEmptyCountermeasureTimer) {
+        return;
+    }
+    
+    _bufferEmptyCountermeasureTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:YES block:^(NSTimer *timer)  {
+        AVPlayerItem *currentItem = [_player currentItem];
+        [self removeObserversForPlayerItem:currentItem];
+        
+        AVURLAsset *urlAsset = (AVURLAsset *)currentItem.asset;
+        if (!urlAsset) {
+            return;
+        }
+        
+        AVPlayerItem *item = [[AVPlayerItem alloc] initWithURL: urlAsset.URL];
+        
+        [self addObserversForPlayerItem:item];
+        [_player replaceCurrentItemWithPlayerItem:item];
+    }];
+}
+
+- (void)deactivateBufferEmptyCountermeasure {
+    if (!_bufferEmptyCountermeasureTimer) {
+        return;
+    }
+    
+    [_bufferEmptyCountermeasureTimer invalidate];
+    _bufferEmptyCountermeasureTimer = nil;
+}
 
 @end
