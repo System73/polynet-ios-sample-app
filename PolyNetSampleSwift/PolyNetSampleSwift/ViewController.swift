@@ -33,6 +33,7 @@ class ViewController: UITableViewController {
         playButton.isEnabled = true        
         
         self.updateVersionLabel()
+        deactivateBufferEmptyCountermeasure()
         if (player != nil) {
             removeObserversForPlayerItem(playerItem: (player?.currentItem)!);
         }
