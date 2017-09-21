@@ -12,6 +12,11 @@ class ViewController: UITableViewController {
     var playerViewController: AVPlayerViewController?
     var player: AVPlayer?
     var bufferEmptyCountermeasureTimer : Timer? = nil
+    var name: String = ""
+    var manifestUrl: String = ""
+    var channelId: String = ""
+    var backendUrl: String = ""
+    var stunServerUrl: String = ""
     
     // MARK: Lifecycle
 
@@ -30,7 +35,7 @@ class ViewController: UITableViewController {
             polyNet = nil
         }
         playButton.setTitle("Play!", for: .normal)
-        playButton.isEnabled = true        
+        playButton.isEnabled = true
         
         self.updateVersionLabel()
         deactivateBufferEmptyCountermeasure()
@@ -106,50 +111,107 @@ class ViewController: UITableViewController {
     @IBOutlet weak var versionLabel: UILabel!
     
     @IBAction func playButtonDidTouchUpInside() {
-        
-        // Parameters
-        let manifestUrl: String
-        if manifestUrlTextField.text == nil || manifestUrlTextField.text?.characters.count == 0 {
-            manifestUrl = manifestUrlTextField.placeholder!
-        } else {
-            manifestUrl = manifestUrlTextField.text!
-        }
-        
-        //let channelId = channelIdTextField.text != nil ? UInt(channelIdTextField.text!) : UInt(channelIdTextField.placeholder!)
-        let channelId: UInt
-        if let channelIdString = channelIdTextField.text, channelIdString.characters.count > 0, let channelIdInt = UInt(channelIdString) {
-            channelId = channelIdInt
-        } else {
-            channelId = UInt(channelIdTextField.placeholder!)!
-        }
-        
-        let backendUrl: String
-        if backendUrlTextField.text == nil || backendUrlTextField.text?.characters.count == 0 {
-            backendUrl = backendUrlTextField.placeholder!
-        } else {
-            backendUrl = backendUrlTextField.text!
-        }
-        
-        let stunServerUrl: String
-        if stunServerUrlTextField.text == nil || stunServerUrlTextField.text?.characters.count == 0 {
-            stunServerUrl = stunServerUrlTextField.placeholder!
-        } else {
-            stunServerUrl = stunServerUrlTextField.text!
-        }
-        
         // Save to persistance
         saveToPersistance()
+        if checkParameters() {
+            playVideo()
+        }
+    }
+    
+    func checkParameters() -> Bool {
+        var canOpenChannel = true
+        manifestUrl = manifestUrlTextField.text!
+        channelId = channelIdTextField.text!
+        backendUrl = backendUrlTextField.text!
+        stunServerUrl = stunServerUrlTextField.text!
         
+        //Check spaces or invalid urls in parameters
+        if manifestUrl == ""||backendUrl == ""||channelId == ""||stunServerUrl == "" {
+            showAlertView(message: "There are unfilled fields")
+            canOpenChannel = false
+        }
+        if verifyUrl(urlString: manifestUrl) == false {
+            showAlertView(message: "Manifest URL invalid format")
+            canOpenChannel = false
+        }
+        if checkWhiteSpaces(urlString: backendUrl) == false {
+            showAlertView(message: "Backend URL has invalid white spaces")
+            canOpenChannel = false
+        }
+        if checkWebSocketUrl(urlString: backendUrl) == false {
+            showAlertView(message: "Backend URL invalid format")
+            canOpenChannel = false
+        }
+        if checkWhiteSpaces(urlString: stunServerUrl) == false {
+            showAlertView(message: "Stun Server URL has invalid white spaces")
+            canOpenChannel = false
+        }
+        if checkStunUrl(urlString: stunServerUrl) == false {
+            showAlertView(message: "Stun Server URL  invalid format")
+            canOpenChannel = false
+        }
+        if canOpenChannel{
+            return true
+        }
+        return false
+    }
+    
+    func playVideo() {
         // UI
         playButton.isEnabled = false
         playButton.setTitle("Connecting to PolyNet", for: .normal)
-        
         // Create the PolyNet
-        polyNet = S73PolyNet(manifestUrl: manifestUrl, channelId: channelId, backendUrl: backendUrl, stunServerUrl: stunServerUrl)
+        polyNet = S73PolyNet(manifestUrl: manifestUrl, channelId: UInt(channelId)!, backendUrl: backendUrl, stunServerUrl: stunServerUrl)
         polyNet?.setDebugMode(true)
         polyNet?.delegate = self
         polyNet?.dataSource = self
         polyNet?.connect()
+    }
+    
+    func checkWhiteSpaces(urlString:String) -> Bool {
+        let whiteSpace = CharacterSet.whitespaces
+        let stringToCompare = urlString.rangeOfCharacter(from: whiteSpace)
+        if stringToCompare != nil {
+            print("whitespace found")
+            return false
+        }else{
+            return true
+        }
+    }
+    
+    func showAlertView(message:String) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        present(alert, animated: true, completion: nil)
+        
+    }
+    
+    func verifyUrl (urlString: String?) -> Bool {
+        if let urlString = urlString {
+            if let url  = NSURL(string: urlString) {
+                return UIApplication.shared.canOpenURL(url as URL)
+            }
+        }
+        return false
+    }
+    
+    func checkWebSocketUrl(urlString:String) -> Bool {
+        
+        let formattedUrlString = urlString
+        if (!formattedUrlString.hasPrefix("ws://") && !formattedUrlString.hasPrefix("WS://")) {
+            return false
+        }else{
+            return true
+        }
+    }
+    
+    func checkStunUrl(urlString: String) -> Bool {
+        let formattedUrlString = urlString
+        if formattedUrlString.hasPrefix("stun:") {
+            return true
+        }else{
+            return false
+        }
     }
     
     @IBAction func goToWeb() {
@@ -169,8 +231,8 @@ extension ViewController: S73PolyNetDelegate {
         playerViewController = AVPlayerViewController()
         playerViewController?.player = player
         self.addObserversForPlayerItem(playerItem: (self.player?.currentItem)!)
-        present(playerViewController!, animated: true) { 
-
+        present(playerViewController!, animated: true) {
+            
         }
     }
     
@@ -249,14 +311,14 @@ extension ViewController {
         if (#keyPath(AVPlayerItem.status) == keyPath) {
             let playerItem = object as! AVPlayerItem
             switch playerItem.status {
-                case .readyToPlay:
-                    self.handlePlayerItemReadyToPlay()
-                    break
-                case .unknown: fallthrough
-                case .failed:
-                    break
+            case .readyToPlay:
+                self.handlePlayerItemReadyToPlay()
+                break
+            case .unknown: fallthrough
+            case .failed:
+                break
             }
-
+            
         }
         
         if (keyPath == #keyPath(AVPlayerItem.isPlaybackBufferEmpty)) {
