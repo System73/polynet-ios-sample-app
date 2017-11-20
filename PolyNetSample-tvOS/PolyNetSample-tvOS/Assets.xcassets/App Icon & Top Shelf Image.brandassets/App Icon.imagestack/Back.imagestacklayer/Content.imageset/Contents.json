@@ -1,0 +1,18 @@
+{
+  "images" : [
+    {
+      "idiom" : "tv",
+      "filename" : "system73Logo_RGB_401x244.png",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "tv",
+      "filename" : "system73Logo_RGB_801x487.png",
+      "scale" : "2x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}

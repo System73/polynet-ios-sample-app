@@ -1,0 +1,353 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6F0C57E51FC2F70200824840 /* PolyNetSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F0C57E41FC2F70200824840 /* PolyNetSDK.framework */; };
+		6F0C57E61FC2F70200824840 /* PolyNetSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6F0C57E41FC2F70200824840 /* PolyNetSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6F9032AA1FC2C04200C105BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9032A91FC2C04200C105BB /* AppDelegate.swift */; };
+		6F9032AC1FC2C04200C105BB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9032AB1FC2C04200C105BB /* ViewController.swift */; };
+		6F9032AF1FC2C04200C105BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F9032AD1FC2C04200C105BB /* Main.storyboard */; };
+		6F9032B11FC2C04200C105BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F9032B01FC2C04200C105BB /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6F0C57E71FC2F70200824840 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				6F0C57E61FC2F70200824840 /* PolyNetSDK.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		6F0C57E41FC2F70200824840 /* PolyNetSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PolyNetSDK.framework; path = ../PolyNetSDK.framework; sourceTree = "<group>"; };
+		6F9032A61FC2C04200C105BB /* PolyNetSample-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PolyNetSample-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F9032A91FC2C04200C105BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		6F9032AB1FC2C04200C105BB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		6F9032AE1FC2C04200C105BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6F9032B01FC2C04200C105BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6F9032B21FC2C04200C105BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6F9032A31FC2C04200C105BB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F0C57E51FC2F70200824840 /* PolyNetSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6F0C57E21FC2F32100824840 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6F0C57E41FC2F70200824840 /* PolyNetSDK.framework */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		6F90329D1FC2C04200C105BB = {
+			isa = PBXGroup;
+			children = (
+				6F9032A81FC2C04200C105BB /* PolyNetSample-tvOS */,
+				6F0C57E21FC2F32100824840 /* Frameworks */,
+				6F9032A71FC2C04200C105BB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6F9032A71FC2C04200C105BB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6F9032A61FC2C04200C105BB /* PolyNetSample-tvOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6F9032A81FC2C04200C105BB /* PolyNetSample-tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				6F9032A91FC2C04200C105BB /* AppDelegate.swift */,
+				6F9032AB1FC2C04200C105BB /* ViewController.swift */,
+				6F9032AD1FC2C04200C105BB /* Main.storyboard */,
+				6F9032B01FC2C04200C105BB /* Assets.xcassets */,
+				6F9032B21FC2C04200C105BB /* Info.plist */,
+			);
+			path = "PolyNetSample-tvOS";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6F9032A51FC2C04200C105BB /* PolyNetSample-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6F9032C01FC2C04200C105BB /* Build configuration list for PBXNativeTarget "PolyNetSample-tvOS" */;
+			buildPhases = (
+				6F9032A21FC2C04200C105BB /* Sources */,
+				6F9032A31FC2C04200C105BB /* Frameworks */,
+				6F9032A41FC2C04200C105BB /* Resources */,
+				6F0C57E71FC2F70200824840 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "PolyNetSample-tvOS";
+			productName = "PolyNetSample-tvOS";
+			productReference = 6F9032A61FC2C04200C105BB /* PolyNetSample-tvOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6F90329E1FC2C04200C105BB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0910;
+				LastUpgradeCheck = 0910;
+				ORGANIZATIONNAME = System73;
+				TargetAttributes = {
+					6F9032A51FC2C04200C105BB = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 6F9032A11FC2C04200C105BB /* Build configuration list for PBXProject "PolyNetSample-tvOS" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6F90329D1FC2C04200C105BB;
+			productRefGroup = 6F9032A71FC2C04200C105BB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6F9032A51FC2C04200C105BB /* PolyNetSample-tvOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6F9032A41FC2C04200C105BB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F9032B11FC2C04200C105BB /* Assets.xcassets in Resources */,
+				6F9032AF1FC2C04200C105BB /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6F9032A21FC2C04200C105BB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F9032AC1FC2C04200C105BB /* ViewController.swift in Sources */,
+				6F9032AA1FC2C04200C105BB /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		6F9032AD1FC2C04200C105BB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6F9032AE1FC2C04200C105BB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6F9032BE1FC2C04200C105BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = appletvos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TVOS_DEPLOYMENT_TARGET = 11.1;
+			};
+			name = Debug;
+		};
+		6F9032BF1FC2C04200C105BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = appletvos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TVOS_DEPLOYMENT_TARGET = 11.1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6F9032C11FC2C04200C105BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PL89ME92DC;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PolyNetSample-tvOS",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "PolyNetSample-tvOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.system73.PolyNetSample-tvOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 3;
+			};
+			name = Debug;
+		};
+		6F9032C21FC2C04200C105BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PL89ME92DC;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PolyNetSample-tvOS",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "PolyNetSample-tvOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.system73.PolyNetSample-tvOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 3;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6F9032A11FC2C04200C105BB /* Build configuration list for PBXProject "PolyNetSample-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6F9032BE1FC2C04200C105BB /* Debug */,
+				6F9032BF1FC2C04200C105BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6F9032C01FC2C04200C105BB /* Build configuration list for PBXNativeTarget "PolyNetSample-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6F9032C11FC2C04200C105BB /* Debug */,
+				6F9032C21FC2C04200C105BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6F90329E1FC2C04200C105BB /* Project object */;
+}
