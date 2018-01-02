@@ -1,10 +1,17 @@
+//
+//  ViewController.swift
+//  PolyNetSample-tvOS
+//
+//  Created by harris on 11/20/17.
+//  Copyright © 2017 System73. All rights reserved.
+//
 
 import UIKit
 import AVKit
 import AVFoundation
 import PolyNetSDK
 
-class ViewController: UITableViewController {
+class ViewController: UIViewController {
     
     // MARK: Properties
     
@@ -32,10 +39,10 @@ class ViewController: UITableViewController {
         playButton.setTitle("Play!", for: .normal)
         playButton.isEnabled = true
         
-        updateVersionLabel()
+        self.updateVersionLabel()
         deactivateBufferEmptyCountermeasure()
         if (player != nil) {
-            removeObserversForPlayerItem(playerItem: (player?.currentItem)!)
+            removeObserversForPlayerItem(playerItem: (player?.currentItem)!);
         }
     }
     
@@ -44,48 +51,40 @@ class ViewController: UITableViewController {
     fileprivate let MANIFEST_URL_KEY = "MANIFEST_URL_KEY"
     fileprivate let CHANNEL_ID_KEY = "CHANNEL_ID_KEY"
     fileprivate let BACKEND_URL_KEY = "BACKEND_URL_KEY"
-    fileprivate let BACKEND_METRICS_URL_KEY = "BACKEND_METRICS_URL_KEY"
     fileprivate let STUN_SERVER_URL_KEY = "STUN_SERVER_URL_KEY"
     fileprivate let FIRST_SECTION_HEADER_HEIGHT = CGFloat(40.0)
     fileprivate let SECTION_HEADER_HEIGHT = CGFloat(12.0)
     
+    
     fileprivate func loadFromPersistance() {
         let defaults = UserDefaults.standard
-        manifestUrlTextField.text = defaults.string(forKey: MANIFEST_URL_KEY)
-        if defaults.integer(forKey: CHANNEL_ID_KEY) != 0 {
-            channelIdTextField.text = "\(defaults.integer(forKey: CHANNEL_ID_KEY))"
+        if let manifestUrl = defaults.string(forKey: MANIFEST_URL_KEY) {
+            self.manifestUrlTextField.text = manifestUrl
         }
-        backendUrlTextField.text = defaults.string(forKey: BACKEND_URL_KEY)
-        backendMetricsUrlTextField.text = defaults.string(forKey: BACKEND_METRICS_URL_KEY)
-        stunServerUrlTextField.text = defaults.string(forKey: STUN_SERVER_URL_KEY)
+        if defaults.integer(forKey: CHANNEL_ID_KEY) != 0 {
+            self.channelIdTextField.text = "\(defaults.integer(forKey: CHANNEL_ID_KEY))"
+        }
+        if let backendUrl = defaults.string(forKey: BACKEND_URL_KEY) {
+            self.backendUrlTextField.text = backendUrl
+        }
+        if let stunServerUrl = defaults.string(forKey: STUN_SERVER_URL_KEY) {
+            self.stunServerUrlTextField.text = stunServerUrl
+        }
     }
     
     fileprivate func saveToPersistance() {
         let defaults = UserDefaults.standard
-        if let manifestUrl = manifestUrlTextField.text, manifestUrl.characters.count > 0 {
+        if let manifestUrl = self.manifestUrlTextField.text, manifestUrl.characters.count > 0 {
             defaults.set(manifestUrl, forKey: MANIFEST_URL_KEY)
-        } else {
-            defaults.removeObject(forKey: MANIFEST_URL_KEY)
         }
-        if let channelIdString = channelIdTextField.text, let channelId = UInt(channelIdString) {
+        if let channelIdString = self.channelIdTextField.text, let channelId = UInt(channelIdString) {
             defaults.set(channelId, forKey: CHANNEL_ID_KEY)
-        } else {
-            defaults.removeObject(forKey: CHANNEL_ID_KEY)
         }
-        if let backendUrl = backendUrlTextField.text, backendUrl.characters.count > 0 {
+        if let backendUrl = self.backendUrlTextField.text, backendUrl.characters.count > 0 {
             defaults.set(backendUrl, forKey: BACKEND_URL_KEY)
-        } else {
-            defaults.removeObject(forKey: BACKEND_URL_KEY)
         }
-        if let backendMetricsUrl = backendMetricsUrlTextField.text, backendMetricsUrl.characters.count > 0 {
-            defaults.set(backendMetricsUrl, forKey: BACKEND_METRICS_URL_KEY)
-        } else {
-            defaults.removeObject(forKey: BACKEND_METRICS_URL_KEY)
-        }
-        if let stunServerUrl = stunServerUrlTextField.text, stunServerUrl.characters.count > 0 {
+        if let stunServerUrl = self.stunServerUrlTextField.text, stunServerUrl.characters.count > 0 {
             defaults.set(stunServerUrl, forKey: STUN_SERVER_URL_KEY)
-        } else {
-            defaults.removeObject(forKey: STUN_SERVER_URL_KEY)
         }
     }
     
@@ -98,9 +97,9 @@ class ViewController: UITableViewController {
             return
         }
         
-        versionLabel.text = String(format: "Sample App v.%@-%@\nPolyNet SDK v.%@",
-                                   dict["CFBundleVersion"] as! String,
+        versionLabel.text = String(format: "Sample App v%@.%@\nPolyNet SDK v.%@",
                                    dict["CFBundleShortVersionString"] as! String,
+                                   dict["CFBundleVersion"] as! String,
                                    S73PolyNet.version())
     }
     
@@ -109,75 +108,54 @@ class ViewController: UITableViewController {
     @IBOutlet weak var manifestUrlTextField: UITextField!
     @IBOutlet weak var channelIdTextField: UITextField!
     @IBOutlet weak var backendUrlTextField: UITextField!
-    @IBOutlet weak var backendMetricsUrlTextField: UITextField!
     @IBOutlet weak var stunServerUrlTextField: UITextField!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var versionLabel: UILabel!
     
-    @IBAction func playButtonDidTouchUpInside() {
+    @IBAction func playButtonActionTriggered(_ sender: Any) {
+        // Parameters
+        let manifestUrl: String
+        if manifestUrlTextField.text == nil || manifestUrlTextField.text?.characters.count == 0 {
+            manifestUrl = manifestUrlTextField.placeholder!
+        } else {
+            manifestUrl = manifestUrlTextField.text!
+        }
+        
+        //let channelId = channelIdTextField.text != nil ? UInt(channelIdTextField.text!) : UInt(channelIdTextField.placeholder!)
+        let channelId: UInt
+        if let channelIdString = channelIdTextField.text, channelIdString.characters.count > 0, let channelIdInt = UInt(channelIdString) {
+            channelId = channelIdInt
+        } else {
+            channelId = UInt(channelIdTextField.placeholder!)!
+        }
+        
+        let backendUrl: String
+        if backendUrlTextField.text == nil || backendUrlTextField.text?.characters.count == 0 {
+            backendUrl = backendUrlTextField.placeholder!
+        } else {
+            backendUrl = backendUrlTextField.text!
+        }
+        
+        let stunServerUrl: String
+        if stunServerUrlTextField.text == nil || stunServerUrlTextField.text?.characters.count == 0 {
+            stunServerUrl = stunServerUrlTextField.placeholder!
+        } else {
+            stunServerUrl = stunServerUrlTextField.text!
+        }
+        
         // Save to persistance
-        removeWhiteSpaces()
-        if checkParameters() {
-            playVideo()
-            saveToPersistance()
-        }
-    }
-    
-    func removeWhiteSpaces() {
-        manifestUrlTextField.text = manifestUrlTextField.text?.replacingOccurrences(of: " ", with: "")
-        channelIdTextField.text = channelIdTextField.text?.replacingOccurrences(of: " ", with: "")
-        backendMetricsUrlTextField.text = backendMetricsUrlTextField.text?.replacingOccurrences(of: " ", with: "")
-        backendMetricsUrlTextField.text = backendMetricsUrlTextField.text?.replacingOccurrences(of: " ", with: "")
-        stunServerUrlTextField.text = stunServerUrlTextField.text?.replacingOccurrences(of: " ", with: "")
-    }
-    
-    func checkParameters() -> Bool {
-        guard let existManifestUrl = manifestUrlTextField.text,
-            let existChannelIdString = channelIdTextField.text,
-            let existBackendUrl = backendUrlTextField.text,
-            let existBackendMetricsUrl = backendMetricsUrlTextField.text,
-            let existStunServerUrl = stunServerUrlTextField.text else {
-            showAlertView(message: "Please, fill in all fields")
-            return false
-        }
+        saveToPersistance()
         
-        guard existManifestUrl.count > 0
-            && existChannelIdString.count > 0
-            && existBackendUrl.count > 0
-            && existBackendMetricsUrl.count > 0
-            && existStunServerUrl.count > 0 else {
-                showAlertView(message: "Please, fill in all fields")
-                return false
-        }
-        
-        guard let _ = UInt(existChannelIdString) else {
-            showAlertView(message: "Invalid channel id")
-            return false
-        }
-        return true
-    }
-    
-    func playVideo() {
         // UI
         playButton.isEnabled = false
         playButton.setTitle("Connecting to PolyNet", for: .normal)
+        
         // Create the PolyNet
-        polyNet = S73PolyNet(manifestUrl: manifestUrlTextField.text!, channelId: UInt(channelIdTextField.text!)!, backendUrl: backendUrlTextField.text!, stunServerUrl: stunServerUrlTextField.text!, messageEndpointUrl: backendMetricsUrlTextField.text!)
+        polyNet = S73PolyNet(manifestUrl: manifestUrl, channelId: channelId, backendUrl: backendUrl, stunServerUrl: stunServerUrl)
         polyNet?.setDebugMode(true)
         polyNet?.delegate = self
         polyNet?.dataSource = self
         polyNet?.connect()
-    }
-    
-    func showAlertView(message:String) {
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-        present(alert, animated: true, completion: nil)
-        
-    }
-    
-    @IBAction func goToWeb() {
-        UIApplication.shared.open(URL(string:"https://www.system73.com")!, options: [:], completionHandler:nil)
     }
 }
 
@@ -193,7 +171,9 @@ extension ViewController: S73PolyNetDelegate {
         playerViewController = AVPlayerViewController()
         playerViewController?.player = player
         self.addObserversForPlayerItem(playerItem: (self.player?.currentItem)!)
-        present(playerViewController!, animated: true)
+        present(playerViewController!, animated: true) {
+            
+        }
     }
     
     // PolyNet did fail
@@ -251,18 +231,6 @@ extension ViewController: S73PolyNetDataSource {
         }
         return event.playbackStartDate
     }
-    
-    override func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
-        return self.tableView(tableView, heightForHeaderInSection: section)
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if (section == 0) {
-            return FIRST_SECTION_HEADER_HEIGHT
-        }
-        
-        return SECTION_HEADER_HEIGHT
-    }
 }
 
 // Extension to handle connection lost and playback recovery
@@ -278,6 +246,7 @@ extension ViewController {
             case .failed:
                 break
             }
+            
         }
         
         if (keyPath == #keyPath(AVPlayerItem.isPlaybackBufferEmpty)) {
@@ -311,10 +280,9 @@ extension ViewController {
             return
         }
         
-        bufferEmptyCountermeasureTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] (timer) in
-            guard self != nil else { return }
-            let currentItem: AVPlayerItem = (self?.player?.currentItem)!
-            self?.removeObserversForPlayerItem(playerItem: currentItem)
+        bufferEmptyCountermeasureTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (timer) in
+            let currentItem: AVPlayerItem = (self.player?.currentItem)!
+            self.removeObserversForPlayerItem(playerItem: currentItem)
             
             let asset = currentItem.asset
             
@@ -323,8 +291,8 @@ extension ViewController {
             }
             
             let item: AVPlayerItem = AVPlayerItem.init(url: urlAsset.url)
-            self?.addObserversForPlayerItem(playerItem: item)
-            self?.player?.replaceCurrentItem(with: item)
+            self.addObserversForPlayerItem(playerItem: item)
+            self.player?.replaceCurrentItem(with: item)
         }
     }
     
