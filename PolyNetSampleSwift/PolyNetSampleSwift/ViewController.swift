@@ -126,7 +126,7 @@ class ViewController: UITableViewController {
     func removeWhiteSpaces() {
         manifestUrlTextField.text = manifestUrlTextField.text?.replacingOccurrences(of: " ", with: "")
         channelIdTextField.text = channelIdTextField.text?.replacingOccurrences(of: " ", with: "")
-        backendMetricsUrlTextField.text = backendMetricsUrlTextField.text?.replacingOccurrences(of: " ", with: "")
+        backendUrlTextField.text = backendUrlTextField.text?.replacingOccurrences(of: " ", with: "")
         backendMetricsUrlTextField.text = backendMetricsUrlTextField.text?.replacingOccurrences(of: " ", with: "")
         stunServerUrlTextField.text = stunServerUrlTextField.text?.replacingOccurrences(of: " ", with: "")
     }
