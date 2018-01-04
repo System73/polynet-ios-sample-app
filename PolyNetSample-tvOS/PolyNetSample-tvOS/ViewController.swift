@@ -96,7 +96,7 @@ class ViewController: UIViewController {
             return
         }
         
-        versionLabel.text = String(format: "Sample App v%@.%@\nPolyNet SDK v.%@",
+        versionLabel.text = String(format: "Sample App v%@-%@\nPolyNet SDK v.%@",
                                    dict["CFBundleVersion"] as! String,
                                    dict["CFBundleShortVersionString"] as! String,
                                    S73PolyNet.version())
