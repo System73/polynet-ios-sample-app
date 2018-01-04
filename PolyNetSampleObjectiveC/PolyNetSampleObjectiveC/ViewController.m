@@ -111,8 +111,8 @@
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:path];
     
     self.versionLabel.text = [NSString stringWithFormat:@"Sample App v%@-%@\nPolyNet SDK v.%@",
-                              [dict objectForKey:@"CFBundleVersion"],
                               [dict objectForKey:@"CFBundleShortVersionString"],
+                              [dict objectForKey:@"CFBundleVersion"],
                               [S73PolyNet version]];
 }
 
@@ -161,7 +161,8 @@
     [self.playButton setTitle:@"Connecting to PolyNet" forState:UIControlStateNormal];
     
     // Create the PolyNet
-    self.polyNet = [[S73PolyNet alloc] initWithManifestUrl:manifestUrl channelId:channelId backendUrl:backendUrl stunServerUrl:stunServerUrl messageEndpointUrl:backendMetricsUrl];
+    self.polyNet = [[S73PolyNet alloc] initWithManifestUrl:manifestUrl channelId:channelId backendUrl:backendUrl backendMetricsUrl:backendMetricsUrl stunServerUrl:stunServerUrl];
+    
     [self.polyNet setDebugMode:YES];
     self.polyNet.delegate = self;
     self.polyNet.dataSource = self;
