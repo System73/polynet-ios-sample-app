@@ -51,6 +51,7 @@ class ViewController: UIViewController {
     fileprivate let MANIFEST_URL_KEY = "MANIFEST_URL_KEY"
     fileprivate let CHANNEL_ID_KEY = "CHANNEL_ID_KEY"
     fileprivate let BACKEND_URL_KEY = "BACKEND_URL_KEY"
+    fileprivate let BACKEND_METRICS_URL_KEY = "BACKEND_METRICS_URL_KEY"
     fileprivate let STUN_SERVER_URL_KEY = "STUN_SERVER_URL_KEY"
     fileprivate let FIRST_SECTION_HEADER_HEIGHT = CGFloat(40.0)
     fileprivate let SECTION_HEADER_HEIGHT = CGFloat(12.0)
@@ -58,32 +59,30 @@ class ViewController: UIViewController {
     
     fileprivate func loadFromPersistance() {
         let defaults = UserDefaults.standard
-        if let manifestUrl = defaults.string(forKey: MANIFEST_URL_KEY) {
-            self.manifestUrlTextField.text = manifestUrl
+        manifestUrlTextField.text = defaults.string(forKey: MANIFEST_URL_KEY)
+        if defaults.string(forKey: CHANNEL_ID_KEY) != "0" {
+            self.channelIdTextField.text = defaults.string(forKey: CHANNEL_ID_KEY)
         }
-        if defaults.integer(forKey: CHANNEL_ID_KEY) != 0 {
-            self.channelIdTextField.text = "\(defaults.integer(forKey: CHANNEL_ID_KEY))"
-        }
-        if let backendUrl = defaults.string(forKey: BACKEND_URL_KEY) {
-            self.backendUrlTextField.text = backendUrl
-        }
-        if let stunServerUrl = defaults.string(forKey: STUN_SERVER_URL_KEY) {
-            self.stunServerUrlTextField.text = stunServerUrl
-        }
+        backendUrlTextField.text = defaults.string(forKey: BACKEND_URL_KEY)
+        backendMetricsUrlTextField.text = defaults.string(forKey: BACKEND_METRICS_URL_KEY)
+        stunServerUrlTextField.text = defaults.string(forKey: STUN_SERVER_URL_KEY)
     }
     
     fileprivate func saveToPersistance() {
         let defaults = UserDefaults.standard
-        if let manifestUrl = self.manifestUrlTextField.text, manifestUrl.characters.count > 0 {
+        if let manifestUrl = manifestUrlTextField.text, manifestUrl.count > 0 {
             defaults.set(manifestUrl, forKey: MANIFEST_URL_KEY)
         }
-        if let channelIdString = self.channelIdTextField.text, let channelId = UInt(channelIdString) {
+        if let channelIdString = channelIdTextField.text, let channelId = UInt(channelIdString) {
             defaults.set(channelId, forKey: CHANNEL_ID_KEY)
         }
-        if let backendUrl = self.backendUrlTextField.text, backendUrl.characters.count > 0 {
+        if let backendUrl = backendUrlTextField.text, backendUrl.count > 0 {
             defaults.set(backendUrl, forKey: BACKEND_URL_KEY)
         }
-        if let stunServerUrl = self.stunServerUrlTextField.text, stunServerUrl.characters.count > 0 {
+        if let backendMetricsUrl = backendMetricsUrlTextField.text, backendMetricsUrl.count > 0 {
+            defaults.set(backendMetricsUrl, forKey: BACKEND_METRICS_URL_KEY)
+        }
+        if let stunServerUrl = stunServerUrlTextField.text, stunServerUrl.count > 0 {
             defaults.set(stunServerUrl, forKey: STUN_SERVER_URL_KEY)
         }
     }
@@ -97,9 +96,9 @@ class ViewController: UIViewController {
             return
         }
         
-        versionLabel.text = String(format: "Sample App v%@.%@\nPolyNet SDK v.%@",
-                                   dict["CFBundleShortVersionString"] as! String,
+        versionLabel.text = String(format: "Sample App v%@-%@\nPolyNet SDK v.%@",
                                    dict["CFBundleVersion"] as! String,
+                                   dict["CFBundleShortVersionString"] as! String,
                                    S73PolyNet.version())
     }
     
@@ -108,6 +107,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var manifestUrlTextField: UITextField!
     @IBOutlet weak var channelIdTextField: UITextField!
     @IBOutlet weak var backendUrlTextField: UITextField!
+    @IBOutlet weak var backendMetricsUrlTextField: UITextField!
     @IBOutlet weak var stunServerUrlTextField: UITextField!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var versionLabel: UILabel!
@@ -115,33 +115,42 @@ class ViewController: UIViewController {
     @IBAction func playButtonActionTriggered(_ sender: Any) {
         // Parameters
         let manifestUrl: String
-        if manifestUrlTextField.text == nil || manifestUrlTextField.text?.characters.count == 0 {
+        if manifestUrlTextField.text == nil || manifestUrlTextField.text?.count == 0 {
             manifestUrl = manifestUrlTextField.placeholder!
         } else {
             manifestUrl = manifestUrlTextField.text!
         }
         
-        //let channelId = channelIdTextField.text != nil ? UInt(channelIdTextField.text!) : UInt(channelIdTextField.placeholder!)
         let channelId: UInt
-        if let channelIdString = channelIdTextField.text, channelIdString.characters.count > 0, let channelIdInt = UInt(channelIdString) {
+        if let channelIdString = channelIdTextField.text, channelIdString.count > 0, let channelIdInt = UInt(channelIdString) {
             channelId = channelIdInt
         } else {
             channelId = UInt(channelIdTextField.placeholder!)!
         }
         
         let backendUrl: String
-        if backendUrlTextField.text == nil || backendUrlTextField.text?.characters.count == 0 {
+        if backendUrlTextField.text == nil || backendUrlTextField.text?.count == 0 {
             backendUrl = backendUrlTextField.placeholder!
         } else {
             backendUrl = backendUrlTextField.text!
         }
         
+        let backendMetricsUrl: String
+        if backendMetricsUrlTextField.text == nil || backendMetricsUrlTextField.text?.count == 0 {
+            backendMetricsUrl = backendMetricsUrlTextField.placeholder!
+        } else {
+            backendMetricsUrl = backendMetricsUrlTextField.text!
+        }
+        
         let stunServerUrl: String
-        if stunServerUrlTextField.text == nil || stunServerUrlTextField.text?.characters.count == 0 {
+        if stunServerUrlTextField.text == nil || stunServerUrlTextField.text?.count == 0 {
             stunServerUrl = stunServerUrlTextField.placeholder!
         } else {
             stunServerUrl = stunServerUrlTextField.text!
         }
+        
+        // Remove White Spaces
+        removeWhiteSpaces()
         
         // Save to persistance
         saveToPersistance()
@@ -151,12 +160,21 @@ class ViewController: UIViewController {
         playButton.setTitle("Connecting to PolyNet", for: .normal)
         
         // Create the PolyNet
-        polyNet = S73PolyNet(manifestUrl: manifestUrl, channelId: channelId, backendUrl: backendUrl, stunServerUrl: stunServerUrl)
+        polyNet = S73PolyNet(manifestUrl: manifestUrl, channelId: channelId, backendUrl: backendUrl, stunServerUrl: stunServerUrl, messageEndpointUrl: backendMetricsUrl)
         polyNet?.setDebugMode(true)
         polyNet?.delegate = self
         polyNet?.dataSource = self
         polyNet?.connect()
     }
+    
+    func removeWhiteSpaces() {
+        manifestUrlTextField.text = manifestUrlTextField.text?.replacingOccurrences(of: " ", with: "")
+        channelIdTextField.text = channelIdTextField.text?.replacingOccurrences(of: " ", with: "")
+        backendUrlTextField.text = backendUrlTextField.text?.replacingOccurrences(of: " ", with: "")
+        backendMetricsUrlTextField.text = backendMetricsUrlTextField.text?.replacingOccurrences(of: " ", with: "")
+        stunServerUrlTextField.text = stunServerUrlTextField.text?.replacingOccurrences(of: " ", with: "")
+    }
+
 }
 
 extension ViewController: S73PolyNetDelegate {

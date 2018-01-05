@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *manifestUrlTextField;
 @property (weak, nonatomic) IBOutlet UITextField *channelIdTextField;
 @property (weak, nonatomic) IBOutlet UITextField *backendUrlTextField;
+@property (weak, nonatomic) IBOutlet UITextField *backendMetricsUrlTextField;
 @property (weak, nonatomic) IBOutlet UITextField *stunServerUrlTextField;
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
 @property (weak, nonatomic) IBOutlet UILabel *versionLabel;
@@ -52,28 +53,21 @@
 #define MANIFEST_URL_KEY @"MANIFEST_URL_KEY"
 #define CHANNEL_ID_KEY @"CHANNEL_ID_KEY"
 #define BACKEND_URL_KEY @"BACKEND_URL_KEY"
+#define BACKEND_METRICS_URL_KEY @"BACKEND_METRICS_URL_KEY"
 #define STUN_SERVER_URL_KEY @"STUN_SERVER_URL_KEY"
 #define FIRST_SECTION_HEADER_HEIGHT 40.0
 #define SECTION_HEADER_HEIGHT 12.0
 
 - (void)loadFromPersistance {
     NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
-    NSString * manifestUrl = [defaults objectForKey:MANIFEST_URL_KEY];
-    if (manifestUrl) {
-        self.manifestUrlTextField.text = manifestUrl;
-    }
+    self.manifestUrlTextField.text = [defaults objectForKey:MANIFEST_URL_KEY];
     NSNumber * channelId = [defaults objectForKey:CHANNEL_ID_KEY];
     if (channelId) {
         self.channelIdTextField.text = [NSString stringWithFormat:@"%ld", (long)[channelId integerValue]];
     }
-    NSString * backendUrl = [defaults objectForKey:BACKEND_URL_KEY];
-    if (backendUrl) {
-        self.backendUrlTextField.text = backendUrl;
-    }
-    NSString * stunServerUrl = [defaults objectForKey:STUN_SERVER_URL_KEY];
-    if (stunServerUrl) {
-        self.stunServerUrlTextField.text = stunServerUrl;
-    }
+    self.backendUrlTextField.text = [defaults objectForKey:BACKEND_URL_KEY];
+    self.backendMetricsUrlTextField.text = [defaults objectForKey:BACKEND_METRICS_URL_KEY];
+    self.stunServerUrlTextField.text = [defaults objectForKey:STUN_SERVER_URL_KEY];
 }
 
 - (void)saveToPersistance {
@@ -81,20 +75,34 @@
     NSString * manifestUrl = self.manifestUrlTextField.text;
     if (manifestUrl != nil && [manifestUrl length] > 0) {
         [defaults setObject:manifestUrl forKey:MANIFEST_URL_KEY];
+    } else {
+        [defaults removeObjectForKey:MANIFEST_URL_KEY];
     }
     NSNumberFormatter * formater = [[NSNumberFormatter alloc] init];
     formater.numberStyle = NSNumberFormatterNoStyle;
     NSNumber * channelId = [formater numberFromString:self.channelIdTextField.text];
     if (channelId != nil) {
         [defaults setObject:channelId forKey:CHANNEL_ID_KEY];
+    } else {
+        [defaults removeObjectForKey:CHANNEL_ID_KEY];
     }
     NSString * backendUrl = self.backendUrlTextField.text;
     if (backendUrl != nil && [backendUrl length] > 0) {
         [defaults setObject:backendUrl forKey:BACKEND_URL_KEY];
+    } else {
+        [defaults removeObjectForKey:BACKEND_URL_KEY];
+    }
+    NSString * backendMetricsUrl = self.backendMetricsUrlTextField.text;
+    if (backendMetricsUrl != nil && [backendMetricsUrl length] > 0) {
+        [defaults setObject:backendMetricsUrl forKey:BACKEND_METRICS_URL_KEY];
+    } else {
+        [defaults removeObjectForKey:BACKEND_METRICS_URL_KEY];
     }
     NSString * stunServerUrl = self.stunServerUrlTextField.text;
     if (stunServerUrl != nil && [stunServerUrl length] > 0) {
         [defaults setObject:stunServerUrl forKey:STUN_SERVER_URL_KEY];
+    } else {
+        [defaults removeObjectForKey:STUN_SERVER_URL_KEY];
     }
 }
 
@@ -102,9 +110,9 @@
     NSString *path = [[NSBundle mainBundle] pathForResource:@"Info" ofType:@"plist"];
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:path];
     
-    self.versionLabel.text = [NSString stringWithFormat:@"Sample App v%@.%@\nPolyNet SDK v.%@",
-                              [dict objectForKey:@"CFBundleShortVersionString"],
+    self.versionLabel.text = [NSString stringWithFormat:@"Sample App v%@-%@\nPolyNet SDK v.%@",
                               [dict objectForKey:@"CFBundleVersion"],
+                              [dict objectForKey:@"CFBundleShortVersionString"],
                               [S73PolyNet version]];
 }
 
@@ -131,12 +139,19 @@
     } else {
         backendUrl = self.backendUrlTextField.text;
     }
+    NSString * backendMetricsUrl;
+    if (self.backendMetricsUrlTextField.text == nil || [self.backendMetricsUrlTextField.text length] == 0) {
+        backendMetricsUrl = self.backendMetricsUrlTextField.placeholder;
+    } else {
+        backendMetricsUrl = self.backendMetricsUrlTextField.text;
+    }
     NSString * stunServerUrl;
     if (self.stunServerUrlTextField.text == nil || [self.stunServerUrlTextField.text length] == 0) {
         stunServerUrl = self.stunServerUrlTextField.placeholder;
     } else {
         stunServerUrl = self.stunServerUrlTextField.text;
     }
+
     
     // Save to persistance
     [self saveToPersistance];
@@ -146,7 +161,7 @@
     [self.playButton setTitle:@"Connecting to PolyNet" forState:UIControlStateNormal];
     
     // Create the PolyNet
-    self.polyNet = [[S73PolyNet alloc] initWithManifestUrl:manifestUrl channelId:channelId backendUrl:backendUrl stunServerUrl:stunServerUrl];
+    self.polyNet = [[S73PolyNet alloc] initWithManifestUrl:manifestUrl channelId:channelId backendUrl:backendUrl stunServerUrl:stunServerUrl messageEndpointUrl:backendMetricsUrl];
     [self.polyNet setDebugMode:YES];
     self.polyNet.delegate = self;
     self.polyNet.dataSource = self;
@@ -290,7 +305,8 @@
         return;
     }
     
-    _bufferEmptyCountermeasureTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:YES block:^(NSTimer *timer)  {
+    _bufferEmptyCountermeasureTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:YES block:^(NSTimer *timer) {
+        if (self == nil) { return; }
         AVPlayerItem *currentItem = [_player currentItem];
         [self removeObserversForPlayerItem:currentItem];
         
