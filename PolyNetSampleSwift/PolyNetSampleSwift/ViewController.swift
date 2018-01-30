@@ -99,8 +99,8 @@ class ViewController: UITableViewController {
         }
         
         versionLabel.text = String(format: "Sample App v.%@-%@\nPolyNet SDK v.%@",
-                                   dict["CFBundleVersion"] as! String,
                                    dict["CFBundleShortVersionString"] as! String,
+                                   dict["CFBundleVersion"] as! String,
                                    S73PolyNet.version())
     }
     
@@ -162,7 +162,7 @@ class ViewController: UITableViewController {
         playButton.isEnabled = false
         playButton.setTitle("Connecting to PolyNet", for: .normal)
         // Create the PolyNet
-        polyNet = S73PolyNet(manifestUrl: manifestUrlTextField.text!, channelId: UInt(channelIdTextField.text!)!, backendUrl: backendUrlTextField.text!, stunServerUrl: stunServerUrlTextField.text!, messageEndpointUrl: backendMetricsUrlTextField.text!)
+        polyNet = S73PolyNet(manifestUrl: manifestUrlTextField.text!, channelId: UInt(channelIdTextField.text!)!, backendUrl: backendUrlTextField.text!, backendMetricsUrl: backendMetricsUrlTextField.text!,  stunServerUrl: stunServerUrlTextField.text!)
         polyNet?.setDebugMode(true)
         polyNet?.delegate = self
         polyNet?.dataSource = self
