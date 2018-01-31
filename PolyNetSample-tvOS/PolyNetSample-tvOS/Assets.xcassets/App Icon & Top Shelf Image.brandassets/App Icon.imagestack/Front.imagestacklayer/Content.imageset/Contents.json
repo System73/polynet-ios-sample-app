@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "tv",
-      "filename" : "system73Logo_REVERSE_RGB_2001x232.png",
+      "filename" : "400x240_logo_reverse.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "tv",
-      "filename" : "system73Logo_REVERSE_RGB_2001x232-1.png",
+      "filename" : "800x480_logo_reverse.jpg",
       "scale" : "2x"
     }
   ],

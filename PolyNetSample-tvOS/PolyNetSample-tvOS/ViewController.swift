@@ -160,7 +160,7 @@ class ViewController: UIViewController {
         playButton.setTitle("Connecting to PolyNet", for: .normal)
         
         // Create the PolyNet
-        polyNet = S73PolyNet(manifestUrl: manifestUrl, channelId: channelId, backendUrl: backendUrl, stunServerUrl: stunServerUrl, messageEndpointUrl: backendMetricsUrl)
+        polyNet = S73PolyNet(manifestUrl: manifestUrl, channelId: channelId, backendUrl: backendUrl, backendMetricsUrl: backendMetricsUrl, stunServerUrl: stunServerUrl)
         polyNet?.setDebugMode(true)
         polyNet?.delegate = self
         polyNet?.dataSource = self

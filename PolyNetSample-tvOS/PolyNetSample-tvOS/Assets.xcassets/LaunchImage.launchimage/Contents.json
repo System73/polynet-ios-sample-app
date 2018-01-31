@@ -3,7 +3,7 @@
     {
       "orientation" : "landscape",
       "idiom" : "tv",
-      "filename" : "system73Logo_RGB_801x487.png",
+      "filename" : "3840x2160_logo_square.png",
       "extent" : "full-screen",
       "minimum-system-version" : "11.0",
       "scale" : "2x"
@@ -11,7 +11,7 @@
     {
       "orientation" : "landscape",
       "idiom" : "tv",
-      "filename" : "system73Logo_RGB_1001x609.png",
+      "filename" : "1920x1080_logo_square.png",
       "extent" : "full-screen",
       "minimum-system-version" : "9.0",
       "scale" : "1x"
