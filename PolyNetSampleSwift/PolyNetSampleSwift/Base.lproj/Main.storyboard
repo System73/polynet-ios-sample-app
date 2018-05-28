@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="9JH-OA-0fK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="9JH-OA-0fK">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,12 +18,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="uBB-6b-o48" userLabel="Header">
+                        <view key="tableHeaderView" contentMode="scaleToFill" misplaced="YES" id="uBB-6b-o48" userLabel="Header">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="system73_logo" translatesAutoresizingMaskIntoConstraints="NO" id="Pv0-WF-JLv">
-                                    <rect key="frame" x="8" y="24" width="359" height="20"/>
+                                    <rect key="frame" x="8" y="24" width="359" height="46"/>
                                 </imageView>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -34,8 +34,8 @@
                                 <constraint firstAttribute="bottom" secondItem="Pv0-WF-JLv" secondAttribute="bottom" id="UaS-5Z-1IU"/>
                             </constraints>
                         </view>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="kEn-hf-i5s" userLabel="Footer">
-                            <rect key="frame" x="0.0" y="641.5" width="375" height="90"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" misplaced="YES" id="kEn-hf-i5s" userLabel="Footer">
+                            <rect key="frame" x="0.0" y="441.5" width="375" height="90"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright © 2017 System73 ®" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jzj-Ae-OHC">
@@ -79,7 +79,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="http://0.0.0.0/master.m3" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="S1Q-qD-oxS">
-                                                    <rect key="frame" x="8" y="11.5" width="359" height="19"/>
+                                                    <rect key="frame" x="16" y="11.5" width="343" height="19"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="URL"/>
@@ -103,8 +103,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="yDj-fS-5vH">
-                                                    <rect key="frame" x="8" y="12" width="359" height="19"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Channel ID" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="yDj-fS-5vH">
+                                                    <rect key="frame" x="16" y="12" width="343" height="19"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -119,7 +119,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Backend URL" id="REq-bi-UMI">
+                            <tableViewSection headerTitle="API KEY" id="REq-bi-UMI">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="QqI-iE-RKW">
                                         <rect key="frame" x="0.0" y="299.5" width="375" height="44"/>
@@ -128,8 +128,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ws://0.0.0.0:8888/ws" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="MmM-iR-3R9">
-                                                    <rect key="frame" x="8" y="12" width="359" height="19"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ew0KICAiaGFzaGVkX2tleSI6ICI5S0ItbF8tZjZRSGhn" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="MmM-iR-3R9">
+                                                    <rect key="frame" x="16" y="12" width="343" height="19"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="URL"/>
@@ -144,67 +144,17 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Backend Metrics Url" id="mMI-Cg-quG">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="0cy-HM-I93">
-                                        <rect key="frame" x="0.0" y="399.5" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0cy-HM-I93" id="QVK-Ej-Bxv">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="http://0.0.0.0:8081/metrics/v1" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="Pmd-rj-Ie2">
-                                                    <rect key="frame" x="8" y="12" width="359" height="19"/>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="URL"/>
-                                                </textField>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="Pmd-rj-Ie2" firstAttribute="leading" secondItem="QVK-Ej-Bxv" secondAttribute="leadingMargin" id="FU7-7q-YmM"/>
-                                                <constraint firstItem="Pmd-rj-Ie2" firstAttribute="trailing" secondItem="QVK-Ej-Bxv" secondAttribute="trailingMargin" id="bqW-bv-b5J"/>
-                                                <constraint firstItem="Pmd-rj-Ie2" firstAttribute="centerY" secondItem="QVK-Ej-Bxv" secondAttribute="centerY" id="xQ0-Fm-4wO"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection headerTitle="Stun server URL" id="kVS-Ua-TKT">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="UVn-Ne-hiV">
-                                        <rect key="frame" x="0.0" y="499.5" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UVn-Ne-hiV" id="yUT-oh-KfV">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="stun:0.0.0.0:3478" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="NMX-Pv-S9E">
-                                                    <rect key="frame" x="8" y="12" width="359" height="19"/>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="URL"/>
-                                                </textField>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="NMX-Pv-S9E" firstAttribute="centerY" secondItem="yUT-oh-KfV" secondAttribute="centerY" id="Lk1-n1-Izt"/>
-                                                <constraint firstItem="NMX-Pv-S9E" firstAttribute="leading" secondItem="yUT-oh-KfV" secondAttribute="leadingMargin" id="sby-9O-PvK"/>
-                                                <constraint firstItem="NMX-Pv-S9E" firstAttribute="trailing" secondItem="yUT-oh-KfV" secondAttribute="trailingMargin" id="xPF-iB-CM3"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                             <tableViewSection headerTitle="" id="PDU-du-xLx">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="3hh-Qi-Cdy">
-                                        <rect key="frame" x="0.0" y="579.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="379.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3hh-Qi-Cdy" id="0hh-d6-6ne">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P1U-ZU-PYz">
-                                                    <rect key="frame" x="8" y="7" width="359" height="30"/>
+                                                    <rect key="frame" x="16" y="7" width="343" height="30"/>
                                                     <state key="normal" title="PLAY!"/>
                                                     <connections>
                                                         <action selector="playButtonDidTouchUpInside" destination="JiC-SD-o5K" eventType="touchUpInside" id="Yeh-lV-amB"/>
@@ -229,12 +179,10 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="MxV-bV-Zcy"/>
                     <connections>
-                        <outlet property="backendMetricsUrlTextField" destination="Pmd-rj-Ie2" id="7CI-mI-l6d"/>
-                        <outlet property="backendUrlTextField" destination="MmM-iR-3R9" id="nc7-2Y-d4C"/>
+                        <outlet property="apiKeyTextField" destination="MmM-iR-3R9" id="MXq-qE-inO"/>
                         <outlet property="channelIdTextField" destination="yDj-fS-5vH" id="Zbv-MZ-Kki"/>
                         <outlet property="manifestUrlTextField" destination="S1Q-qD-oxS" id="hAF-Xf-Dus"/>
                         <outlet property="playButton" destination="P1U-ZU-PYz" id="w7d-N4-aNe"/>
-                        <outlet property="stunServerUrlTextField" destination="NMX-Pv-S9E" id="05u-Lg-ktx"/>
                         <outlet property="versionLabel" destination="5HV-8I-V4G" id="pok-hT-9sp"/>
                     </connections>
                 </tableViewController>
