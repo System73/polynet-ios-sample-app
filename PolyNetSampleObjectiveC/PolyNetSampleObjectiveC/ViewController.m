@@ -128,7 +128,7 @@
     [self.playButton setTitle:@"Connecting to PolyNet" forState:UIControlStateNormal];
     
     // Create the PolyNet
-    self.polyNet = [[PolyNet alloc] initWithManifestUrl:manifestUrl channelIdentifier:channelId apiKey:apiKey];
+    self.polyNet = [[PolyNet alloc] initWithManifestUrl:manifestUrl channelId:channelId apiKey:apiKey];
     
     [self.polyNet setDebugMode:YES];
     self.polyNet.delegate = self;

@@ -136,7 +136,7 @@ class ViewController: UITableViewController {
         playButton.isEnabled = false
         playButton.setTitle("Connecting to PolyNet", for: .normal)
         // Create the PolyNet
-        polyNet = PolyNet(manifestUrl: manifestUrlTextField.text!, channelIdentifier: channelIdTextField.text!, apiKey: apiKeyTextField.text!)
+        polyNet = PolyNet(manifestUrl: manifestUrlTextField.text!, channelId: channelIdTextField.text!, apiKey: apiKeyTextField.text!)
         polyNet?.setDebugMode(true)
         polyNet?.delegate = self
         polyNet?.dataSource = self
