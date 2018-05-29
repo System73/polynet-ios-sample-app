@@ -4,11 +4,11 @@
 #import <AVFoundation/AVFoundation.h>
 #import <PolyNetSDK/PolyNetSDK.h>
 
-@interface ViewController () <S73PolyNetDelegate, S73PolyNetDataSource>
+@interface ViewController () <PolyNetDelegate, PolyNetDataSource>
 
 #pragma mark Properties
 
-@property (nonatomic, nullable, strong) S73PolyNet * polyNet;
+@property (nonatomic, nullable, strong) PolyNet * polyNet;
 @property (nonatomic, nullable, strong) AVPlayerViewController * playerViewController;
 @property (nonatomic, nullable, strong) AVPlayer * player;
 @property (nonatomic, nullable, strong) NSTimer *bufferEmptyCountermeasureTimer;
@@ -17,9 +17,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *manifestUrlTextField;
 @property (weak, nonatomic) IBOutlet UITextField *channelIdTextField;
-@property (weak, nonatomic) IBOutlet UITextField *backendUrlTextField;
-@property (weak, nonatomic) IBOutlet UITextField *backendMetricsUrlTextField;
-@property (weak, nonatomic) IBOutlet UITextField *stunServerUrlTextField;
+@property (weak, nonatomic) IBOutlet UITextField *apiKeyTextField;
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
 @property (weak, nonatomic) IBOutlet UILabel *versionLabel;
 @end
@@ -52,22 +50,15 @@
 
 #define MANIFEST_URL_KEY @"MANIFEST_URL_KEY"
 #define CHANNEL_ID_KEY @"CHANNEL_ID_KEY"
-#define BACKEND_URL_KEY @"BACKEND_URL_KEY"
-#define BACKEND_METRICS_URL_KEY @"BACKEND_METRICS_URL_KEY"
-#define STUN_SERVER_URL_KEY @"STUN_SERVER_URL_KEY"
+#define API_KEY_KEY @"API_KEY_KEY"
 #define FIRST_SECTION_HEADER_HEIGHT 40.0
 #define SECTION_HEADER_HEIGHT 12.0
 
 - (void)loadFromPersistance {
     NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
     self.manifestUrlTextField.text = [defaults objectForKey:MANIFEST_URL_KEY];
-    NSNumber * channelId = [defaults objectForKey:CHANNEL_ID_KEY];
-    if (channelId) {
-        self.channelIdTextField.text = [NSString stringWithFormat:@"%ld", (long)[channelId integerValue]];
-    }
-    self.backendUrlTextField.text = [defaults objectForKey:BACKEND_URL_KEY];
-    self.backendMetricsUrlTextField.text = [defaults objectForKey:BACKEND_METRICS_URL_KEY];
-    self.stunServerUrlTextField.text = [defaults objectForKey:STUN_SERVER_URL_KEY];
+    self.channelIdTextField.text =  [defaults objectForKey:CHANNEL_ID_KEY];
+    self.apiKeyTextField.text = [defaults objectForKey:API_KEY_KEY];
 }
 
 - (void)saveToPersistance {
@@ -86,23 +77,11 @@
     } else {
         [defaults removeObjectForKey:CHANNEL_ID_KEY];
     }
-    NSString * backendUrl = self.backendUrlTextField.text;
-    if (backendUrl != nil && [backendUrl length] > 0) {
-        [defaults setObject:backendUrl forKey:BACKEND_URL_KEY];
+    NSString * apiKey = self.apiKeyTextField.text;
+    if (apiKey != nil && [apiKey length] > 0) {
+        [defaults setObject:apiKey forKey:API_KEY_KEY];
     } else {
-        [defaults removeObjectForKey:BACKEND_URL_KEY];
-    }
-    NSString * backendMetricsUrl = self.backendMetricsUrlTextField.text;
-    if (backendMetricsUrl != nil && [backendMetricsUrl length] > 0) {
-        [defaults setObject:backendMetricsUrl forKey:BACKEND_METRICS_URL_KEY];
-    } else {
-        [defaults removeObjectForKey:BACKEND_METRICS_URL_KEY];
-    }
-    NSString * stunServerUrl = self.stunServerUrlTextField.text;
-    if (stunServerUrl != nil && [stunServerUrl length] > 0) {
-        [defaults setObject:stunServerUrl forKey:STUN_SERVER_URL_KEY];
-    } else {
-        [defaults removeObjectForKey:STUN_SERVER_URL_KEY];
+        [defaults removeObjectForKey:API_KEY_KEY];
     }
 }
 
@@ -113,7 +92,7 @@
     self.versionLabel.text = [NSString stringWithFormat:@"Sample App v%@-%@\nPolyNet SDK v.%@",
                               [dict objectForKey:@"CFBundleShortVersionString"],
                               [dict objectForKey:@"CFBundleVersion"],
-                              [S73PolyNet version]];
+                              [PolyNet version]];
 }
 
 #pragma mark IBActions
@@ -127,29 +106,17 @@
     } else {
         manifestUrl = self.manifestUrlTextField.text;
     }
-    NSUInteger channelId;
+    NSString * channelId;
     if (self.channelIdTextField.text == nil || [self.channelIdTextField.text length] == 0) {
-        channelId = [self.channelIdTextField.placeholder integerValue];
+        channelId = self.channelIdTextField.placeholder;
     } else {
-        channelId = [self.channelIdTextField.text integerValue];
+        channelId = self.channelIdTextField.text;
     }
-    NSString * backendUrl;
-    if (self.backendUrlTextField.text == nil || [self.backendUrlTextField.text length] == 0) {
-        backendUrl = self.backendUrlTextField.placeholder;
+    NSString * apiKey;
+    if (self.apiKeyTextField.text == nil || [self.apiKeyTextField.text length] == 0) {
+        apiKey = self.apiKeyTextField.placeholder;
     } else {
-        backendUrl = self.backendUrlTextField.text;
-    }
-    NSString * backendMetricsUrl;
-    if (self.backendMetricsUrlTextField.text == nil || [self.backendMetricsUrlTextField.text length] == 0) {
-        backendMetricsUrl = self.backendMetricsUrlTextField.placeholder;
-    } else {
-        backendMetricsUrl = self.backendMetricsUrlTextField.text;
-    }
-    NSString * stunServerUrl;
-    if (self.stunServerUrlTextField.text == nil || [self.stunServerUrlTextField.text length] == 0) {
-        stunServerUrl = self.stunServerUrlTextField.placeholder;
-    } else {
-        stunServerUrl = self.stunServerUrlTextField.text;
+        apiKey = self.apiKeyTextField.text;
     }
 
     
@@ -161,7 +128,7 @@
     [self.playButton setTitle:@"Connecting to PolyNet" forState:UIControlStateNormal];
     
     // Create the PolyNet
-    self.polyNet = [[S73PolyNet alloc] initWithManifestUrl:manifestUrl channelId:channelId backendUrl:backendUrl backendMetricsUrl:backendMetricsUrl stunServerUrl:stunServerUrl];
+    self.polyNet = [[PolyNet alloc] initWithManifestUrl:manifestUrl channelId:channelId apiKey:apiKey];
     
     [self.polyNet setDebugMode:YES];
     self.polyNet.delegate = self;
@@ -176,7 +143,7 @@
 #pragma mark S73PolyNetDelegate
 
 // PolyNet did connect. Start the player with the polyNetManifestUrl
-- (void)polyNet:(S73PolyNet *)polyNet didConnectWithPolyNetManifestUrl:(NSString *)polyNetManifestUrl {
+- (void)polyNet:(PolyNet *)polyNet didConnectWithPolyNetManifestUrl:(NSString *)polyNetManifestUrl {
     
     // Configure and start player
     self.player = [[AVPlayer alloc] initWithURL:[NSURL URLWithString:polyNetManifestUrl]];
@@ -189,7 +156,7 @@
 }
 
 // PolyNet did fail
-- (void)polyNet:(S73PolyNet *)polyNet didFailWithError:(NSError *)error {
+- (void)polyNet:(PolyNet *)polyNet didFailWithError:(NSError *)error {
     
 #pragma mark TODO: Manage the error if needed.
     NSLog(@"PolyNet error: %@", error.localizedDescription);
@@ -198,7 +165,7 @@
 #pragma mark S73PolyNetDataSource
 
 // PolyNet request the buffer health of the player. This is the playback duration the player can play for sure before a possible stall.
-- (NSNumber *)playerBufferHeathInPolyNet:(S73PolyNet *)polyNet {
+- (NSNumber *)playerBufferHeathInPolyNet:(PolyNet *)polyNet {
     
     // If no events, returns nil
     AVPlayerItemAccessLogEvent * event = [self.player.currentItem accessLog].events.lastObject;
@@ -216,7 +183,7 @@
 }
 
 // PolyNet request the dropped video frames. This is the accumulated number of dropped video frames for the player.
-- (NSNumber *)playerAccumulatedDroppedFramesInPolyNet:(S73PolyNet *)polyNet {
+- (NSNumber *)playerAccumulatedDroppedFramesInPolyNet:(PolyNet *)polyNet {
     
     // If no events, returns nil
     AVPlayerItemAccessLogEvent * event = [self.player.currentItem accessLog].events.lastObject;
@@ -234,7 +201,7 @@
 }
 
 // PolyNet request the started date of the playback. This is the date when the player started to play the video
-- (NSDate *)playerPlaybackStartDateInPolyNet:(S73PolyNet *)polyNet {
+- (NSDate *)playerPlaybackStartDateInPolyNet:(PolyNet *)polyNet {
     
     // If no events, returns nil
     AVPlayerItemAccessLogEvent * event = [self.player.currentItem accessLog].events.lastObject;

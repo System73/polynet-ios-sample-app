@@ -8,7 +8,7 @@ class ViewController: UITableViewController {
     
     // MARK: Properties
     
-    var polyNet: S73PolyNet?
+    var polyNet: PolyNet?
     var playerViewController: AVPlayerViewController?
     var player: AVPlayer?
     var bufferEmptyCountermeasureTimer : Timer? = nil
@@ -43,9 +43,7 @@ class ViewController: UITableViewController {
     
     fileprivate let MANIFEST_URL_KEY = "MANIFEST_URL_KEY"
     fileprivate let CHANNEL_ID_KEY = "CHANNEL_ID_KEY"
-    fileprivate let BACKEND_URL_KEY = "BACKEND_URL_KEY"
-    fileprivate let BACKEND_METRICS_URL_KEY = "BACKEND_METRICS_URL_KEY"
-    fileprivate let STUN_SERVER_URL_KEY = "STUN_SERVER_URL_KEY"
+    fileprivate let API_KEY_KEY = "API_KEY_KEY"
     fileprivate let FIRST_SECTION_HEADER_HEIGHT = CGFloat(40.0)
     fileprivate let SECTION_HEADER_HEIGHT = CGFloat(12.0)
     
@@ -55,37 +53,25 @@ class ViewController: UITableViewController {
         if defaults.integer(forKey: CHANNEL_ID_KEY) != 0 {
             channelIdTextField.text = "\(defaults.integer(forKey: CHANNEL_ID_KEY))"
         }
-        backendUrlTextField.text = defaults.string(forKey: BACKEND_URL_KEY)
-        backendMetricsUrlTextField.text = defaults.string(forKey: BACKEND_METRICS_URL_KEY)
-        stunServerUrlTextField.text = defaults.string(forKey: STUN_SERVER_URL_KEY)
+        apiKeyTextField.text = defaults.string(forKey: API_KEY_KEY)
     }
     
     fileprivate func saveToPersistance() {
         let defaults = UserDefaults.standard
-        if let manifestUrl = manifestUrlTextField.text, manifestUrl.characters.count > 0 {
+        if let manifestUrl = manifestUrlTextField.text, manifestUrl.count > 0 {
             defaults.set(manifestUrl, forKey: MANIFEST_URL_KEY)
         } else {
             defaults.removeObject(forKey: MANIFEST_URL_KEY)
         }
-        if let channelIdString = channelIdTextField.text, let channelId = UInt(channelIdString) {
-            defaults.set(channelId, forKey: CHANNEL_ID_KEY)
+        if let channelIdString = channelIdTextField.text, channelIdString.count > 0 {
+            defaults.set(channelIdString, forKey: CHANNEL_ID_KEY)
         } else {
             defaults.removeObject(forKey: CHANNEL_ID_KEY)
         }
-        if let backendUrl = backendUrlTextField.text, backendUrl.characters.count > 0 {
-            defaults.set(backendUrl, forKey: BACKEND_URL_KEY)
+        if let apiKey = apiKeyTextField.text, apiKey.count > 0 {
+            defaults.set(apiKey, forKey: API_KEY_KEY)
         } else {
-            defaults.removeObject(forKey: BACKEND_URL_KEY)
-        }
-        if let backendMetricsUrl = backendMetricsUrlTextField.text, backendMetricsUrl.characters.count > 0 {
-            defaults.set(backendMetricsUrl, forKey: BACKEND_METRICS_URL_KEY)
-        } else {
-            defaults.removeObject(forKey: BACKEND_METRICS_URL_KEY)
-        }
-        if let stunServerUrl = stunServerUrlTextField.text, stunServerUrl.characters.count > 0 {
-            defaults.set(stunServerUrl, forKey: STUN_SERVER_URL_KEY)
-        } else {
-            defaults.removeObject(forKey: STUN_SERVER_URL_KEY)
+            defaults.removeObject(forKey: API_KEY_KEY)
         }
     }
     
@@ -101,16 +87,14 @@ class ViewController: UITableViewController {
         versionLabel.text = String(format: "Sample App v.%@-%@\nPolyNet SDK v.%@",
                                    dict["CFBundleShortVersionString"] as! String,
                                    dict["CFBundleVersion"] as! String,
-                                   S73PolyNet.version())
+                                   PolyNet.version())
     }
     
     // MARK: IBActions and IBOutlets
     
     @IBOutlet weak var manifestUrlTextField: UITextField!
     @IBOutlet weak var channelIdTextField: UITextField!
-    @IBOutlet weak var backendUrlTextField: UITextField!
-    @IBOutlet weak var backendMetricsUrlTextField: UITextField!
-    @IBOutlet weak var stunServerUrlTextField: UITextField!
+    @IBOutlet weak var apiKeyTextField: UITextField!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var versionLabel: UILabel!
     
@@ -126,34 +110,24 @@ class ViewController: UITableViewController {
     func removeWhiteSpaces() {
         manifestUrlTextField.text = manifestUrlTextField.text?.replacingOccurrences(of: " ", with: "")
         channelIdTextField.text = channelIdTextField.text?.replacingOccurrences(of: " ", with: "")
-        backendUrlTextField.text = backendUrlTextField.text?.replacingOccurrences(of: " ", with: "")
-        backendMetricsUrlTextField.text = backendMetricsUrlTextField.text?.replacingOccurrences(of: " ", with: "")
-        stunServerUrlTextField.text = stunServerUrlTextField.text?.replacingOccurrences(of: " ", with: "")
+        apiKeyTextField.text = apiKeyTextField.text?.replacingOccurrences(of: " ", with: "")
     }
     
     func checkParameters() -> Bool {
         guard let existManifestUrl = manifestUrlTextField.text,
             let existChannelIdString = channelIdTextField.text,
-            let existBackendUrl = backendUrlTextField.text,
-            let existBackendMetricsUrl = backendMetricsUrlTextField.text,
-            let existStunServerUrl = stunServerUrlTextField.text else {
+            let exitApiKey = apiKeyTextField.text else {
             showAlertView(message: "Please, fill in all fields")
             return false
         }
         
         guard existManifestUrl.count > 0
             && existChannelIdString.count > 0
-            && existBackendUrl.count > 0
-            && existBackendMetricsUrl.count > 0
-            && existStunServerUrl.count > 0 else {
+            && exitApiKey.count > 0 else {
                 showAlertView(message: "Please, fill in all fields")
                 return false
         }
         
-        guard let _ = UInt(existChannelIdString) else {
-            showAlertView(message: "Invalid channel id")
-            return false
-        }
         return true
     }
     
@@ -162,7 +136,7 @@ class ViewController: UITableViewController {
         playButton.isEnabled = false
         playButton.setTitle("Connecting to PolyNet", for: .normal)
         // Create the PolyNet
-        polyNet = S73PolyNet(manifestUrl: manifestUrlTextField.text!, channelId: UInt(channelIdTextField.text!)!, backendUrl: backendUrlTextField.text!, backendMetricsUrl: backendMetricsUrlTextField.text!,  stunServerUrl: stunServerUrlTextField.text!)
+        polyNet = PolyNet(manifestUrl: manifestUrlTextField.text!, channelId: channelIdTextField.text!, apiKey: apiKeyTextField.text!)
         polyNet?.setDebugMode(true)
         polyNet?.delegate = self
         polyNet?.dataSource = self
@@ -181,12 +155,12 @@ class ViewController: UITableViewController {
     }
 }
 
-extension ViewController: S73PolyNetDelegate {
+extension ViewController: PolyNetDelegate {
     
     // MARK: S73PolyNetDelegate
     
     // PolyNet did connect. Start the player with the polyNetManifestUrl
-    func polyNet(_ polyNet: S73PolyNet, didConnectWithPolyNetManifestUrl polyNetManifestUrl: String) {
+    func polyNet(_ polyNet: PolyNet, didConnectWithPolyNetManifestUrl polyNetManifestUrl: String) {
         
         // Configure and start player
         player = AVPlayer(url: URL(string: polyNetManifestUrl)!)
@@ -197,19 +171,19 @@ extension ViewController: S73PolyNetDelegate {
     }
     
     // PolyNet did fail
-    func polyNet(_ polyNet: S73PolyNet, didFailWithError error: Error) {
+    func polyNet(_ polyNet: PolyNet, didFailWithError error: Error) {
         
         // TODO: Manage the error if needed.
         print("PolyNet error: " + error.localizedDescription)
     }
 }
 
-extension ViewController: S73PolyNetDataSource {
+extension ViewController: PolyNetDataSource {
     
     // MARK: S73PolyNetDataSource
     
     // PolyNet request the buffer health of the player. This is the playback duration the player can play for sure before a possible stall.
-    func playerBufferHeath(in: S73PolyNet) -> NSNumber? {
+    func playerBufferHeath(in: PolyNet) -> NSNumber? {
         
         // If no events, returns nil
         guard let event = player?.currentItem?.accessLog()?.events.last else {
@@ -226,7 +200,7 @@ extension ViewController: S73PolyNetDataSource {
     }
     
     // PolyNet request the dropped video frames. This is the accumulated number of dropped video frames for the player.
-    func playerAccumulatedDroppedFrames(in: S73PolyNet) -> NSNumber? {
+    func playerAccumulatedDroppedFrames(in: PolyNet) -> NSNumber? {
         
         // If no events, return nil
         guard let event = player?.currentItem?.accessLog()?.events.last else {
@@ -243,7 +217,7 @@ extension ViewController: S73PolyNetDataSource {
     }
     
     // PolyNet request the started date of the playback. This is the date when the player started to play the video
-    func playerPlaybackStartDate(in: S73PolyNet) -> Date? {
+    func playerPlaybackStartDate(in: PolyNet) -> Date? {
         
         // If no events, return nil
         guard let event = player?.currentItem?.accessLog()?.events.last else {
