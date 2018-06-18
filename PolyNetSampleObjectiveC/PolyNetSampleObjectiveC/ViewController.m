@@ -133,33 +133,17 @@
     [self.polyNet setDebugMode:YES];
     self.polyNet.delegate = self;
     self.polyNet.dataSource = self;
-    [self.polyNet connect];
-}
-
-- (IBAction)goToWeb {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://system73.com"] options:@{} completionHandler:nil];
-}
-
-#pragma mark S73PolyNetDelegate
-
-// PolyNet did connect. Start the player with the polyNetManifestUrl
-- (void)polyNet:(PolyNet *)polyNet didConnectWithPolyNetManifestUrl:(NSString *)polyNetManifestUrl {
-    
-    // Configure and start player
-    self.player = [[AVPlayer alloc] initWithURL:[NSURL URLWithString:polyNetManifestUrl]];
+    self.player = [[AVPlayer alloc] initWithURL:[NSURL URLWithString:self.polyNet.localManifestUrl]];
     self.playerViewController = [[AVPlayerViewController alloc] init];
     self.playerViewController.player = self.player;
     [self addObserversForPlayerItem:self.player.currentItem];
     [self presentViewController:self.playerViewController animated:true completion:^{
-
+        
     }];
 }
 
-// PolyNet did fail
-- (void)polyNet:(PolyNet *)polyNet didFailWithError:(NSError *)error {
-    
-#pragma mark TODO: Manage the error if needed.
-    NSLog(@"PolyNet error: %@", error.localizedDescription);
+- (IBAction)goToWeb {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://system73.com"] options:@{} completionHandler:nil];
 }
 
 #pragma mark S73PolyNetDataSource
@@ -275,7 +259,7 @@
     
     _bufferEmptyCountermeasureTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:YES block:^(NSTimer *timer) {
         if (self == nil) { return; }
-        AVPlayerItem *currentItem = [_player currentItem];
+        AVPlayerItem *currentItem = [self.player currentItem];
         [self removeObserversForPlayerItem:currentItem];
         
         AVURLAsset *urlAsset = (AVURLAsset *)currentItem.asset;
@@ -286,7 +270,7 @@
         AVPlayerItem *item = [[AVPlayerItem alloc] initWithURL: urlAsset.URL];
         
         [self addObserversForPlayerItem:item];
-        [_player replaceCurrentItemWithPlayerItem:item];
+        [self.player replaceCurrentItemWithPlayerItem:item];
     }];
 }
 
