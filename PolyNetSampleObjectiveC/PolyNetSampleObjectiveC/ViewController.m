@@ -146,6 +146,22 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://system73.com"] options:@{} completionHandler:nil];
 }
 
+#pragma mark S73PolyNetDelegate
+
+// PolyNet did connect. Start the player with the polyNetManifestUrl
+- (void)polyNet:(PolyNet *)polyNet didUpdateMetrics:(PolyNetMetrics *)metrics {
+    
+   //Public Metrics
+}
+
+// PolyNet did fail
+- (void)polyNet:(PolyNet *)polyNet didFailWithError:(NSError *)error {
+    
+#pragma mark TODO: Manage the error if needed.
+    NSLog(@"PolyNet error: %@", error.localizedDescription);
+}
+
+
 #pragma mark S73PolyNetDataSource
 
 // PolyNet request the buffer health of the player. This is the playback duration the player can play for sure before a possible stall.

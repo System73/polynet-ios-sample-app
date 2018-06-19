@@ -139,6 +139,7 @@ class ViewController: UITableViewController {
         polyNet = PolyNet(manifestUrl: manifestUrlTextField.text!, channelId: channelIdTextField.text!, apiKey: apiKeyTextField.text!)
         polyNet?.setDebugMode(true)
         polyNet?.dataSource = self
+        polyNet?.delegate = self
         
         player = AVPlayer(url: URL(string:polyNet!.localManifestUrl)!)
         playerViewController = AVPlayerViewController()
@@ -158,6 +159,23 @@ class ViewController: UITableViewController {
         UIApplication.shared.open(URL(string:"https://www.system73.com")!, options: [:], completionHandler:nil)
     }
 }
+
+extension ViewController: PolyNetDelegate {
+    
+    // MARK: S73PolyNetDelegate
+    
+    func polyNet(_ polyNet: PolyNet, didUpdate metrics: PolyNetMetrics) {
+        //Public Metrics
+    }
+    
+    // PolyNet did fail
+    func polyNet(_ polyNet: PolyNet, didFailWithError error: Error) {
+        
+        // TODO: Manage the error if needed.
+        print("PolyNet error: " + error.localizedDescription)
+    }
+}
+
 
 extension ViewController: PolyNetDataSource {
     

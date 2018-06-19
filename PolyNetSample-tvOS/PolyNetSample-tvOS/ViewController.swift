@@ -211,6 +211,22 @@ extension ViewController: PolyNetDataSource {
     }
 }
 
+extension ViewController: PolyNetDelegate {
+    
+    // MARK: S73PolyNetDelegate
+    
+    func polyNet(_ polyNet: PolyNet, didUpdate metrics: PolyNetMetrics) {
+        //Public Metrics
+    }
+    
+    // PolyNet did fail
+    func polyNet(_ polyNet: PolyNet, didFailWithError error: Error) {
+        
+        // TODO: Manage the error if needed.
+        print("PolyNet error: " + error.localizedDescription)
+    }
+}
+
 // Extension to handle connection lost and playback recovery
 extension ViewController {
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
