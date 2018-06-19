@@ -7,8 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B70521631F260C5E00E88BE5 /* PolyNetSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70521611F260C5800E88BE5 /* PolyNetSDK.framework */; };
-		B70521641F260C5E00E88BE5 /* PolyNetSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B70521611F260C5800E88BE5 /* PolyNetSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AFFF7C3420D930CB006CEAF7 /* SwiftProtobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFFF7C3020D930CB006CEAF7 /* SwiftProtobuf.framework */; };
+		AFFF7C3520D930CB006CEAF7 /* SwiftProtobuf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AFFF7C3020D930CB006CEAF7 /* SwiftProtobuf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AFFF7C3620D930CB006CEAF7 /* WebRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFFF7C3120D930CB006CEAF7 /* WebRTC.framework */; };
+		AFFF7C3720D930CB006CEAF7 /* WebRTC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AFFF7C3120D930CB006CEAF7 /* WebRTC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AFFF7C3820D930CB006CEAF7 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFFF7C3220D930CB006CEAF7 /* Starscream.framework */; };
+		AFFF7C3920D930CB006CEAF7 /* Starscream.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AFFF7C3220D930CB006CEAF7 /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AFFF7C3B20D930CB006CEAF7 /* PolyNetSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AFFF7C3320D930CB006CEAF7 /* PolyNetSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AFFF7C3C20D930F8006CEAF7 /* PolyNetSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFFF7C3320D930CB006CEAF7 /* PolyNetSDK.framework */; };
 		B7104FDA1F18A9B00008CFD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7104FD91F18A9B00008CFD9 /* AppDelegate.swift */; };
 		B7104FDC1F18A9B00008CFD9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7104FDB1F18A9B00008CFD9 /* ViewController.swift */; };
 		B7104FDF1F18A9B00008CFD9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7104FDD1F18A9B00008CFD9 /* Main.storyboard */; };
@@ -17,13 +23,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		B71050121F18B4240008CFD9 /* Embed Frameworks */ = {
+		AFFF7C0C20D92F39006CEAF7 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				B70521641F260C5E00E88BE5 /* PolyNetSDK.framework in Embed Frameworks */,
+				AFFF7C3B20D930CB006CEAF7 /* PolyNetSDK.framework in Embed Frameworks */,
+				AFFF7C3920D930CB006CEAF7 /* Starscream.framework in Embed Frameworks */,
+				AFFF7C3520D930CB006CEAF7 /* SwiftProtobuf.framework in Embed Frameworks */,
+				AFFF7C3720D930CB006CEAF7 /* WebRTC.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -31,7 +40,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B70521611F260C5800E88BE5 /* PolyNetSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PolyNetSDK.framework; sourceTree = "<group>"; };
+		AFFF7C2320D92FF5006CEAF7 /* PolyNetSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PolyNetSDK.framework; path = Frameworks/PolyNetSDK.framework; sourceTree = "<group>"; };
+		AFFF7C3020D930CB006CEAF7 /* SwiftProtobuf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftProtobuf.framework; path = Frameworks/SwiftProtobuf.framework; sourceTree = "<group>"; };
+		AFFF7C3120D930CB006CEAF7 /* WebRTC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebRTC.framework; path = Frameworks/WebRTC.framework; sourceTree = "<group>"; };
+		AFFF7C3220D930CB006CEAF7 /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Frameworks/Starscream.framework; sourceTree = "<group>"; };
+		AFFF7C3320D930CB006CEAF7 /* PolyNetSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PolyNetSDK.framework; path = Frameworks/PolyNetSDK.framework; sourceTree = "<group>"; };
 		B7104FD61F18A9B00008CFD9 /* PolyNetSampleSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PolyNetSampleSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7104FD91F18A9B00008CFD9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B7104FDB1F18A9B00008CFD9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -46,7 +59,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B70521631F260C5E00E88BE5 /* PolyNetSDK.framework in Frameworks */,
+				AFFF7C3C20D930F8006CEAF7 /* PolyNetSDK.framework in Frameworks */,
+				AFFF7C3820D930CB006CEAF7 /* Starscream.framework in Frameworks */,
+				AFFF7C3420D930CB006CEAF7 /* SwiftProtobuf.framework in Frameworks */,
+				AFFF7C3620D930CB006CEAF7 /* WebRTC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,7 +72,11 @@
 		B70521601F260C4200E88BE5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B70521611F260C5800E88BE5 /* PolyNetSDK.framework */,
+				AFFF7C3320D930CB006CEAF7 /* PolyNetSDK.framework */,
+				AFFF7C3220D930CB006CEAF7 /* Starscream.framework */,
+				AFFF7C3020D930CB006CEAF7 /* SwiftProtobuf.framework */,
+				AFFF7C3120D930CB006CEAF7 /* WebRTC.framework */,
+				AFFF7C2320D92FF5006CEAF7 /* PolyNetSDK.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -101,8 +121,8 @@
 				B7104FD21F18A9B00008CFD9 /* Sources */,
 				B7104FD31F18A9B00008CFD9 /* Frameworks */,
 				B7104FD41F18A9B00008CFD9 /* Resources */,
-				B71050121F18B4240008CFD9 /* Embed Frameworks */,
 				B710500E1F18B1DE0008CFD9 /* Strip 86 architectures */,
+				AFFF7C0C20D92F39006CEAF7 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -333,6 +353,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = PolyNetSampleSwift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -344,6 +365,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = S73.PolyNetSampleSwiftSCH;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INCLUDE_PATHS = $SRCROOT/Frameworks/zlib;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
@@ -358,6 +380,10 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Framework",
+					"$(PROJECT_DIR)/Framework/additional_frameworks",
+					"$(PROJECT_DIR)/Frameworks",
+					"$(PROJECT_DIR)/Frameworks/additional_frameworks",
 				);
 				INFOPLIST_FILE = PolyNetSampleSwift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -369,6 +395,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = S73.PolyNetSampleSwiftSCH;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INCLUDE_PATHS = $SRCROOT/Frameworks/zlib;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};

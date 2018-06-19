@@ -128,16 +128,20 @@
     [self.playButton setTitle:@"Connecting to PolyNet" forState:UIControlStateNormal];
     
     // Create the PolyNet
-    self.polyNet = [[PolyNet alloc] initWithManifestUrl:manifestUrl channelId:channelId apiKey:apiKey];
-    
-    [self.polyNet setDebugMode:YES];
-    self.polyNet.delegate = self;
-    self.polyNet.dataSource = self;
-    self.player = [[AVPlayer alloc] initWithURL:[NSURL URLWithString:self.polyNet.localManifestUrl]];
-    self.playerViewController = [[AVPlayerViewController alloc] init];
-    self.playerViewController.player = self.player;
-    [self addObserversForPlayerItem:self.player.currentItem];
-    [self presentViewController:self.playerViewController animated:true completion:nil];
+    @try {
+        self.polyNet = [[PolyNet alloc] initWithManifestUrl:manifestUrl channelId:channelId apiKey:apiKey error:nil];
+        
+        self.polyNet.delegate = self;
+        self.polyNet.dataSource = self;
+        self.player = [[AVPlayer alloc] initWithURL:[NSURL URLWithString:self.polyNet.localManifestUrl]];
+        self.playerViewController = [[AVPlayerViewController alloc] init];
+        self.playerViewController.player = self.player;
+        [self addObserversForPlayerItem:self.player.currentItem];
+        [self presentViewController:self.playerViewController animated:true completion:nil];    }
+    @catch (NSException *exception) {
+        NSLog(@"%@", exception.reason);
+    }
+
 }
 
 - (IBAction)goToWeb {
@@ -171,7 +175,7 @@
 #pragma mark PolyNetDataSource
 
 // PolyNet request the buffer health of the player. This is the playback duration the player can play for sure before a possible stall.
-- (NSNumber *)playerBufferHeathInPolyNet:(PolyNet *)polyNet {
+- (NSNumber *)playerBufferHeathIn:(PolyNet *)polyNet {
     
     // If no events, returns nil
     AVPlayerItemAccessLogEvent * event = [self.player.currentItem accessLog].events.lastObject;
@@ -189,7 +193,7 @@
 }
 
 // PolyNet request the dropped video frames. This is the accumulated number of dropped video frames for the player.
-- (NSNumber *)playerAccumulatedDroppedFramesInPolyNet:(PolyNet *)polyNet {
+- (NSNumber *)playerAccumulatedDroppedFramesIn:(PolyNet *)polyNet {
     
     // If no events, returns nil
     AVPlayerItemAccessLogEvent * event = [self.player.currentItem accessLog].events.lastObject;
@@ -207,7 +211,7 @@
 }
 
 // PolyNet request the started date of the playback. This is the date when the player started to play the video
-- (NSDate *)playerPlaybackStartDateInPolyNet:(PolyNet *)polyNet {
+- (NSDate *)playerPlaybackStartDateIn:(PolyNet *)polyNet {
     
     // If no events, returns nil
     AVPlayerItemAccessLogEvent * event = [self.player.currentItem accessLog].events.lastObject;

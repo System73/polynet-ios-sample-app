@@ -139,20 +139,23 @@ class ViewController: UIViewController {
         playButton.isEnabled = false
         playButton.setTitle("Connecting to PolyNet", for: .normal)
         
-        // Create the PolyNet
-        polyNet = PolyNet(manifestUrl: manifestUrl, channelId: channelId, apiKey: apiKey)
-        polyNet?.setDebugMode(true)
-        polyNet?.dataSource = self
-        polyNet?.delegate = self
-        
-        // Configure and start player
-        player = AVPlayer(url: URL(string:polyNet!.localManifestUrl)!)
-        playerViewController = AVPlayerViewController()
-        playerViewController?.player = player
-        self.addObserversForPlayerItem(playerItem: (self.player?.currentItem)!)
-        present(playerViewController!, animated: true) {
+        do {
+            // Create the PolyNet
+            polyNet = try PolyNet(manifestUrl: manifestUrl, channelId: channelId, apiKey: apiKey)
+            polyNet?.dataSource = self
+            polyNet?.delegate = self
             
-        }    }
+            // Configure and start player
+            player = AVPlayer(url: URL(string:polyNet!.localManifestUrl)!)
+            playerViewController = AVPlayerViewController()
+            playerViewController?.player = player
+            self.addObserversForPlayerItem(playerItem: (self.player?.currentItem)!)
+            present(playerViewController!, animated: true) {
+            }
+        } catch  {
+            print("PolyNet Error: creating PolyNet object")
+        }       
+    }
     
     func removeWhiteSpaces() {
         manifestUrlTextField.text = manifestUrlTextField.text?.replacingOccurrences(of: " ", with: "")
