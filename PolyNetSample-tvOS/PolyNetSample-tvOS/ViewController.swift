@@ -143,6 +143,7 @@ class ViewController: UIViewController {
         polyNet = PolyNet(manifestUrl: manifestUrl, channelId: channelId, apiKey: apiKey)
         polyNet?.setDebugMode(true)
         polyNet?.dataSource = self
+        polyNet?.delegate = self
         
         // Configure and start player
         player = AVPlayer(url: URL(string:polyNet!.localManifestUrl)!)
