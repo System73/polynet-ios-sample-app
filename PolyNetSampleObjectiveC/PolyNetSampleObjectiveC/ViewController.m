@@ -137,32 +137,38 @@
     self.playerViewController = [[AVPlayerViewController alloc] init];
     self.playerViewController.player = self.player;
     [self addObserversForPlayerItem:self.player.currentItem];
-    [self presentViewController:self.playerViewController animated:true completion:^{
-        
-    }];
+    [self presentViewController:self.playerViewController animated:true completion:nil];
 }
 
 - (IBAction)goToWeb {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://system73.com"] options:@{} completionHandler:nil];
 }
 
-#pragma mark S73PolyNetDelegate
+#pragma mark PolyNetDelegate
+/**
+ PolyNet Updated Metrics Delegate Method
 
-// PolyNet did connect. Start the player with the polyNetManifestUrl
+ @param polyNet The PolyNet instance to which the metrics object belong.
+ @param metrics An updated PolyNetMetrics Object.
+ */
 - (void)polyNet:(PolyNet *)polyNet didUpdateMetrics:(PolyNetMetrics *)metrics {
-    
-   //Public Metrics
+    #pragma mark TODO: You can now access the new metrics object.
 }
 
-// PolyNet did fail
+
+/**
+ PolyNet did fail Delegate Method
+
+ @param polyNet The PolyNet instance where the error generated.
+ @param error A PolyNet Error. See the debugging section in the docs for more info at: https://system73.com/docs/
+ */
 - (void)polyNet:(PolyNet *)polyNet didFailWithError:(NSError *)error {
-    
-#pragma mark TODO: Manage the error if needed.
+    #pragma mark TODO: Manage the error if needed.
     NSLog(@"PolyNet error: %@", error.localizedDescription);
 }
 
 
-#pragma mark S73PolyNetDataSource
+#pragma mark PolyNetDataSource
 
 // PolyNet request the buffer health of the player. This is the playback duration the player can play for sure before a possible stall.
 - (NSNumber *)playerBufferHeathInPolyNet:(PolyNet *)polyNet {

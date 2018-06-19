@@ -163,9 +163,8 @@ class ViewController: UIViewController {
 
 }
 
+// MARK: PolyNetDataSource
 extension ViewController: PolyNetDataSource {
-    
-    // MARK: S73PolyNetDataSource
     
     // PolyNet request the buffer health of the player. This is the playback duration the player can play for sure before a possible stall.
     func playerBufferHeath(in: PolyNet) -> NSNumber? {
@@ -212,17 +211,24 @@ extension ViewController: PolyNetDataSource {
     }
 }
 
+// MARK: PolyNetDelegate
 extension ViewController: PolyNetDelegate {
-    
-    // MARK: S73PolyNetDelegate
-    
+ 
+    /// PolyNet Updated Metrics Delegate Method
+    ///
+    /// - Parameters:
+    ///   - polyNet: The PolyNet instance to which the metrics object belong.
+    ///   - metrics: An updated PolyNetMetrics Object.
     func polyNet(_ polyNet: PolyNet, didUpdate metrics: PolyNetMetrics) {
-        //Public Metrics
+        // TODO: You can now access the new metrics object.
     }
     
-    // PolyNet did fail
+    /// PolyNet did fail Delegate Method
+    ///
+    /// - Parameters:
+    ///   - polyNet: The PolyNet instance where the error generated.
+    ///   - error: A PolyNet Error. See the debugging section in the docs for more info at: https://system73.com/docs/
     func polyNet(_ polyNet: PolyNet, didFailWithError error: Error) {
-        
         // TODO: Manage the error if needed.
         print("PolyNet error: " + error.localizedDescription)
     }
