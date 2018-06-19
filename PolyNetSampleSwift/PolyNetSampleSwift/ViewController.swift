@@ -138,9 +138,13 @@ class ViewController: UITableViewController {
         // Create the PolyNet
         polyNet = PolyNet(manifestUrl: manifestUrlTextField.text!, channelId: channelIdTextField.text!, apiKey: apiKeyTextField.text!)
         polyNet?.setDebugMode(true)
-        polyNet?.delegate = self
         polyNet?.dataSource = self
-        polyNet?.connect()
+        
+        player = AVPlayer(url: URL(string:polyNet!.localManifestUrl)!)
+        playerViewController = AVPlayerViewController()
+        playerViewController?.player = player
+        self.addObserversForPlayerItem(playerItem: (self.player?.currentItem)!)
+        present(playerViewController!, animated: true)
     }
     
     func showAlertView(message:String) {
@@ -152,29 +156,6 @@ class ViewController: UITableViewController {
     
     @IBAction func goToWeb() {
         UIApplication.shared.open(URL(string:"https://www.system73.com")!, options: [:], completionHandler:nil)
-    }
-}
-
-extension ViewController: PolyNetDelegate {
-    
-    // MARK: S73PolyNetDelegate
-    
-    // PolyNet did connect. Start the player with the polyNetManifestUrl
-    func polyNet(_ polyNet: PolyNet, didConnectWithPolyNetManifestUrl polyNetManifestUrl: String) {
-        
-        // Configure and start player
-        player = AVPlayer(url: URL(string: polyNetManifestUrl)!)
-        playerViewController = AVPlayerViewController()
-        playerViewController?.player = player
-        self.addObserversForPlayerItem(playerItem: (self.player?.currentItem)!)
-        present(playerViewController!, animated: true)
-    }
-    
-    // PolyNet did fail
-    func polyNet(_ polyNet: PolyNet, didFailWithError error: Error) {
-        
-        // TODO: Manage the error if needed.
-        print("PolyNet error: " + error.localizedDescription)
     }
 }
 
