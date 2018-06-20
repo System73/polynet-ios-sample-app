@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AFAEF12220D9400D00A6121A /* PolyNetSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFAEF10C20D933A000A6121A /* PolyNetSDK.framework */; };
-		AFAEF12320D9400D00A6121A /* PolyNetSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AFAEF10C20D933A000A6121A /* PolyNetSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		AFAEF12520D9401100A6121A /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFAEF10A20D9339F00A6121A /* Starscream.framework */; };
-		AFAEF12620D9401100A6121A /* Starscream.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AFAEF10A20D9339F00A6121A /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		AFAEF12720D9401400A6121A /* SwiftProtobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFAEF10920D9339F00A6121A /* SwiftProtobuf.framework */; };
-		AFAEF12820D9401400A6121A /* SwiftProtobuf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AFAEF10920D9339F00A6121A /* SwiftProtobuf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		AFAEF12920D9401700A6121A /* WebRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFAEF10B20D933A000A6121A /* WebRTC.framework */; };
-		AFAEF12A20D9401700A6121A /* WebRTC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AFAEF10B20D933A000A6121A /* WebRTC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B70F076A20DA483200D59C0B /* SwiftProtobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70F076620DA483100D59C0B /* SwiftProtobuf.framework */; };
+		B70F076B20DA483200D59C0B /* SwiftProtobuf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B70F076620DA483100D59C0B /* SwiftProtobuf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B70F076C20DA483200D59C0B /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70F076720DA483100D59C0B /* Starscream.framework */; };
+		B70F076D20DA483200D59C0B /* Starscream.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B70F076720DA483100D59C0B /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B70F076E20DA483200D59C0B /* PolyNetSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70F076820DA483100D59C0B /* PolyNetSDK.framework */; };
+		B70F076F20DA483200D59C0B /* PolyNetSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B70F076820DA483100D59C0B /* PolyNetSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B70F077020DA483200D59C0B /* WebRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70F076920DA483200D59C0B /* WebRTC.framework */; };
+		B70F077120DA483200D59C0B /* WebRTC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B70F076920DA483200D59C0B /* WebRTC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B7104FF91F18AB070008CFD9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B7104FF81F18AB070008CFD9 /* main.m */; };
 		B7104FFC1F18AB070008CFD9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B7104FFB1F18AB070008CFD9 /* AppDelegate.m */; };
 		B7104FFF1F18AB070008CFD9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7104FFE1F18AB070008CFD9 /* ViewController.m */; };
@@ -30,10 +30,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				AFAEF12320D9400D00A6121A /* PolyNetSDK.framework in Embed Frameworks */,
-				AFAEF12820D9401400A6121A /* SwiftProtobuf.framework in Embed Frameworks */,
-				AFAEF12620D9401100A6121A /* Starscream.framework in Embed Frameworks */,
-				AFAEF12A20D9401700A6121A /* WebRTC.framework in Embed Frameworks */,
+				B70F076B20DA483200D59C0B /* SwiftProtobuf.framework in Embed Frameworks */,
+				B70F076F20DA483200D59C0B /* PolyNetSDK.framework in Embed Frameworks */,
+				B70F076D20DA483200D59C0B /* Starscream.framework in Embed Frameworks */,
+				B70F077120DA483200D59C0B /* WebRTC.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -41,10 +41,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		AFAEF10920D9339F00A6121A /* SwiftProtobuf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftProtobuf.framework; path = Frameworks/SwiftProtobuf.framework; sourceTree = "<group>"; };
-		AFAEF10A20D9339F00A6121A /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Frameworks/Starscream.framework; sourceTree = "<group>"; };
-		AFAEF10B20D933A000A6121A /* WebRTC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebRTC.framework; path = Frameworks/WebRTC.framework; sourceTree = "<group>"; };
-		AFAEF10C20D933A000A6121A /* PolyNetSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PolyNetSDK.framework; path = Frameworks/PolyNetSDK.framework; sourceTree = "<group>"; };
+		B70F076620DA483100D59C0B /* SwiftProtobuf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftProtobuf.framework; sourceTree = "<group>"; };
+		B70F076720DA483100D59C0B /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Starscream.framework; sourceTree = "<group>"; };
+		B70F076820DA483100D59C0B /* PolyNetSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PolyNetSDK.framework; sourceTree = "<group>"; };
+		B70F076920DA483200D59C0B /* WebRTC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WebRTC.framework; sourceTree = "<group>"; };
 		B7104FF41F18AB070008CFD9 /* PolyNetSampleObjectiveC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PolyNetSampleObjectiveC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7104FF81F18AB070008CFD9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B7104FFA1F18AB070008CFD9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -62,10 +62,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AFAEF12220D9400D00A6121A /* PolyNetSDK.framework in Frameworks */,
-				AFAEF12720D9401400A6121A /* SwiftProtobuf.framework in Frameworks */,
-				AFAEF12520D9401100A6121A /* Starscream.framework in Frameworks */,
-				AFAEF12920D9401700A6121A /* WebRTC.framework in Frameworks */,
+				B70F076A20DA483200D59C0B /* SwiftProtobuf.framework in Frameworks */,
+				B70F076E20DA483200D59C0B /* PolyNetSDK.framework in Frameworks */,
+				B70F076C20DA483200D59C0B /* Starscream.framework in Frameworks */,
+				B70F077020DA483200D59C0B /* WebRTC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,10 +75,10 @@
 		B70521581F260BD200E88BE5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AFAEF10C20D933A000A6121A /* PolyNetSDK.framework */,
-				AFAEF10A20D9339F00A6121A /* Starscream.framework */,
-				AFAEF10920D9339F00A6121A /* SwiftProtobuf.framework */,
-				AFAEF10B20D933A000A6121A /* WebRTC.framework */,
+				B70F076820DA483100D59C0B /* PolyNetSDK.framework */,
+				B70F076720DA483100D59C0B /* Starscream.framework */,
+				B70F076620DA483100D59C0B /* SwiftProtobuf.framework */,
+				B70F076920DA483200D59C0B /* WebRTC.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -134,8 +134,8 @@
 				B7104FF01F18AB070008CFD9 /* Sources */,
 				B7104FF11F18AB070008CFD9 /* Frameworks */,
 				B7104FF21F18AB070008CFD9 /* Resources */,
-				B71050131F18C1680008CFD9 /* Strip 86 architectures */,
 				AFAEF12420D9400D00A6121A /* Embed Frameworks */,
+				B71050131F18C1680008CFD9 /* Strip 86 architectures */,
 			);
 			buildRules = (
 			);
@@ -157,7 +157,6 @@
 				TargetAttributes = {
 					B7104FF31F18AB070008CFD9 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = PL89ME92DC;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -356,16 +355,17 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = PL89ME92DC;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/Frameworks",
+					"$(SRCROOT)",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = PolyNetSampleObjectiveC/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/Framework/zlib";
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/zlib";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lstdc++",
@@ -381,16 +381,17 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = PL89ME92DC;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/Frameworks",
+					"$(SRCROOT)",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = PolyNetSampleObjectiveC/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/Framework/zlib";
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/zlib";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lstdc++",

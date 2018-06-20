@@ -1,6 +1,12 @@
 # PolyNetClient.framework
 PolyNetSDK.framework
 
+# Additional libraries
+WebRTC.framework
+StarScream.framework
+SwiftProtobuf.framework
+zlib
+
 ## Build generated
 build/
 DerivedData/
