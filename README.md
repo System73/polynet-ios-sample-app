@@ -2,9 +2,9 @@
 
 This is the integration sample application for the PolyNet iOS SDK and PolyNet tvOS SDK.
 
-*This sample application is for the PolyNetSDK version 4 or higher.*
+These sample applications are compatible with PolyNetSDK version 4. If you need a sample application for version 3 or 2, you need to make a checkout for the tags *PolyNetSDK-version-3* or *PolyNetSDK-version-2* (git checkout [tag]).
 
-*In order to run those applications you need a zip containing the PolyNetSDK and its dependencies for the specific platform (iOS, tvOS).*
+In order to run those applications you need a zip containing the PolyNetSDK and its dependencies for the specific platform (iOS, tvOS).
 
 ## iOS
 
