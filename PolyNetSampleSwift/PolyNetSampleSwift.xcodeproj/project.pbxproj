@@ -350,7 +350,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = PolyNetSampleSwift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -372,16 +371,13 @@
 		B7104FEA1F18A9B00008CFD9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Framework",
-					"$(PROJECT_DIR)/Framework/additional_frameworks",
-					"$(PROJECT_DIR)/Frameworks",
-					"$(PROJECT_DIR)/Frameworks/additional_frameworks",
 				);
 				INFOPLIST_FILE = PolyNetSampleSwift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
