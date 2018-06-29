@@ -360,7 +360,7 @@
 					"-lstdc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = S73.PolyNetSampleSwiftSCH;
+				PRODUCT_BUNDLE_IDENTIFIER = S73.PolyNetSampleSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = $SRCROOT/zlib;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -388,7 +388,7 @@
 					"-lstdc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = S73.PolyNetSampleSwiftSCH;
+				PRODUCT_BUNDLE_IDENTIFIER = S73.PolyNetSampleSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = $SRCROOT/zlib;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;

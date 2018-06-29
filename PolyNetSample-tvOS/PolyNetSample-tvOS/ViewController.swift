@@ -57,9 +57,7 @@ class ViewController: UIViewController {
     fileprivate func loadFromPersistance() {
         let defaults = UserDefaults.standard
         manifestUrlTextField.text = defaults.string(forKey: MANIFEST_URL_KEY)
-        if defaults.integer(forKey: CHANNEL_ID_KEY) != 0 {
-            channelIdTextField.text = "\(defaults.integer(forKey: CHANNEL_ID_KEY))"
-        }
+        channelIdTextField.text = defaults.string(forKey: CHANNEL_ID_KEY)
         apiKeyTextField.text = defaults.string(forKey: API_KEY_KEY)
     }
     
@@ -94,7 +92,7 @@ class ViewController: UIViewController {
         versionLabel.text = String(format: "Sample App v%@-%@\nPolyNet SDK v.%@",
                                    dict["CFBundleVersion"] as! String,
                                    dict["CFBundleShortVersionString"] as! String,
-                                   PolyNet.version())
+                                   PolyNet.frameworkVersion)
     }
     
     // MARK: IBActions and IBOutlets
@@ -169,21 +167,36 @@ class ViewController: UIViewController {
 // MARK: PolyNetDataSource
 extension ViewController: PolyNetDataSource {
     
-    // PolyNet request the buffer health of the player. This is the playback duration the player can play for sure before a possible stall.
-    func playerBufferHeath(in: PolyNet) -> NSNumber? {
-        
-        // If no events, returns nil
-        guard let event = player?.currentItem?.accessLog()?.events.last else {
+    // PolyNet requests the buffer health of the video player.
+    // This is the current buffered time ready to be played.
+    func playerBufferHealth(in: PolyNet) -> NSNumber? {
+        // Get player time ranges. If not, return nil
+        guard let timeRanges: [NSValue] = player?.currentItem?.loadedTimeRanges,
+            timeRanges.count > 0,
+            let currentTime = player?.currentItem?.currentTime()
+            else {
+                return nil
+        }
+        // Get the valid time range from time ranges, return nil if not valid one.
+        guard let timeRange = getTimeRange(timeRanges: timeRanges, forCurrentTime: currentTime) else {
             return nil
         }
-        
-        // Get the last event and return buffer health. If any value is negative, the value is unknown according to the API. In such cases return nil.
-        let durationDownloaded = event.segmentsDownloadedDuration
-        let durationWatched = event.durationWatched
-        guard durationDownloaded >= 0 && durationWatched >= 0 else {
-            return nil
+        let end = timeRange.end.seconds
+        return max(end - currentTime.seconds, 0) as NSNumber
+    }
+    
+    func getTimeRange(timeRanges: [NSValue], forCurrentTime time: CMTime) -> CMTimeRange? {
+        let timeRange = timeRanges.first(where: { (value) -> Bool in
+            CMTimeRangeContainsTime(value.timeRangeValue, time)
+        })
+        // Workaround: When pause the player, the item loaded ranges moves whereas the current time
+        // remains equal. In time, the current time is out of the range, so the buffer health cannot
+        // be calculated. For this reason, when there is not range for current item, the first range
+        // is returned to calculate the buffer with it.
+        if timeRange == nil && timeRanges.count > 0 {
+            return timeRanges.first!.timeRangeValue
         }
-        return durationDownloaded - durationWatched as NSNumber
+        return timeRange?.timeRangeValue
     }
     
     // PolyNet request the dropped video frames. This is the accumulated number of dropped video frames for the player.

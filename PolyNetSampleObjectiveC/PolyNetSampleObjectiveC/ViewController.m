@@ -69,10 +69,8 @@
     } else {
         [defaults removeObjectForKey:MANIFEST_URL_KEY];
     }
-    NSNumberFormatter * formater = [[NSNumberFormatter alloc] init];
-    formater.numberStyle = NSNumberFormatterNoStyle;
-    NSNumber * channelId = [formater numberFromString:self.channelIdTextField.text];
-    if (channelId != nil) {
+    NSString * channelId = self.channelIdTextField.text;
+    if (channelId != nil && [channelId length] > 0) {
         [defaults setObject:channelId forKey:CHANNEL_ID_KEY];
     } else {
         [defaults removeObjectForKey:CHANNEL_ID_KEY];
@@ -89,10 +87,10 @@
     NSString *path = [[NSBundle mainBundle] pathForResource:@"Info" ofType:@"plist"];
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:path];
     
-    self.versionLabel.text = [NSString stringWithFormat:@"Sample App v%@-%@\nPolyNet SDK v.%ld",
+    self.versionLabel.text = [NSString stringWithFormat:@"Sample App v%@-%@\nPolyNet SDK %@",
                               [dict objectForKey:@"CFBundleShortVersionString"],
                               [dict objectForKey:@"CFBundleVersion"],
-                              (long)[PolyNet version]];
+                              [PolyNet frameworkVersion]];
 }
 
 #pragma mark IBActions
@@ -175,21 +173,38 @@
 #pragma mark PolyNetDataSource
 
 // PolyNet request the buffer health of the player. This is the playback duration the player can play for sure before a possible stall.
-- (NSNumber *)playerBufferHeathIn:(PolyNet *)polyNet {
-    
-    // If no events, returns nil
-    AVPlayerItemAccessLogEvent * event = [self.player.currentItem accessLog].events.lastObject;
-    if (event == nil) {
+- (NSNumber *)playerBufferHealthIn:(PolyNet *)polyNet {
+    // Get player time ranges. If not, return nil
+    NSArray<NSValue *> * timeRanges = self.player.currentItem.loadedTimeRanges;
+    if (timeRanges == nil || [timeRanges count] == 0 || self.player.currentItem == nil) {
         return nil;
     }
-    
-    // Get the last event and return buffer health. If any value is negative, the value is unknown according to the API. In such cases return nil.
-    NSTimeInterval durationDownloaded = event.segmentsDownloadedDuration;
-    NSTimeInterval durationWatched = event.durationWatched;
-    if (durationDownloaded < 0 || durationWatched < 0) {
+    // Get the valid time range from time ranges, return nil if not valid one.
+    NSValue * timeRange = [self getTimeRangeFrom:timeRanges forCurrentTime:self.player.currentItem.currentTime];
+    if (timeRange == nil) {
         return nil;
     }
-    return [NSNumber numberWithDouble:(durationDownloaded - durationWatched)];
+    double seconds = CMTimeGetSeconds(CMTimeSubtract(CMTimeRangeGetEnd(timeRange.CMTimeRangeValue), self.player.currentItem.currentTime));
+    double max = MAX(seconds, 0);
+    return [NSNumber numberWithDouble:max];
+}
+
+- (NSValue *)getTimeRangeFrom:(NSArray <NSValue *> *)timeRanges forCurrentTime:(CMTime)time {
+    NSValue * timeRange = nil;
+    for (NSValue * value in timeRanges) {
+        if (CMTimeRangeContainsTime(value.CMTimeRangeValue, time)) {
+            timeRange = value;
+            break;
+        }
+    }
+    // Workaround: When pause the player, the item loaded ranges moves whereas the current time
+    // remains equal. In time, the current time is out of the range, so the buffer health cannot
+    // be calculated. For this reason, when there is not range for current item, the first range
+    // is returned to calculate the buffer with it.
+    if (timeRange == nil && [timeRanges count] > 0) {
+        return timeRanges.firstObject;
+    }
+    return timeRange;
 }
 
 // PolyNet request the dropped video frames. This is the accumulated number of dropped video frames for the player.
@@ -308,5 +323,6 @@
     [_bufferEmptyCountermeasureTimer invalidate];
     _bufferEmptyCountermeasureTimer = nil;
 }
+
 
 @end
