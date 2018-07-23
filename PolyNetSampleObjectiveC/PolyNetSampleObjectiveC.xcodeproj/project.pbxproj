@@ -13,8 +13,6 @@
 		B70F076D20DA483200D59C0B /* Starscream.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B70F076720DA483100D59C0B /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B70F076E20DA483200D59C0B /* PolyNetSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70F076820DA483100D59C0B /* PolyNetSDK.framework */; };
 		B70F076F20DA483200D59C0B /* PolyNetSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B70F076820DA483100D59C0B /* PolyNetSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B70F077020DA483200D59C0B /* WebRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70F076920DA483200D59C0B /* WebRTC.framework */; };
-		B70F077120DA483200D59C0B /* WebRTC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B70F076920DA483200D59C0B /* WebRTC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B7104FF91F18AB070008CFD9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B7104FF81F18AB070008CFD9 /* main.m */; };
 		B7104FFC1F18AB070008CFD9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B7104FFB1F18AB070008CFD9 /* AppDelegate.m */; };
 		B7104FFF1F18AB070008CFD9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7104FFE1F18AB070008CFD9 /* ViewController.m */; };
@@ -33,7 +31,6 @@
 				B70F076B20DA483200D59C0B /* SwiftProtobuf.framework in Embed Frameworks */,
 				B70F076F20DA483200D59C0B /* PolyNetSDK.framework in Embed Frameworks */,
 				B70F076D20DA483200D59C0B /* Starscream.framework in Embed Frameworks */,
-				B70F077120DA483200D59C0B /* WebRTC.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -65,7 +62,6 @@
 				B70F076A20DA483200D59C0B /* SwiftProtobuf.framework in Frameworks */,
 				B70F076E20DA483200D59C0B /* PolyNetSDK.framework in Frameworks */,
 				B70F076C20DA483200D59C0B /* Starscream.framework in Frameworks */,
-				B70F077020DA483200D59C0B /* WebRTC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,7 +349,6 @@
 		B710500C1F18AB070008CFD9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
@@ -379,7 +374,6 @@
 		B710500D1F18AB070008CFD9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
