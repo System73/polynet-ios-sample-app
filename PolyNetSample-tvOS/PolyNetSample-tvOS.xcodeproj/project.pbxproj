@@ -17,8 +17,6 @@
 		B70F077920DA4A8D00D59C0B /* PolyNetSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B70F077320DA4A8D00D59C0B /* PolyNetSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B70F077A20DA4A8D00D59C0B /* SwiftProtobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70F077420DA4A8D00D59C0B /* SwiftProtobuf.framework */; };
 		B70F077B20DA4A8D00D59C0B /* SwiftProtobuf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B70F077420DA4A8D00D59C0B /* SwiftProtobuf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B70F077C20DA4A8D00D59C0B /* WebRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70F077520DA4A8D00D59C0B /* WebRTC.framework */; };
-		B70F077D20DA4A8D00D59C0B /* WebRTC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B70F077520DA4A8D00D59C0B /* WebRTC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,7 +29,6 @@
 				B70F077720DA4A8D00D59C0B /* Starscream.framework in Embed Frameworks */,
 				B70F077B20DA4A8D00D59C0B /* SwiftProtobuf.framework in Embed Frameworks */,
 				B70F077920DA4A8D00D59C0B /* PolyNetSDK.framework in Embed Frameworks */,
-				B70F077D20DA4A8D00D59C0B /* WebRTC.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -48,7 +45,6 @@
 		B70F077220DA4A8D00D59C0B /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Starscream.framework; sourceTree = "<group>"; };
 		B70F077320DA4A8D00D59C0B /* PolyNetSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PolyNetSDK.framework; sourceTree = "<group>"; };
 		B70F077420DA4A8D00D59C0B /* SwiftProtobuf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftProtobuf.framework; sourceTree = "<group>"; };
-		B70F077520DA4A8D00D59C0B /* WebRTC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WebRTC.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +55,6 @@
 				B70F077620DA4A8D00D59C0B /* Starscream.framework in Frameworks */,
 				B70F077A20DA4A8D00D59C0B /* SwiftProtobuf.framework in Frameworks */,
 				B70F077820DA4A8D00D59C0B /* PolyNetSDK.framework in Frameworks */,
-				B70F077C20DA4A8D00D59C0B /* WebRTC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,7 +96,6 @@
 				B70F077320DA4A8D00D59C0B /* PolyNetSDK.framework */,
 				B70F077220DA4A8D00D59C0B /* Starscream.framework */,
 				B70F077420DA4A8D00D59C0B /* SwiftProtobuf.framework */,
-				B70F077520DA4A8D00D59C0B /* WebRTC.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
