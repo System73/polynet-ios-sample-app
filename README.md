@@ -1,6 +1,7 @@
 # System73® PolyNet sample application for iOS and tvOS
 
 This is the integration sample application for the PolyNet iOS SDK and PolyNet tvOS SDK.
+This is a manual integration (see [iOS PolyNet integration docs](https://system73.com/docs/ios/polyNetSDK/)).
 
 These sample applications are compatible with PolyNetSDK version 4. If you need a sample application for version 3 or 2, you need to make a checkout for the tags *PolyNetSDK-version-3* or *PolyNetSDK-version-2* (git checkout [tag]).
 
