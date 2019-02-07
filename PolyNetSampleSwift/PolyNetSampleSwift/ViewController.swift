@@ -147,6 +147,13 @@ class ViewController: UITableViewController {
             present(playerViewController!, animated: true) {
             }
         } catch  {
+            let alert = UIAlertController(title: error.localizedDescription, message: "", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                self.playButton.isEnabled = true
+                self.playButton.setTitle("Play!", for: .normal)
+                
+            }))
+            self.present(alert, animated: true, completion: nil)
             print("PolyNet Error: creating PolyNet object")
         }
     }

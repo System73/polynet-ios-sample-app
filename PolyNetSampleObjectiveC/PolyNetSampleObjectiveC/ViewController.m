@@ -126,20 +126,29 @@
     [self.playButton setTitle:@"Connecting to PolyNet" forState:UIControlStateNormal];
     
     // Create the PolyNet
-    @try {
-        self.polyNet = [[PolyNet alloc] initWithManifestUrl:manifestUrl channelId:channelId apiKey:apiKey error:nil];
-        
+    NSError * error = nil;
+    self.polyNet = [[PolyNet alloc] initWithManifestUrl:manifestUrl channelId:channelId apiKey:apiKey error: &error];
+    if (self.polyNet != nil) {
         self.polyNet.delegate = self;
         self.polyNet.dataSource = self;
         self.player = [[AVPlayer alloc] initWithURL:[NSURL URLWithString:self.polyNet.localManifestUrl]];
         self.playerViewController = [[AVPlayerViewController alloc] init];
         self.playerViewController.player = self.player;
         [self addObserversForPlayerItem:self.player.currentItem];
-        [self presentViewController:self.playerViewController animated:true completion:nil];    }
-    @catch (NSException *exception) {
-        NSLog(@"%@", exception.reason);
+        [self presentViewController:self.playerViewController animated:true completion:nil];
+    } else {
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:NULL message: error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* yesButton = [UIAlertAction
+                                    actionWithTitle:@"OK"
+                                    style:UIAlertActionStyleDefault
+                                    handler:^(UIAlertAction * action) {
+                                        self.playButton.enabled = true;
+                                        [self.playButton setTitle:@"Play!" forState:UIControlStateNormal];
+                                    }];
+        [alert addAction:yesButton];
+        [self presentViewController:alert animated:YES completion:nil];
+        NSLog(@"%@", error.localizedDescription);
     }
-
 }
 
 - (IBAction)goToWeb {
