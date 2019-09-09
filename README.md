@@ -11,7 +11,7 @@ In order to run those applications you need a zip containing the PolyNetSDK and 
 
 There are two iOS sample projects, one in **Swift** (PolyNetSampleSwift) and another in **Objective-C** (PolyNetSampleObjectiveC).
 
-In order to build and run any of the iOS sample projects you have to put a copy of the PolyNet iOS SDK (*PolyNetSDK.framework*) and its dependencies (*WebRTC.framework*, *Starscream.framework*, *SwiftProtobuf.framework* and the folder *zlib*) in the corresponding root project directory (PolyNetSampleSwift or PolyNetSampleObjectiveC directory).
+In order to build and run any of the iOS sample projects you have to put a copy of the PolyNet iOS SDK (*PolyNetSDK.framework*) and its dependencies (*WebRTC.framework*, *Starscream.framework*, *SwiftProtobuf.framework*) in the corresponding root project directory (PolyNetSampleSwift or PolyNetSampleObjectiveC directory).
 
 The Sample application expects to find the iOS SDK and its dependencies in its root directory in order to successfully link and build the project.
 
@@ -19,7 +19,7 @@ The Sample application expects to find the iOS SDK and its dependencies in its r
 
 There is a tvOS sample project in **Swift** (PolyNetSample-tvOS).
 
-In order to build and run the tvOS sample project you have to put a copy of the PolyNet tvOS SDK (*PolyNetSDK.framework*) and its dependencies (*WebRTC.framework*, *Starscream.framework*, *SwiftProtobuf.framework* and the folder *zlib*) in the corresponding root project directory (PolyNetSample-tvOS directory).
+In order to build and run the tvOS sample project you have to put a copy of the PolyNet tvOS SDK (*PolyNetSDK.framework*) and its dependencies (*WebRTC.framework*, *Starscream.framework*, *SwiftProtobuf.framework*) in the corresponding root project directory (PolyNetSample-tvOS directory).
 
 The Sample application expects to find the tvOS SDK and its dependencies in its root directory in order to successfully link and build the project.
 
