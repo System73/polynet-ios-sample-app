@@ -129,6 +129,7 @@
     NSError * error = nil;
     self.polyNet = [[PolyNet alloc] initWithManifestUrl:manifestUrl channelId:channelId apiKey:apiKey error: &error];
     if (self.polyNet != nil) {
+        self.polyNet.logLevel = PolyNetLogLevelDebug;
         self.polyNet.delegate = self;
         self.polyNet.dataSource = self;
         self.player = [[AVPlayer alloc] initWithURL:[NSURL URLWithString:self.polyNet.localManifestUrl]];

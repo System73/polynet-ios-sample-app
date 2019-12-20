@@ -194,7 +194,7 @@ extension ViewController: PolyNetDataSource {
     
     func getTimeRange(timeRanges: [NSValue], forCurrentTime time: CMTime) -> CMTimeRange? {
         let timeRange = timeRanges.first(where: { (value) -> Bool in
-            CMTimeRangeContainsTime(value.timeRangeValue, time)
+            CMTimeRangeContainsTime(value.timeRangeValue, time: time)
         })
         // Workaround: When pause the player, the item loaded ranges moves whereas the current time
         // remains equal. In time, the current time is out of the range, so the buffer health cannot
@@ -266,8 +266,8 @@ extension ViewController {
             case .readyToPlay:
                 self.handlePlayerItemReadyToPlay()
                 break
-            case .unknown: fallthrough
-            case .failed:
+            case .unknown, .failed: fallthrough
+            @unknown default:
                 break
             }
             

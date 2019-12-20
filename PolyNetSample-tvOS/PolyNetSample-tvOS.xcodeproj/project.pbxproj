@@ -134,6 +134,7 @@
 				TargetAttributes = {
 					6F9032A51FC2C04200C105BB = {
 						CreatedOnToolsVersion = 9.1;
+						LastSwiftMigration = 1130;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -335,7 +336,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.system73.PolyNetSample-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 			};
 			name = Debug;
@@ -357,7 +358,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.system73.PolyNetSample-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 			};
 			name = Release;
