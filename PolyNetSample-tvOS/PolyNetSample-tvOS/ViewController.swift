@@ -140,6 +140,7 @@ class ViewController: UIViewController {
         do {
             // Create the PolyNet
             polyNet = try PolyNet(manifestUrl: manifestUrl, channelId: channelId, apiKey: apiKey)
+            polyNet?.logLevel = .debug
             polyNet?.dataSource = self
             polyNet?.delegate = self
             

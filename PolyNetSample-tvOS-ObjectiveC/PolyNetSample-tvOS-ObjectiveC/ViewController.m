@@ -136,6 +136,7 @@
     // Create the PolyNet
     NSError * error = nil;
     self.polyNet = [[PolyNet alloc] initWithManifestUrl:manifestUrl channelId:channelId apiKey:apiKey error: &error];
+    self.polyNet.logLevel = PolyNetLogLevelDebug;
     if (self.polyNet != nil) {
         self.polyNet.delegate = self;
         self.polyNet.dataSource = self;
