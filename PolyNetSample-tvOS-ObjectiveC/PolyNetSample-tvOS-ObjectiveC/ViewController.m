@@ -1,3 +1,10 @@
+//
+//  ViewController.m
+//  PolyNetSample-tvOS-ObjectiveC
+//
+//  Created by Daniel Méndez on 19/12/2019.
+//  Copyright © 2019 System73. All rights reserved.
+//
 
 #import "ViewController.h"
 #import <AVKit/AVKit.h>
@@ -20,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *apiKeyTextField;
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
 @property (weak, nonatomic) IBOutlet UILabel *versionLabel;
+
 @end
 
 @implementation ViewController
@@ -333,6 +341,5 @@
     [_bufferEmptyCountermeasureTimer invalidate];
     _bufferEmptyCountermeasureTimer = nil;
 }
-
 
 @end
