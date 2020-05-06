@@ -7,12 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B70F075E20DA45CD00D59C0B /* PolyNetSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70F075A20DA45CC00D59C0B /* PolyNetSDK.framework */; };
-		B70F075F20DA45CD00D59C0B /* PolyNetSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B70F075A20DA45CC00D59C0B /* PolyNetSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B70F076220DA45CD00D59C0B /* SwiftProtobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70F075C20DA45CD00D59C0B /* SwiftProtobuf.framework */; };
-		B70F076320DA45CD00D59C0B /* SwiftProtobuf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B70F075C20DA45CD00D59C0B /* SwiftProtobuf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B70F076420DA45CD00D59C0B /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70F075D20DA45CD00D59C0B /* Starscream.framework */; };
-		B70F076520DA45CD00D59C0B /* Starscream.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B70F075D20DA45CD00D59C0B /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B7104FDA1F18A9B00008CFD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7104FD91F18A9B00008CFD9 /* AppDelegate.swift */; };
 		B7104FDC1F18A9B00008CFD9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7104FDB1F18A9B00008CFD9 /* ViewController.swift */; };
 		B7104FDF1F18A9B00008CFD9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7104FDD1F18A9B00008CFD9 /* Main.storyboard */; };
@@ -27,9 +21,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				B70F075F20DA45CD00D59C0B /* PolyNetSDK.framework in Embed Frameworks */,
-				B70F076520DA45CD00D59C0B /* Starscream.framework in Embed Frameworks */,
-				B70F076320DA45CD00D59C0B /* SwiftProtobuf.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -37,9 +28,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B70F075A20DA45CC00D59C0B /* PolyNetSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PolyNetSDK.framework; sourceTree = "<group>"; };
-		B70F075C20DA45CD00D59C0B /* SwiftProtobuf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftProtobuf.framework; sourceTree = "<group>"; };
-		B70F075D20DA45CD00D59C0B /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Starscream.framework; sourceTree = "<group>"; };
 		B7104FD61F18A9B00008CFD9 /* PolyNetSampleSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PolyNetSampleSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7104FD91F18A9B00008CFD9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B7104FDB1F18A9B00008CFD9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,30 +42,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B70F075E20DA45CD00D59C0B /* PolyNetSDK.framework in Frameworks */,
-				B70F076420DA45CD00D59C0B /* Starscream.framework in Frameworks */,
-				B70F076220DA45CD00D59C0B /* SwiftProtobuf.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B70521601F260C4200E88BE5 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				B70F075A20DA45CC00D59C0B /* PolyNetSDK.framework */,
-				B70F075D20DA45CD00D59C0B /* Starscream.framework */,
-				B70F075C20DA45CD00D59C0B /* SwiftProtobuf.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		B7104FCD1F18A9B00008CFD9 = {
 			isa = PBXGroup;
 			children = (
 				B7104FD81F18A9B00008CFD9 /* PolyNetSampleSwift */,
-				B70521601F260C4200E88BE5 /* Frameworks */,
 				B7104FD71F18A9B00008CFD9 /* Products */,
 			);
 			sourceTree = "<group>";
