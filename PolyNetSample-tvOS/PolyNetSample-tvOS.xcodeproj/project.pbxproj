@@ -39,7 +39,6 @@
 		500BA0DD246EBFE80020B2F6 /* SwiftProtobuf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftProtobuf.framework; path = Carthage/Build/tvOS/SwiftProtobuf.framework; sourceTree = "<group>"; };
 		500BA0DE246EBFE80020B2F6 /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/tvOS/Starscream.framework; sourceTree = "<group>"; };
 		500BA0DF246EBFE80020B2F6 /* PolyNetSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PolyNetSDK.framework; path = Carthage/Build/tvOS/PolyNetSDK.framework; sourceTree = "<group>"; };
-		500BA0E3246EBFFE0020B2F6 /* PolyNetSample-tvOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "PolyNetSample-tvOS.xcodeproj"; path = "/Users/lauratrujillo/Desktop/carthage/polynet-ios-sample-app/PolyNetSample-tvOS/PolyNetSample-tvOS.xcodeproj"; sourceTree = "<absolute>"; };
 		6F9032A61FC2C04200C105BB /* PolyNetSample-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PolyNetSample-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F9032A91FC2C04200C105BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6F9032AB1FC2C04200C105BB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -62,11 +61,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		500BA0E4246EBFFE0020B2F6 /* Products */ = {
-			isa = PBXGroup;
-			name = Products;
-			sourceTree = "<group>";
-		};
 		6F90329D1FC2C04200C105BB = {
 			isa = PBXGroup;
 			children = (
@@ -99,7 +93,6 @@
 		B70F077E20DA4A9300D59C0B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				500BA0E3246EBFFE0020B2F6 /* PolyNetSample-tvOS.xcodeproj */,
 				500BA0DF246EBFE80020B2F6 /* PolyNetSDK.framework */,
 				500BA0DE246EBFE80020B2F6 /* Starscream.framework */,
 				500BA0DD246EBFE80020B2F6 /* SwiftProtobuf.framework */,
@@ -157,12 +150,6 @@
 			mainGroup = 6F90329D1FC2C04200C105BB;
 			productRefGroup = 6F9032A71FC2C04200C105BB /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 500BA0E4246EBFFE0020B2F6 /* Products */;
-					ProjectRef = 500BA0E3246EBFFE0020B2F6 /* PolyNetSample-tvOS.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				6F9032A51FC2C04200C105BB /* PolyNetSample-tvOS */,
