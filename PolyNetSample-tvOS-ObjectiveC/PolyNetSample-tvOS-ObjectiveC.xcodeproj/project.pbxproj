@@ -120,8 +120,8 @@
 				B751643A23ABAA61002F0E28 /* Sources */,
 				B751643B23ABAA61002F0E28 /* Frameworks */,
 				B751643C23ABAA61002F0E28 /* Resources */,
-				B7F5BC1323BB6DCB003E82AB /* Strip 86 architectures */,
 				500BA107246EC2B00020B2F6 /* Embed Frameworks */,
+				B7F5BC1323BB6DCB003E82AB /* Strip 86 architectures */,
 			);
 			buildRules = (
 			);
