@@ -9,7 +9,7 @@ You can to make a checkout for the tags defined below depending integration meth
 
 ## PolyNetSDK-version-4
 
-Release for manual integration using the method *Using provided Zips*.
+Release for manual integration using *Using provided Zips* method.
 
 In order to build and run any sample projects , you have to put a copy of the PolyNet SDK (*PolyNetSDK.framework*) and its dependencies (*Starscream.framework* and *SwiftProtobuf.framework*) in the corresponding root project directory (PolyNetSampleSwift or PolyNetSampleObjectiveC directories).
 
@@ -17,7 +17,7 @@ The Sample application expects to find the  SDK and its dependencies correspondi
 
 ## PolyNetSDK-version-4-carthage
 
-Release for Carthage integration and contains a Cartfile and xcconfig file defined in every project.
+Release for Carthage integration, contains a Cartfile and xcconfig file defined in every project.
 
 In order to build and run any sample projects you need to excute the bellow commands in the root directory:
 `XCODE_XCCONFIG_FILE=$PWD/tmp.xcconfig`
@@ -28,7 +28,7 @@ The tmp xcconfing file is temporally solution for exclude arm64  simulator arch.
 
 ## PolyNetSDK-version-4-cocoapods
 
-Release for CocoaPods integration and contains a Podfile defined in every project.
+Release for CocoaPods integration, contains a Podfile defined in every project.
 
 In order to build and run any sample projects you need to excute the bellow command in the root directory:
 `pod install`
