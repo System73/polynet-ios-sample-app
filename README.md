@@ -1,27 +1,39 @@
 # System73® PolyNet sample application for iOS and tvOS
 
 This is the integration sample application for the PolyNet iOS SDK and PolyNet tvOS SDK.
-This sample is integrated using the method *Using provided Zips* (see [iOS PolyNet integration docs](https://system73.com/docs/ios/polyNetSDK/)).
 
-These sample applications are compatible with PolyNetSDK version 4. If you need a sample application for version 3 or 2, you need to make a checkout for the tags *PolyNetSDK-version-3* or *PolyNetSDK-version-2* (git checkout [tag]).
+This example contains four projects, one for each platform and language. There are two iOS sample projects: one in **Swift** (PolyNetSampleSwift) and another in **Objective-C** (PolyNetSampleObjectiveC). Also, it contains two tvOS sample project: one in **Swift** (PolyNetSample-tvOS) and another in **Objective-C** (PolyNetSample-tvOS-ObjectiveC).
 
-In order to run those applications you need a zip containing the PolyNetSDK and its dependencies for the specific platform (iOS, tvOS).
+Polynet can be integrated into the desired project with the manual method using the *Using provided Zips*, through Carthage o CocoaPods. (see [iOS PolyNet integration docs](https://system73.com/docs/ios/polyNetSDK/)).
+You can to make a checkout for the tags defined below depending integration method.
 
-## iOS
+## PolyNetSDK-version-4
 
-There are two iOS sample projects, one in **Swift** (PolyNetSampleSwift) and another in **Objective-C** (PolyNetSampleObjectiveC).
+Release for manual integration, *Using provided Zips* method.
 
-In order to build and run any of the iOS sample projects you have to put a copy of the PolyNet iOS SDK (*PolyNetSDK.framework*) and its dependencies (*Starscream.framework* and *SwiftProtobuf.framework*) in the corresponding root project directory (PolyNetSampleSwift or PolyNetSampleObjectiveC directories).
+In order to build and run any sample projects , you have to put a copy of the PolyNet SDK (*PolyNetSDK.framework*) and its dependencies (*Starscream.framework* and *SwiftProtobuf.framework*) in the corresponding root project directory (PolyNetSampleSwift or PolyNetSampleObjectiveC directories).
 
-The Sample application expects to find the iOS SDK and its dependencies in its root directory in order to successfully link and build the project.
+The Sample application expects to find the  SDK and its dependencies corresponding to the platform (iOS or tvOS) in its root directory in order to successfully link and build the project.
 
-## tvOS
+## PolyNetSDK-version-4-carthage
 
-There is a tvOS sample project in **Swift** (PolyNetSample-tvOS) and another in **Objective-C** (PolyNetSample-tvOS-ObjectiveC).
+Release for Carthage integration, contains a Cartfile and xcconfig file defined in every project.
 
-In order to build and run any of the tvOS sample projects you have to put a copy of the PolyNet tvOS SDK (*PolyNetSDK.framework*) and its dependencies (*Starscream.framework* and *SwiftProtobuf.framework*) in the corresponding root project directory (PolyNetSample-tvOS or PolyNetSample-tvOS-ObjectiveC directories).
+In order to build and run any sample projects you need to excute the bellow commands in the root directory:
+<br />`XCODE_XCCONFIG_FILE=$PWD/tmp.xcconfig`
+<br />`carthage update --platform iOS, tvOS`
 
-The Sample application expects to find the tvOS SDK and its dependencies in its root directory in order to successfully link and build the project.
+Once Carthage builds the dependencies, any proyect can be run successfully.
+The tmp xcconfing file is temporally solution for exclude arm64  simulator arch.
+
+## PolyNetSDK-version-4-cocoapods
+
+Release for CocoaPods integration, contains a Podfile defined in every project.
+
+In order to build and run any sample projects you need to excute the bellow command in the root directory:
+<br />`pod install`
+
+Once CocoaPods install the dependencies, any proyect can be run successfully.
 
 ## Support
 
