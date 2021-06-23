@@ -46,8 +46,14 @@ Install the dependencies.
 pod install
 ```
 
-Run the project from Xcode. *Please remember to open the workspace and not the project itself to work with CocoaPods.*
+Run the created workspace from Xcode.
+
+*Beware to open the workspace (.xcworkspace) and not the project (.xcodeproj) itself to work with CocoaPods.*
 
 ## Support
 
 Please visit [system73.com/docs](https://www.system73.com/docs/) for more information or [contact us](mailto:support@system73.com).
+
+[Carthage documentation](https://github.com/Carthage/Carthage)
+
+[CocoaPods documentation](https://cocoapods.org/)
