@@ -12,11 +12,11 @@
 		6F9032AF1FC2C04200C105BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F9032AD1FC2C04200C105BB /* Main.storyboard */; };
 		6F9032B11FC2C04200C105BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F9032B01FC2C04200C105BB /* Assets.xcassets */; };
 		B79E3752260CB8E8009447F0 /* PolyNetSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B79E374E260CB8DF009447F0 /* PolyNetSDK.xcframework */; };
-		B79E3753260CB8E8009447F0 /* PolyNetSDK.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B79E374E260CB8DF009447F0 /* PolyNetSDK.xcframework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B79E3753260CB8E8009447F0 /* PolyNetSDK.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B79E374E260CB8DF009447F0 /* PolyNetSDK.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B79E3754260CB8E9009447F0 /* Starscream.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B79E374D260CB8DF009447F0 /* Starscream.xcframework */; };
-		B79E3755260CB8E9009447F0 /* Starscream.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B79E374D260CB8DF009447F0 /* Starscream.xcframework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B79E3755260CB8E9009447F0 /* Starscream.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B79E374D260CB8DF009447F0 /* Starscream.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B79E3756260CB8EA009447F0 /* SwiftProtobuf.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B79E374C260CB8DF009447F0 /* SwiftProtobuf.xcframework */; };
-		B79E3757260CB8EA009447F0 /* SwiftProtobuf.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B79E374C260CB8DF009447F0 /* SwiftProtobuf.xcframework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B79E3757260CB8EA009447F0 /* SwiftProtobuf.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B79E374C260CB8DF009447F0 /* SwiftProtobuf.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -128,7 +128,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0910;
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = System73;
 				TargetAttributes = {
 					6F9032A51FC2C04200C105BB = {
