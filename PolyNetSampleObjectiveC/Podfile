@@ -1,0 +1,5 @@
+platform :ios, '10.3'
+use_frameworks!
+target 'PolyNetSampleObjectiveC' do
+  pod 'PolyNetSDK', '~> 5.0'
+end

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,12 +11,7 @@
 		6F9032AC1FC2C04200C105BB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9032AB1FC2C04200C105BB /* ViewController.swift */; };
 		6F9032AF1FC2C04200C105BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F9032AD1FC2C04200C105BB /* Main.storyboard */; };
 		6F9032B11FC2C04200C105BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F9032B01FC2C04200C105BB /* Assets.xcassets */; };
-		B79E3752260CB8E8009447F0 /* PolyNetSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B79E374E260CB8DF009447F0 /* PolyNetSDK.xcframework */; };
-		B79E3753260CB8E8009447F0 /* PolyNetSDK.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B79E374E260CB8DF009447F0 /* PolyNetSDK.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B79E3754260CB8E9009447F0 /* Starscream.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B79E374D260CB8DF009447F0 /* Starscream.xcframework */; };
-		B79E3755260CB8E9009447F0 /* Starscream.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B79E374D260CB8DF009447F0 /* Starscream.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B79E3756260CB8EA009447F0 /* SwiftProtobuf.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B79E374C260CB8DF009447F0 /* SwiftProtobuf.xcframework */; };
-		B79E3757260CB8EA009447F0 /* SwiftProtobuf.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B79E374C260CB8DF009447F0 /* SwiftProtobuf.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		844750451CECA88A3F1E5E7C /* Pods_PolyNetSample_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BBC357EB7ABA22EB425F36C /* Pods_PolyNetSample_tvOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,9 +21,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				B79E3755260CB8E9009447F0 /* Starscream.xcframework in Embed Frameworks */,
-				B79E3753260CB8E8009447F0 /* PolyNetSDK.xcframework in Embed Frameworks */,
-				B79E3757260CB8EA009447F0 /* SwiftProtobuf.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -36,15 +28,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1BBC357EB7ABA22EB425F36C /* Pods_PolyNetSample_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PolyNetSample_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B829E2C363C245D926BCDF0 /* Pods-PolyNetSample-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyNetSample-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-PolyNetSample-tvOS/Pods-PolyNetSample-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		6F9032A61FC2C04200C105BB /* PolyNetSample-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PolyNetSample-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F9032A91FC2C04200C105BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6F9032AB1FC2C04200C105BB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		6F9032AE1FC2C04200C105BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6F9032B01FC2C04200C105BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6F9032B21FC2C04200C105BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B79E374C260CB8DF009447F0 /* SwiftProtobuf.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = SwiftProtobuf.xcframework; sourceTree = "<group>"; };
-		B79E374D260CB8DF009447F0 /* Starscream.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = Starscream.xcframework; sourceTree = "<group>"; };
-		B79E374E260CB8DF009447F0 /* PolyNetSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = PolyNetSDK.xcframework; sourceTree = "<group>"; };
+		D439A3BBF9B9B034C4E49ADA /* Pods-PolyNetSample-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolyNetSample-tvOS.release.xcconfig"; path = "Target Support Files/Pods-PolyNetSample-tvOS/Pods-PolyNetSample-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,9 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B79E3752260CB8E8009447F0 /* PolyNetSDK.xcframework in Frameworks */,
-				B79E3754260CB8E9009447F0 /* Starscream.xcframework in Frameworks */,
-				B79E3756260CB8EA009447F0 /* SwiftProtobuf.xcframework in Frameworks */,
+				844750451CECA88A3F1E5E7C /* Pods_PolyNetSample_tvOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +57,7 @@
 				6F9032A81FC2C04200C105BB /* PolyNetSample-tvOS */,
 				B70F077E20DA4A9300D59C0B /* Frameworks */,
 				6F9032A71FC2C04200C105BB /* Products */,
+				9663878FDADBA361CAB6A6D7 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -90,12 +81,20 @@
 			path = "PolyNetSample-tvOS";
 			sourceTree = "<group>";
 		};
+		9663878FDADBA361CAB6A6D7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6B829E2C363C245D926BCDF0 /* Pods-PolyNetSample-tvOS.debug.xcconfig */,
+				D439A3BBF9B9B034C4E49ADA /* Pods-PolyNetSample-tvOS.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		B70F077E20DA4A9300D59C0B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B79E374E260CB8DF009447F0 /* PolyNetSDK.xcframework */,
-				B79E374D260CB8DF009447F0 /* Starscream.xcframework */,
-				B79E374C260CB8DF009447F0 /* SwiftProtobuf.xcframework */,
+				1BBC357EB7ABA22EB425F36C /* Pods_PolyNetSample_tvOS.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -107,10 +106,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6F9032C01FC2C04200C105BB /* Build configuration list for PBXNativeTarget "PolyNetSample-tvOS" */;
 			buildPhases = (
+				AF621E81CF1488C02A063C77 /* [CP] Check Pods Manifest.lock */,
 				6F9032A21FC2C04200C105BB /* Sources */,
 				6F9032A31FC2C04200C105BB /* Frameworks */,
 				6F9032A41FC2C04200C105BB /* Resources */,
 				6F0C57E71FC2F70200824840 /* Embed Frameworks */,
+				F2E455EA21F213212CDD1C05 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -167,6 +168,53 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AF621E81CF1488C02A063C77 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PolyNetSample-tvOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F2E455EA21F213212CDD1C05 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PolyNetSample-tvOS/Pods-PolyNetSample-tvOS-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftProtobuf/SwiftProtobuf.framework",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PolyNetSDK/PolyNetSDK.framework/PolyNetSDK",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftProtobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PolyNetSDK.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PolyNetSample-tvOS/Pods-PolyNetSample-tvOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6F9032A21FC2C04200C105BB /* Sources */ = {
@@ -295,8 +343,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = appletvos;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TVOS_DEPLOYMENT_TARGET = 11.1;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -304,6 +351,7 @@
 		};
 		6F9032C11FC2C04200C105BB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6B829E2C363C245D926BCDF0 /* Pods-PolyNetSample-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -315,10 +363,7 @@
 					"$(SRCROOT)",
 				);
 				INFOPLIST_FILE = "PolyNetSample-tvOS/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.system73.PolyNetSample-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "";
@@ -329,6 +374,7 @@
 		};
 		6F9032C21FC2C04200C105BB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D439A3BBF9B9B034C4E49ADA /* Pods-PolyNetSample-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -341,10 +387,7 @@
 					"$(SRCROOT)",
 				);
 				INFOPLIST_FILE = "PolyNetSample-tvOS/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.system73.PolyNetSample-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "";

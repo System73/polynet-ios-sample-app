@@ -1,0 +1,5 @@
+platform :tvos, '11.1'
+use_frameworks!
+target 'PolyNetSample-tvOS' do
+  pod 'PolyNetSDK', '~> 5.0'
+end
