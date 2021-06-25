@@ -1,0 +1,3 @@
+binary "https://artifacts.s73cloud.com/repository/raw-s73-releases/s73-polynet-plat/polynet-apple-sdk/PolynetSDK.json" ~> 5.0
+github "apple/swift-protobuf" ~> 1.0
+github "daltoniam/Starscream" ~> 3.0

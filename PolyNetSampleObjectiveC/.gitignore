@@ -1,10 +1,14 @@
 # PolyNetClient.framework
-PolyNetSDK.framework
+PolyNetSDK.xcframework
+
+# Carthage
+Carthage/
+Cartfile.resolved
 
 # Additional libraries
-WebRTC.framework
-StarScream.framework
-SwiftProtobuf.framework
+WebRTC.xcframework
+StarScream.xcframework
+SwiftProtobuf.xcframework
 zlib
 
 ## Build generated
