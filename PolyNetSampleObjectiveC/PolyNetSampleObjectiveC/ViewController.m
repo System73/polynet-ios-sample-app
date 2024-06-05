@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *manifestUrlTextField;
 @property (weak, nonatomic) IBOutlet UITextField *channelIdTextField;
 @property (weak, nonatomic) IBOutlet UITextField *apiKeyTextField;
+@property (weak, nonatomic) IBOutlet UITextField *contentSteeringEndpointTextField;
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
 @property (weak, nonatomic) IBOutlet UILabel *versionLabel;
 @end
@@ -51,6 +52,7 @@
 #define MANIFEST_URL_KEY @"MANIFEST_URL_KEY"
 #define CHANNEL_ID_KEY @"CHANNEL_ID_KEY"
 #define API_KEY_KEY @"API_KEY_KEY"
+#define CONTENT_STEERING_ENDPOINT_KEY @"CONTENT_STEERING_ENDPOINT_KEY"
 #define FIRST_SECTION_HEADER_HEIGHT 40.0
 #define SECTION_HEADER_HEIGHT 12.0
 
@@ -59,6 +61,7 @@
     self.manifestUrlTextField.text = [defaults objectForKey:MANIFEST_URL_KEY];
     self.channelIdTextField.text =  [defaults objectForKey:CHANNEL_ID_KEY];
     self.apiKeyTextField.text = [defaults objectForKey:API_KEY_KEY];
+    self.contentSteeringEndpointTextField.text = [defaults objectForKey:CONTENT_STEERING_ENDPOINT_KEY];
 }
 
 - (void)saveToPersistance {
@@ -80,6 +83,12 @@
         [defaults setObject:apiKey forKey:API_KEY_KEY];
     } else {
         [defaults removeObjectForKey:API_KEY_KEY];
+    }
+    NSString * contentSteeringEndpoint = self.contentSteeringEndpointTextField.text;
+    if (contentSteeringEndpoint != nil && [contentSteeringEndpoint length] > 0) {
+        [defaults setObject:contentSteeringEndpoint forKey:CONTENT_STEERING_ENDPOINT_KEY];
+    } else {
+        [defaults removeObjectForKey:CONTENT_STEERING_ENDPOINT_KEY];
     }
 }
 
@@ -116,6 +125,12 @@
     } else {
         apiKey = self.apiKeyTextField.text;
     }
+    NSString * contentSteeringEndpoint;
+    if (self.contentSteeringEndpointTextField.text == nil || [self.contentSteeringEndpointTextField.text length] == 0) {
+        contentSteeringEndpoint = self.contentSteeringEndpointTextField.placeholder;
+    } else {
+        contentSteeringEndpoint = self.contentSteeringEndpointTextField.text;
+    }
 
     
     // Save to persistance
@@ -127,7 +142,7 @@
     
     // Create the PolyNet
     NSError * error = nil;
-    self.polyNet = [[PolyNet alloc] initWithManifestUrl:manifestUrl channelId:channelId apiKey:apiKey error: &error];
+    self.polyNet = [[PolyNet alloc] initWithManifestUrl:manifestUrl channelId:channelId apiKey:apiKey contentSteeringEndpoint:contentSteeringEndpoint error:&error];
     if (self.polyNet != nil) {
         self.polyNet.logLevel = PolyNetLogLevelDebug;
         self.polyNet.delegate = self;
@@ -244,6 +259,10 @@
         return nil;
     }
     return event.playbackStartDate;
+}
+
+- (enum PolynetPlayerState)playerStateIn:(PolyNet *)polyNet{
+    return PolynetPlayerStateStarting;
 }
 
 - (CGFloat) tableView:(UITableView *)tableView estimatedHeightForHeaderInSection:(NSInteger)section {

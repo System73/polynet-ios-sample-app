@@ -18,37 +18,25 @@ Then, select one of the following methods.
 
 ### Using Carthage
 
-Checkout the tag PolyNetSDK-version-5-carthage in the repository.
-
-```shell
-git checkout PolyNetSDK-version-5-carthage
-```
-
-Update the carthage dependencies for the specific Apple platform. For example, iOS for PolyNetSampleSwift.
+Update the carthage dependencies for the specific Apple platform. 
 
 ```shell
 carthage update --platform ios --use-xcframeworks
 ```
 
-Run the project from Xcode.
+Go to the Frameworks folder inside the Xcode project (.xcodeproj) and remove the PolyNetSDK, Starscream, and SwiftProtobuf frameworks that are marked in red and are not being found by Xcode. After removing them, right-click inside the frameworks folder and select "Add files to 'project name'". Then choose the XCFrameworks (PolyNetSDK, Starscream and SwiftProtobuf) from the Carthage/Build folder. Once added, run the project from Xcode.
 
 ### Using CocoaPods
 
-Checkout the tag PolyNetSDK-version-5-cocoapods in the repository.
+Install or Update the dependencies.
 
 ```shell
-git checkout PolyNetSDK-version-5-cocoapods
+pod update
 ```
-
-Install the dependencies.
-
-```shell
-pod install
-```
-
-Run the created workspace from Xcode.
 
 *Beware to open the workspace (.xcworkspace) and not the project (.xcodeproj) itself to work with CocoaPods.*
+
+Go to the Frameworks folder inside the Xcode project workspace (.xcworkspace) and delete the PolyNetSDK, Starscream, and SwiftProtobuf frameworks. Only keep the Pods_PolyNetSampleSwift.framework. After that, run the project from Xcode.
 
 ## Support
 

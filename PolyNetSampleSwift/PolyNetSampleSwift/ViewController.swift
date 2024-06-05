@@ -44,6 +44,7 @@ class ViewController: UITableViewController {
     fileprivate let MANIFEST_URL_KEY = "MANIFEST_URL_KEY"
     fileprivate let CHANNEL_ID_KEY = "CHANNEL_ID_KEY"
     fileprivate let API_KEY_KEY = "API_KEY_KEY"
+    fileprivate let CONTENT_STEERING_ENDPOINT = "CONTENT_STEERING_ENDPOINT"
     fileprivate let FIRST_SECTION_HEADER_HEIGHT = CGFloat(40.0)
     fileprivate let SECTION_HEADER_HEIGHT = CGFloat(12.0)
     
@@ -52,6 +53,7 @@ class ViewController: UITableViewController {
         manifestUrlTextField.text = defaults.string(forKey: MANIFEST_URL_KEY)
         channelIdTextField.text = defaults.string(forKey: CHANNEL_ID_KEY)
         apiKeyTextField.text = defaults.string(forKey: API_KEY_KEY)
+        contentSteeringEndpointTextField.text = defaults.string(forKey: CONTENT_STEERING_ENDPOINT)
     }
     
     fileprivate func saveToPersistance() {
@@ -70,6 +72,11 @@ class ViewController: UITableViewController {
             defaults.set(apiKey, forKey: API_KEY_KEY)
         } else {
             defaults.removeObject(forKey: API_KEY_KEY)
+        }
+        if let contentSteeringEndpoint = contentSteeringEndpointTextField.text, contentSteeringEndpoint.count > 0 {
+            defaults.set(contentSteeringEndpoint, forKey: CONTENT_STEERING_ENDPOINT)
+        } else {
+            defaults.removeObject(forKey: CONTENT_STEERING_ENDPOINT)
         }
     }
     
@@ -92,6 +99,7 @@ class ViewController: UITableViewController {
     
     @IBOutlet weak var manifestUrlTextField: UITextField!
     @IBOutlet weak var channelIdTextField: UITextField!
+    @IBOutlet weak var contentSteeringEndpointTextField: UITextField!
     @IBOutlet weak var apiKeyTextField: UITextField!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var versionLabel: UILabel!
@@ -135,7 +143,7 @@ class ViewController: UITableViewController {
         playButton.setTitle("Connecting to PolyNet", for: .normal)
         // Create the PolyNet
         do {
-            polyNet = try PolyNet(manifestUrl: manifestUrlTextField.text!, channelId: channelIdTextField.text!, apiKey: apiKeyTextField.text!)
+            polyNet = try PolyNet(manifestUrl: manifestUrlTextField.text!, channelId: channelIdTextField.text!, apiKey: apiKeyTextField.text!,contentSteeringEndpoint: contentSteeringEndpointTextField.text ?? "")
             polyNet?.logLevel = .debug
             polyNet?.dataSource = self
             polyNet?.delegate = self
@@ -255,6 +263,11 @@ extension ViewController: PolyNetDataSource {
             return nil
         }
         return event.playbackStartDate
+    }
+    
+    func playerState(in polyNet: PolyNet) -> PolyNet.PolynetPlayerState {
+        //retrun the exact status of player
+        return PolyNet.PolynetPlayerState.playing
     }
     
     override func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {

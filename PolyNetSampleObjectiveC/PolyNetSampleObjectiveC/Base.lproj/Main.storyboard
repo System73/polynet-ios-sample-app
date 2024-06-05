@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="PPq-5v-hhf">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="PPq-5v-hhf">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,7 +14,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="Wbo-8N-dPc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="cSo-xh-Jsc" userLabel="Header">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -34,19 +31,19 @@
                                 <constraint firstAttribute="trailing" secondItem="aTA-UU-WvU" secondAttribute="trailing" constant="8" id="pwe-6i-D42"/>
                             </constraints>
                         </view>
-                        <view key="tableFooterView" contentMode="scaleToFill" misplaced="YES" id="xsO-Ie-CWe" userLabel="Footer">
-                            <rect key="frame" x="0.0" y="441.5" width="375" height="90"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="xsO-Ie-CWe" userLabel="Footer">
+                            <rect key="frame" x="0.0" y="545.5" width="375" height="90"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VVK-4w-pyk">
-                                    <rect key="frame" x="137.5" y="0.0" width="99" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VVK-4w-pyk">
+                                    <rect key="frame" x="138" y="0.0" width="99" height="30"/>
                                     <state key="normal" title="system73.com"/>
                                     <connections>
                                         <action selector="goToWeb" destination="bg7-we-ONf" eventType="touchUpInside" id="eo8-Sl-ltS"/>
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright © 2017 System73 ®" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fZR-sX-Ekm">
-                                    <rect key="frame" x="73" y="50.5" width="230" height="21"/>
+                                    <rect key="frame" x="72" y="50.5" width="231" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -75,12 +72,11 @@
                                         <rect key="frame" x="0.0" y="99.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pny-JH-Cft" id="Zz6-Pf-nyZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="http://0.0.0.0/master.m3" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="b1y-aG-g4q">
-                                                    <rect key="frame" x="16" y="11.5" width="343" height="19"/>
-                                                    <nil key="textColor"/>
+                                                    <rect key="frame" x="16" y="12.5" width="343" height="19"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="URL"/>
                                                 </textField>
@@ -100,12 +96,11 @@
                                         <rect key="frame" x="0.0" y="199.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4au-ur-xO5" id="can-Z0-r5F">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Channel ID" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="utH-jK-X78">
-                                                    <rect key="frame" x="16" y="12" width="343" height="19"/>
-                                                    <nil key="textColor"/>
+                                                    <rect key="frame" x="16" y="12.5" width="343" height="19"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
                                                 </textField>
@@ -125,12 +120,11 @@
                                         <rect key="frame" x="0.0" y="299.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MQk-xe-iuh" id="OGC-eH-ljH">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ew0KICAiaGFzaGVkX2tleSI6ICI5S0ItbF8tZjZRSGhn" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="7Xp-Wo-fc9">
-                                                    <rect key="frame" x="16" y="12" width="343" height="19"/>
-                                                    <nil key="textColor"/>
+                                                    <rect key="frame" x="16" y="12.5" width="343" height="19"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="URL"/>
                                                 </textField>
@@ -144,16 +138,40 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="CONTENT STEERING ENDPOINT" id="ayO-WS-XuC">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="den-JT-vmg">
+                                        <rect key="frame" x="0.0" y="399.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="den-JT-vmg" id="WQ5-pr-ZT7">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="http://content-steering-endpoint.com" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="bir-jA-Udr">
+                                                    <rect key="frame" x="16" y="12.5" width="343" height="19"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="URL"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="bir-jA-Udr" firstAttribute="trailing" secondItem="WQ5-pr-ZT7" secondAttribute="trailingMargin" id="454-dy-xgv"/>
+                                                <constraint firstItem="bir-jA-Udr" firstAttribute="leading" secondItem="WQ5-pr-ZT7" secondAttribute="leadingMargin" id="M2n-DV-2Ha"/>
+                                                <constraint firstItem="bir-jA-Udr" firstAttribute="centerY" secondItem="WQ5-pr-ZT7" secondAttribute="centerY" id="ifk-I3-4Ms"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                             <tableViewSection headerTitle="" id="bTO-2L-D0U">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="Qgx-pV-SaT">
-                                        <rect key="frame" x="0.0" y="379.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="483.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qgx-pV-SaT" id="Pt7-qx-Avo">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a0t-Nb-9gO">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a0t-Nb-9gO">
                                                     <rect key="frame" x="16" y="7" width="343" height="30"/>
                                                     <state key="normal" title="PLAY!"/>
                                                     <connections>
@@ -181,6 +199,7 @@
                     <connections>
                         <outlet property="apiKeyTextField" destination="7Xp-Wo-fc9" id="Ogl-OW-4Ke"/>
                         <outlet property="channelIdTextField" destination="utH-jK-X78" id="RN9-bM-hWk"/>
+                        <outlet property="contentSteeringEndpointTextField" destination="bir-jA-Udr" id="aBe-3G-MaV"/>
                         <outlet property="manifestUrlTextField" destination="b1y-aG-g4q" id="Dfd-8r-lHD"/>
                         <outlet property="playButton" destination="a0t-Nb-9gO" id="iaJ-H5-VUX"/>
                         <outlet property="versionLabel" destination="Ybs-H6-MoP" id="Xe0-lY-Nhc"/>
@@ -210,6 +229,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="system73_logo" width="400" height="46"/>
+        <image name="system73_logo" width="400.5" height="46.5"/>
+        <systemColor name="groupTableViewBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>
