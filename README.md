@@ -18,15 +18,19 @@ Then, select one of the following methods.
 
 ### Using Carthage
 
-Update the carthage dependencies for the specific Apple platform. 
+Navigate to a specific project (PolyNetSampleSwift, PolyNetSampleObjectiveC, etc.). Update the Carthage dependencies for the specific Apple platform (ios/tvos).
 
 ```shell
 carthage update --platform ios --use-xcframeworks
 ```
 
-Go to the Frameworks folder inside the Xcode project (.xcodeproj) and remove the PolyNetSDK, Starscream, and SwiftProtobuf frameworks that are marked in red and which not being found by Xcode. After removing them, right-click inside the frameworks folder and select Add files to PolyNetSampleSwift. Make sure copy items if needed, create groups and add to targets PolyNetSampleSwift is selected. Then choose the XCFrameworks (PolyNetSDK, Starscream and SwiftProtobuf) from the PolyNetSampleSwift/Carthage/Build folder. 
+After updating the Carthage dependencies, follow these steps (PolyNetSampleSwift project as a example):
 
-Once added, run the project from Xcode.
+1. Open the Xcode project (.xcodeproj) and navigate to the Frameworks folder.
+2. Right-click the Frameworks folder and select "Add files to PolyNetSampleSwift."
+3. Ensure that "Copy items if needed," "Create groups," and "Add to targets PolyNetSampleSwift" are selected.
+4. Choose the XCFrameworks (PolyNetSDK, Starscream, and SwiftProtobuf) from the PolyNetSampleSwift/Carthage/Build folder.
+5. Go to the "General" tab of your project settings and ensure that the added frameworks are set to "Embed & Sign."
 
 ### Using CocoaPods
 
@@ -38,7 +42,7 @@ pod update
 
 *Beware to open the workspace (.xcworkspace) and not the project (.xcodeproj) itself to work with CocoaPods.*
 
-Go to the Frameworks folder inside the Xcode project workspace (.xcworkspace) and delete the PolyNetSDK, Starscream, and SwiftProtobuf frameworks that are marked in red and which not being found by Xcode. Only keep the Pods_PolyNetSampleSwift.framework. 
+Open the .xcworkspace file of your Xcode project and ensure that only Pods_PolyNetSampleSwift.framework is present in the Frameworks, Libraries, and Embedded Content sections.
 
 After that, run the project from Xcode.
 

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,29 +13,7 @@
 		B71050021F18AB070008CFD9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B71050001F18AB070008CFD9 /* Main.storyboard */; };
 		B71050041F18AB070008CFD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B71050031F18AB070008CFD9 /* Assets.xcassets */; };
 		B71050071F18AB070008CFD9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B71050051F18AB070008CFD9 /* LaunchScreen.storyboard */; };
-		B79E3746260CB688009447F0 /* PolyNetSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B79E3740260CB39A009447F0 /* PolyNetSDK.xcframework */; };
-		B79E3747260CB688009447F0 /* PolyNetSDK.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B79E3740260CB39A009447F0 /* PolyNetSDK.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B79E3748260CB68A009447F0 /* Starscream.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B79E3741260CB39A009447F0 /* Starscream.xcframework */; };
-		B79E3749260CB68A009447F0 /* Starscream.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B79E3741260CB39A009447F0 /* Starscream.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B79E374A260CB68B009447F0 /* SwiftProtobuf.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B79E3742260CB39A009447F0 /* SwiftProtobuf.xcframework */; };
-		B79E374B260CB68B009447F0 /* SwiftProtobuf.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B79E3742260CB39A009447F0 /* SwiftProtobuf.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		AFAEF12420D9400D00A6121A /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				B79E3749260CB68A009447F0 /* Starscream.xcframework in Embed Frameworks */,
-				B79E3747260CB688009447F0 /* PolyNetSDK.xcframework in Embed Frameworks */,
-				B79E374B260CB68B009447F0 /* SwiftProtobuf.xcframework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		B7104FF41F18AB070008CFD9 /* PolyNetSampleObjectiveC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PolyNetSampleObjectiveC.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -48,9 +26,6 @@
 		B71050031F18AB070008CFD9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B71050061F18AB070008CFD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B71050081F18AB070008CFD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B79E3740260CB39A009447F0 /* PolyNetSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = PolyNetSDK.xcframework; sourceTree = "<group>"; };
-		B79E3741260CB39A009447F0 /* Starscream.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = Starscream.xcframework; sourceTree = "<group>"; };
-		B79E3742260CB39A009447F0 /* SwiftProtobuf.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = SwiftProtobuf.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,30 +33,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B79E3746260CB688009447F0 /* PolyNetSDK.xcframework in Frameworks */,
-				B79E3748260CB68A009447F0 /* Starscream.xcframework in Frameworks */,
-				B79E374A260CB68B009447F0 /* SwiftProtobuf.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B70521581F260BD200E88BE5 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				B79E3740260CB39A009447F0 /* PolyNetSDK.xcframework */,
-				B79E3741260CB39A009447F0 /* Starscream.xcframework */,
-				B79E3742260CB39A009447F0 /* SwiftProtobuf.xcframework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		B7104FEB1F18AB070008CFD9 = {
 			isa = PBXGroup;
 			children = (
 				B7104FF61F18AB070008CFD9 /* PolyNetSampleObjectiveC */,
-				B70521581F260BD200E88BE5 /* Frameworks */,
 				B7104FF51F18AB070008CFD9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -128,7 +89,6 @@
 				B7104FF01F18AB070008CFD9 /* Sources */,
 				B7104FF11F18AB070008CFD9 /* Frameworks */,
 				B7104FF21F18AB070008CFD9 /* Resources */,
-				AFAEF12420D9400D00A6121A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -343,10 +303,7 @@
 				);
 				INFOPLIST_FILE = PolyNetSampleObjectiveC/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -377,10 +334,7 @@
 				);
 				INFOPLIST_FILE = PolyNetSampleObjectiveC/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = (
 					"-ObjC",
