@@ -51,6 +51,7 @@ class ViewController: UIViewController {
     fileprivate let MANIFEST_URL_KEY = "MANIFEST_URL_KEY"
     fileprivate let CHANNEL_ID_KEY = "CHANNEL_ID_KEY"
     fileprivate let API_KEY_KEY = "API_KEY_KEY"
+    fileprivate let CONTENT_STEERING_ENDPOINT = "CONTENT_STEERING_ENDPOINT"
     fileprivate let FIRST_SECTION_HEADER_HEIGHT = CGFloat(40.0)
     fileprivate let SECTION_HEADER_HEIGHT = CGFloat(12.0)
     
@@ -59,6 +60,7 @@ class ViewController: UIViewController {
         manifestUrlTextField.text = defaults.string(forKey: MANIFEST_URL_KEY)
         channelIdTextField.text = defaults.string(forKey: CHANNEL_ID_KEY)
         apiKeyTextField.text = defaults.string(forKey: API_KEY_KEY)
+        contentSteeringEndpointTextField.text = defaults.string(forKey: CONTENT_STEERING_ENDPOINT)
     }
     
     fileprivate func saveToPersistance() {
@@ -78,6 +80,11 @@ class ViewController: UIViewController {
         } else {
             defaults.removeObject(forKey: API_KEY_KEY)
         }
+        if let contentSteeringEndpoint = contentSteeringEndpointTextField.text, contentSteeringEndpoint.count > 0 {
+                    defaults.set(contentSteeringEndpoint, forKey: CONTENT_STEERING_ENDPOINT)
+                } else {
+                    defaults.removeObject(forKey: CONTENT_STEERING_ENDPOINT)
+                }
     }
     
     fileprivate func updateVersionLabel() {
@@ -100,6 +107,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var manifestUrlTextField: UITextField!
     @IBOutlet weak var channelIdTextField: UITextField!
     @IBOutlet weak var apiKeyTextField: UITextField!
+    @IBOutlet weak var contentSteeringEndpointTextField: UITextField!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var versionLabel: UILabel!
     
@@ -126,6 +134,13 @@ class ViewController: UIViewController {
             apiKey = apiKeyTextField.text!
         }
         
+        let contentSteeringEndpoint: String
+        if contentSteeringEndpointTextField.text == nil || contentSteeringEndpointTextField.text?.count == 0 {
+            contentSteeringEndpoint = contentSteeringEndpointTextField.placeholder!
+        } else {
+            contentSteeringEndpoint = contentSteeringEndpointTextField.text!
+        }
+        
         
         // Remove White Spaces
         removeWhiteSpaces()
@@ -139,7 +154,8 @@ class ViewController: UIViewController {
         
         do {
             // Create the PolyNet
-            polyNet = try PolyNet(manifestUrl: manifestUrl, channelId: channelId, apiKey: apiKey)
+            polyNet = try PolyNet(manifestUrl: manifestUrl, channelId: channelId, apiKey: apiKey, contentSteeringEndpoint:contentSteeringEndpoint)
+            polyNet = try Polynet(m)
             polyNet?.logLevel = .debug
             polyNet?.dataSource = self
             polyNet?.delegate = self
@@ -166,7 +182,7 @@ class ViewController: UIViewController {
         manifestUrlTextField.text = manifestUrlTextField.text?.replacingOccurrences(of: " ", with: "")
         channelIdTextField.text = channelIdTextField.text?.replacingOccurrences(of: " ", with: "")
         apiKeyTextField.text = apiKeyTextField.text?.replacingOccurrences(of: " ", with: "")
-
+        contentSteeringEndpointTextField.text = contentSteeringEndpointTextField.text?.replacingOccurrences(of: " ", with: "")
     }
 
 }
@@ -232,6 +248,11 @@ extension ViewController: PolyNetDataSource {
         }
         return event.playbackStartDate
     }
+    
+    func playerState(in polyNet: PolyNet) -> PolyNet.PolynetPlayerState {
+            //retrun the exact status of player
+            return PolyNet.PolynetPlayerState.playing
+        }
 }
 
 // MARK: PolyNetDelegate

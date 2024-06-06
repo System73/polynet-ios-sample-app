@@ -18,37 +18,35 @@ Then, select one of the following methods.
 
 ### Using Carthage
 
-Checkout the tag PolyNetSDK-version-5-carthage in the repository.
-
-```shell
-git checkout PolyNetSDK-version-5-carthage
-```
-
-Update the carthage dependencies for the specific Apple platform. For example, iOS for PolyNetSampleSwift.
+Navigate to a specific project (PolyNetSampleSwift, PolyNetSampleObjectiveC, etc.). Update the Carthage dependencies for the specific Apple platform (ios/tvos).
 
 ```shell
 carthage update --platform ios --use-xcframeworks
 ```
 
-Run the project from Xcode.
+After updating the Carthage dependencies, follow these steps (PolyNetSampleSwift project as a example):
+
+1. Open the Xcode project (.xcodeproj) and navigate to the Frameworks folder.
+2. Right-click the Frameworks folder and select "Add files to PolyNetSampleSwift."
+3. Ensure that "Copy items if needed," "Create groups," and "Add to targets PolyNetSampleSwift" are selected.
+4. Choose the XCFrameworks (PolyNetSDK, Starscream, and SwiftProtobuf) from the PolyNetSampleSwift/Carthage/Build folder.
+5. Go to the "General" tab of your project settings and ensure that the added frameworks are set to "Embed & Sign."
+
+After that, run the project from Xcode.
 
 ### Using CocoaPods
 
-Checkout the tag PolyNetSDK-version-5-cocoapods in the repository.
+Install or Update the dependencies.
 
 ```shell
-git checkout PolyNetSDK-version-5-cocoapods
+pod update
 ```
-
-Install the dependencies.
-
-```shell
-pod install
-```
-
-Run the created workspace from Xcode.
 
 *Beware to open the workspace (.xcworkspace) and not the project (.xcodeproj) itself to work with CocoaPods.*
+
+Open the .xcworkspace file of your Xcode project and ensure that only Pods_PolyNetSampleSwift.framework is present in the Frameworks, Libraries, and Embedded Content sections. 
+
+After that, run the project from Xcode.
 
 ## Support
 
