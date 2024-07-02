@@ -147,6 +147,7 @@
         self.polyNet.logLevel = PolyNetLogLevelDebug;
         self.polyNet.delegate = self;
         self.polyNet.dataSource = self;
+        [self.polyNet customDimension1WithCustomDimension1:@"custom dimension string 1"];
         self.player = [[AVPlayer alloc] initWithURL:[NSURL URLWithString:self.polyNet.localManifestUrl]];
         self.playerViewController = [[AVPlayerViewController alloc] init];
         self.playerViewController.player = self.player;
@@ -262,6 +263,14 @@
 }
 
 - (enum PolynetPlayerState)playerStateIn:(PolyNet *)polyNet{
+    //return the exact status of player. For ex: playing, paused, buffering and unknown haven been implemented.
+    if (self.player.timeControlStatus == AVPlayerTimeControlStatusPlaying) {
+        return PolynetPlayerStatePlaying;
+    } else if (self.player.timeControlStatus == AVPlayerTimeControlStatusPaused) {
+        return PolynetPlayerStatePaused;
+    } else if (self.player.timeControlStatus == AVPlayerTimeControlStatusWaitingToPlayAtSpecifiedRate) {
+        return PolynetPlayerStateBuffering;
+    }
     return PolynetPlayerStateStarting;
 }
 
