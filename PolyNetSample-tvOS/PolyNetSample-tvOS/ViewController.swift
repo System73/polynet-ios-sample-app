@@ -81,10 +81,10 @@ class ViewController: UIViewController {
             defaults.removeObject(forKey: API_KEY_KEY)
         }
         if let contentSteeringEndpoint = contentSteeringEndpointTextField.text, contentSteeringEndpoint.count > 0 {
-                    defaults.set(contentSteeringEndpoint, forKey: CONTENT_STEERING_ENDPOINT)
-                } else {
-                    defaults.removeObject(forKey: CONTENT_STEERING_ENDPOINT)
-                }
+            defaults.set(contentSteeringEndpoint, forKey: CONTENT_STEERING_ENDPOINT)
+        } else {
+            defaults.removeObject(forKey: CONTENT_STEERING_ENDPOINT)
+        }
     }
     
     fileprivate func updateVersionLabel() {
@@ -140,8 +140,6 @@ class ViewController: UIViewController {
         } else {
             contentSteeringEndpoint = contentSteeringEndpointTextField.text!
         }
-        
-        
         // Remove White Spaces
         removeWhiteSpaces()
         
@@ -159,6 +157,7 @@ class ViewController: UIViewController {
             polyNet?.logLevel = .debug
             polyNet?.dataSource = self
             polyNet?.delegate = self
+            polyNet?.customDimension1(customDimension1: "custom dimension string")
             
             // Configure and start player
             player = AVPlayer(url: URL(string:polyNet!.localManifestUrl)!)
@@ -250,9 +249,16 @@ extension ViewController: PolyNetDataSource {
     }
     
     func playerState(in polyNet: PolyNet) -> PolyNet.PolynetPlayerState {
-            //retrun the exact status of player
+        //return the exact status of player. For ex: playing, paused, buffering and unknown haven been implemented.
+        if player?.timeControlStatus == .playing {
             return PolyNet.PolynetPlayerState.playing
+        } else if player?.timeControlStatus == .paused {
+            return PolyNet.PolynetPlayerState.paused
+        } else if player?.timeControlStatus == .waitingToPlayAtSpecifiedRate {
+            return PolyNet.PolynetPlayerState.buffering
         }
+        return PolyNet.PolynetPlayerState.unknown
+    }
 }
 
 // MARK: PolyNetDelegate

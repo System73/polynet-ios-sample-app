@@ -147,6 +147,7 @@ class ViewController: UITableViewController {
             polyNet?.logLevel = .debug
             polyNet?.dataSource = self
             polyNet?.delegate = self
+            polyNet?.customDimension1(customDimension1: "custom dimension string")
             
             // Configure and start player
             player = AVPlayer(url: URL(string:polyNet!.localManifestUrl)!)
@@ -240,12 +241,10 @@ extension ViewController: PolyNetDataSource {
     
     // PolyNet request the dropped video frames. This is the accumulated number of dropped video frames for the player.
     func playerAccumulatedDroppedFrames(in: PolyNet) -> NSNumber? {
-        
         // If no events, return nil
         guard let event = player?.currentItem?.accessLog()?.events.last else {
             return nil
         }
-        
         // Get the last event and return the dropped frames. If the value is negative, the value is unknown according to the API. In such cases return nil.
         let numberOfDroppedVideoFrames = event.numberOfDroppedVideoFrames
         if (numberOfDroppedVideoFrames < 0) {
@@ -257,7 +256,6 @@ extension ViewController: PolyNetDataSource {
     
     // PolyNet request the started date of the playback. This is the date when the player started to play the video
     func playerPlaybackStartDate(in: PolyNet) -> Date? {
-        
         // If no events, return nil
         guard let event = player?.currentItem?.accessLog()?.events.last else {
             return nil
@@ -266,8 +264,15 @@ extension ViewController: PolyNetDataSource {
     }
     
     func playerState(in polyNet: PolyNet) -> PolyNet.PolynetPlayerState {
-        //retrun the exact status of player
-        return PolyNet.PolynetPlayerState.playing
+        //return the exact status of player. For ex: playing, paused, buffering and unknown haven been implemented.
+        if player?.timeControlStatus == .playing {
+            return PolyNet.PolynetPlayerState.playing
+        } else if player?.timeControlStatus == .paused {
+            return PolyNet.PolynetPlayerState.paused
+        } else if player?.timeControlStatus == .waitingToPlayAtSpecifiedRate {
+            return PolyNet.PolynetPlayerState.buffering
+        }
+        return PolyNet.PolynetPlayerState.unknown
     }
     
     override func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
@@ -278,7 +283,6 @@ extension ViewController: PolyNetDataSource {
         if (section == 0) {
             return FIRST_SECTION_HEADER_HEIGHT
         }
-        
         return SECTION_HEADER_HEIGHT
     }
 }
