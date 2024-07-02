@@ -268,7 +268,7 @@
         return PolynetPlayerStatePlaying;
     } else if (self.player.timeControlStatus == AVPlayerTimeControlStatusPaused) {
         return PolynetPlayerStatePaused;
-    }else if (self.player.timeControlStatus == AVPlayerTimeControlStatusWaitingToPlayAtSpecifiedRate) {
+    } else if (self.player.timeControlStatus == AVPlayerTimeControlStatusWaitingToPlayAtSpecifiedRate) {
         return PolynetPlayerStateBuffering;
     }
     return PolynetPlayerStateStarting;
