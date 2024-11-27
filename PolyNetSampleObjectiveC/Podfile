@@ -1,5 +1,5 @@
 platform :ios, '12'
 use_frameworks!
 target 'PolyNetSampleObjectiveC' do
-  pod 'PolyNetSDK', '~> 5.1.7'
+  pod 'PolyNetSDK', '~> 5.1.8'
 end
