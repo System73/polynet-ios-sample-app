@@ -28,7 +28,7 @@ After updating the Carthage dependencies, follow these steps (PolyNetSampleSwift
 
 1. Open the Xcode project (.xcodeproj) and navigate to the Frameworks folder.
 2. Right-click the Frameworks folder and select "Add files to PolyNetSampleSwift."
-3. Ensure that "Copy items if needed," "Create groups," and "Add to targets PolyNetSampleSwift" are selected.
+3. Ensure that "Reference files in place," "Create groups," and "Add to targets PolyNetSampleSwift" are selected.
 4. Choose the XCFrameworks (PolyNetSDK, Starscream, and SwiftProtobuf) from the PolyNetSampleSwift/Carthage/Build folder.
 5. Go to the "General" tab of your project settings and ensure that the added frameworks are set to "Embed & Sign."
 
