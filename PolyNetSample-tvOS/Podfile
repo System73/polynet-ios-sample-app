@@ -1,5 +1,5 @@
 platform :tvos, '13'
 use_frameworks!
 target 'PolyNetSample-tvOS' do
-  pod 'PolyNetSDK', '~> 5.2.2'
+  pod 'PolyNetSDK', '~> 5.2.3'
 end
